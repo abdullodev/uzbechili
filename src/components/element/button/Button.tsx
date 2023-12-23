@@ -1,14 +1,33 @@
-import { Button, ButtonProps } from "antd";
+import { ButtonStyled, IconButtonStyled } from "./ButtonStyled";
+import { ButtonProps } from "@mui/material";
+import { IconButton } from "@mui/material";
 
 interface ICommonButton extends ButtonProps {
-  title: string;
+  title?: string;
+  endIcon?: React.ReactNode;
+  startIcon?: React.ReactNode;
+  icon?: React.ReactNode;
+  iconButton?: boolean;
 }
 
-const CommonButton: React.FC<ICommonButton> = ({ title, ...props }) => {
+const CommonButton: React.FC<ICommonButton> = ({
+  endIcon,
+  startIcon,
+  icon,
+  title,
+  iconButton = false,
+  ...props
+}) => {
   return (
-    <Button {...props} color="red">
-      {title || "Qo'shish"}
-    </Button>
+    <>
+      {!iconButton ? (
+        <ButtonStyled {...props} startIcon={startIcon} endIcon={endIcon}>
+          {title || "Qo'shish"}
+        </ButtonStyled>
+      ) : (
+        <IconButtonStyled {...props}>{icon}</IconButtonStyled>
+      )}
+    </>
   );
 };
 
