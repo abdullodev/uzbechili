@@ -11,6 +11,7 @@ export const ButtonStyled = styled(Button)`
   padding: 0 18px !important;
   color: #000 !important;
   background-color: #f5f5f5 !important;
+  line-height: 16px !important;
 
   &:hover {
     color: #000 !important;
