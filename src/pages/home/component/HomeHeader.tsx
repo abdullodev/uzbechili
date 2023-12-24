@@ -4,7 +4,7 @@ import { CommonButton } from "@/components";
 
 const HomeHeader = () => {
   return (
-    <Box display={"flex"} justifyContent={"space-between"}>
+    <Box display={"flex"} justifyContent={"space-between"} mb={2}>
       <h3>Hudilar</h3>
       <CommonButton />
     </Box>
