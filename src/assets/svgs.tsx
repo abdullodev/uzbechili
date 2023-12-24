@@ -145,6 +145,19 @@ const ArrowDown = () => (
   </svg>
 );
 
+const checkMark = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" width={32} height={32} fill="none">
+    <circle cx={16} cy={16} r={16} fill="#17C657" />
+    <path
+      stroke="#fff"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth={2.5}
+      d="m10 16.5 4 4 8.5-8.5"
+    />
+  </svg>
+);
+
 const Icons = {
   MenuIcon,
   LogoMain,
@@ -154,6 +167,7 @@ const Icons = {
   CartIcon,
   UserIcon,
   ArrowDown,
+  checkMark,
 };
 
 export default Icons;

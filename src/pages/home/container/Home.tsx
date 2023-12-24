@@ -1,18 +1,15 @@
 import Icons from "@/assets/svgs";
 import { CommonButton } from "@/components";
-import Navbar from "@/components/element/navbar/navbar";
+import { MainBox } from "@/styles/Common.style";
+import HomeHeader from "../component/HomeHeader";
+import HomeCategories from "../component/HomeCategories";
 
 const Home = () => {
   return (
-    <div>
-      <Navbar />
-      <h2>salom</h2>
-      <CommonButton
-        title="Ikki"
-        className="designed"
-        startIcon={<Icons.MenuIcon />}
-      />
-    </div>
+    <MainBox style={{ background: "#f5f5f5" }}>
+      <HomeHeader />
+      <HomeCategories />
+    </MainBox>
   );
 };
 
