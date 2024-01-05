@@ -1,11 +1,11 @@
 import Navbar from "@/components/shared/navbar/navbar";
-import Home from "./Home";
+import Categories from "./Categories";
 
 const index = () => {
   return (
     <div>
       <Navbar />
-      <Home />
+      <Categories />
     </div>
   );
 };

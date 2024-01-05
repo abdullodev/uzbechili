@@ -1,4 +1,3 @@
-import { CommonButton } from "@/components";
 import {
   ProductBox,
   ProductButton,
@@ -8,7 +7,7 @@ import {
 import { Grid, Typography } from "@mui/material";
 import Hudi from "../../../assets/img-hudi.png";
 
-const HomeCategories = () => {
+const Category = () => {
   return (
     <Grid container spacing={[2, 3]}>
       {new Array(10, 11, 12, 14, 121, 1223, 123123).map(
@@ -34,4 +33,4 @@ const HomeCategories = () => {
   );
 };
 
-export default HomeCategories;
+export default Category;

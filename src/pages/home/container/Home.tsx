@@ -1,13 +1,14 @@
 import Icons from "@/assets/svgs";
 import { CommonButton } from "@/components";
 import { MainBox } from "@/styles/Common.style";
-import HomeHeader from "../component/HomeHeader";
-import HomeCategories from "../component/HomeCategories";
+import HomeSlider from "../component/slider/home.slider";
+import HomeCategories from "../component/categories/home.categories";
 
 const Home = () => {
   return (
     <MainBox style={{ background: "#f5f5f5" }}>
-      <HomeHeader />
+      <h2>Home</h2>
+      <HomeSlider />
       <HomeCategories />
     </MainBox>
   );

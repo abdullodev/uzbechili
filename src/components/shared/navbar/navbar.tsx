@@ -5,26 +5,22 @@ import {
   StyledNavbar,
   TopNavbarStyled,
 } from "./navbar.style";
-import CommonButton from "../button/Button";
 import Icons from "@/assets/svgs";
 import { useState, useRef, useEffect } from "react";
 import useOutsideClick from "@/services/useOutsideClick/useOutsideClick";
 import browserStorage from "@/services/storage/browserStorage";
+import { CommonButton } from "@/components";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const [open, setOpen] = useState<boolean>(false);
-  const [language, setLanguage] = useState<Record<string, string>>(
-    browserStorage.get("i18nextLng")
-      ? JSON.parse(browserStorage.get("i18nextLng"))
-      : {
-          value: "uz",
-          label: "O'zbek",
-        }
+  const [language, setLanguage] = useState<string>(
+    browserStorage.get("i18nextLng") ? browserStorage.get("i18nextLng") : "uz"
   );
 
   const refLang = useRef(null);
 
-  const handleChangeLang = (lang: Record<string, string>) => {
+  const handleChangeLang = (lang: string) => {
     setLanguage(lang);
     browserStorage.set("i18nextLng", lang);
     setOpen(false);
@@ -66,14 +62,22 @@ const Navbar = () => {
             <CommonButton iconButton icon={<Icons.HeartIcon />} />
           </Box>
           <Box display={"flex"} justifyContent={"center"}>
-            <Icons.LogoMain />
+            <Link to="/">
+              <Icons.LogoMain />
+            </Link>
           </Box>
           <Box display={"flex"} gap={"14px"} justifyContent={"flex-end"}>
             <CommonButton iconButton icon={<Icons.SearchIcon />} />
             <CommonButton iconButton icon={<Icons.CartIcon />} />
             <LanguageBox ref={refLang}>
               <CommonButton
-                title={language.label}
+                title={
+                  language === "uz"
+                    ? "O'zbek"
+                    : language === "ru"
+                    ? "Русский"
+                    : "English"
+                }
                 endIcon={<Icons.ArrowDown />}
                 onClick={() => setOpen(!open)}
                 className={open ? "arrow" : ""}
@@ -81,26 +85,20 @@ const Navbar = () => {
               <Paper className={open ? "show" : ""}>
                 <MenuList>
                   <MenuItem
-                    className={language.value === "uz" ? "active" : ""}
-                    onClick={() =>
-                      handleChangeLang({ value: "uz", label: "O'zbek" })
-                    }
+                    className={language === "uz" ? "active" : ""}
+                    onClick={() => handleChangeLang("uz")}
                   >
                     O'zbek
                   </MenuItem>
                   <MenuItem
-                    className={language.value === "ru" ? "active" : ""}
-                    onClick={() =>
-                      handleChangeLang({ value: "ru", label: "Русский" })
-                    }
+                    className={language === "ru" ? "active" : ""}
+                    onClick={() => handleChangeLang("ru")}
                   >
                     Русский
                   </MenuItem>
                   <MenuItem
-                    className={language.value === "en" ? "active" : ""}
-                    onClick={() =>
-                      handleChangeLang({ value: "en", label: "English" })
-                    }
+                    className={language === "en" ? "active" : ""}
+                    onClick={() => handleChangeLang("en")}
                   >
                     English
                   </MenuItem>

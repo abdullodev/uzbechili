@@ -2,7 +2,7 @@ import React from "react";
 import { Box } from "@mui/material";
 import { CommonButton } from "@/components";
 
-const HomeHeader = () => {
+const CategoryHeader = () => {
   return (
     <Box display={"flex"} justifyContent={"space-between"} mb={2}>
       <h3>Hudilar</h3>
@@ -11,4 +11,4 @@ const HomeHeader = () => {
   );
 };
 
-export default HomeHeader;
+export default CategoryHeader;

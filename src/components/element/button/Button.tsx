@@ -1,6 +1,5 @@
-import { ButtonStyled, IconButtonStyled } from "./ButtonStyled";
 import { ButtonProps } from "@mui/material";
-import { IconButton } from "@mui/material";
+import { ButtonStyled, IconButtonStyled } from "./ButtonStyled";
 
 interface ICommonButton extends ButtonProps {
   title?: string;

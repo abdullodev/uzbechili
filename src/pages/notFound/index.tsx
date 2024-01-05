@@ -1,11 +1,12 @@
+import React from "react";
+import NotFound from "./NotFound";
 import Navbar from "@/components/shared/navbar/navbar";
-import Home from "./Home";
 
 const index = () => {
   return (
     <div>
       <Navbar />
-      <Home />
+      <NotFound />
     </div>
   );
 };
