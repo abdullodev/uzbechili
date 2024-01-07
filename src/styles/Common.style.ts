@@ -2,8 +2,8 @@ import { styled } from "styled-components";
 import { Box, Button } from "@mui/material";
 
 export const MainBox = styled(Box)`
-  padding: 30px 120px;
-  min-height: 580px;
+  padding: 24px 120px;
+  min-height: 400px;
 
   @media screen and (max-width: 910px) {
     padding: 20px 60px;

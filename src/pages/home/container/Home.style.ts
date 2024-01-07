@@ -64,3 +64,129 @@ export const HomeSlideStyle = styled(Box)`
     }
   }
 `;
+
+export const PromocodeStyle = styled(Box)`
+  width: 100%;
+  height: 40px;
+  border-radius: 10px;
+  border-radius: 8px;
+  background: linear-gradient(90deg, #0065ff 0%, #00b2ff 100%);
+  height: 56px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 12px;
+  color: #fff;
+  font-size: 16px;
+  margin-bottom: 12px;
+`;
+
+export const HomeCategoriesStyle = styled(Box)`
+  .text-center {
+    font-size: 44px;
+    font-weight: 800;
+    color: #000;
+    text-transform: uppercase;
+  }
+`;
+export const CategoryBox = styled(Box)`
+  width: 100%;
+  height: 280px;
+  border-radius: 20px;
+  position: relative;
+  overflow: hidden;
+  background-color: #fff;
+  cursor: pointer;
+  padding: 16px;
+  transition: all 0.3s ease;
+
+  .category_img {
+    transition: all 0.3s ease;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    object-fit: cover;
+    z-index: 1;
+  }
+  .category_name {
+    transition: all 0.3s ease;
+    position: absolute;
+    bottom: 10px;
+    left: 16px;
+    font-size: 20px;
+    color: #000;
+    z-index: 2;
+    font-weight: 700;
+  }
+
+  .designed {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    z-index: 2;
+    font-weight: 600;
+    height: 27px !important;
+    font-size: 14px !important;
+  }
+
+  &:hover {
+    .category_img {
+      filter: brightness(80%);
+      transform: scale(1.03);
+    }
+    .category_name {
+      color: #fff;
+    }
+  }
+  &.disabled {
+    cursor: default;
+    &:hover {
+      .category_img {
+        filter: none;
+        transform: none;
+      }
+      .category_name {
+        color: #000;
+      }
+    }
+  }
+`;
+
+export const AboutHeader = styled(Box)`
+  text-align: center;
+
+  .what_is {
+    font-size: 44px;
+    font-weight: 700;
+    color: rgba(0, 0, 0, 0.2);
+    margin-top: 16px;
+  }
+
+  .what_is_logo {
+    transform: scale(1.8);
+  }
+`;
+
+export const AboutVideoBox = styled(Box)`
+  width: 560px;
+  height: 320px;
+  border-radius: 32px;
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  margin-top: 40px;
+
+  .vide_btn {
+    width: 230px !important;
+    height: 48px !important;
+    border-radius: 24px !important;
+    background-color: #000 !important;
+    color: #fff !important;
+    padding: 0px !important;
+    font-weight: 700 !important;
+  }
+`;
