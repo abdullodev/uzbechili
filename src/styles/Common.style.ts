@@ -4,6 +4,7 @@ import { Box, Button } from "@mui/material";
 export const MainBox = styled(Box)`
   padding: 24px 120px;
   min-height: 400px;
+  background-color: #f5f5f5;
 
   @media screen and (max-width: 910px) {
     padding: 20px 60px;
@@ -13,7 +14,7 @@ export const MainBox = styled(Box)`
   }
 
   @media screen and (max-width: 540px) {
-    padding: 20px;
+    padding: 15px;
   }
 `;
 
@@ -23,6 +24,15 @@ export const ProductBox = styled(Box)`
   box-sizing: border-box;
   border-radius: 12px;
   background-color: #fff;
+  cursor: pointer;
+  border: 1px solid #ffffff;
+
+  &:hover {
+    border: 1px solid #eaeaea;
+    .product_img {
+      filter: brightness(80%);
+    }
+  }
 `;
 
 export const ProductImg = styled(Box)`
@@ -33,6 +43,7 @@ export const ProductImg = styled(Box)`
   justify-content: center;
   align-items: center;
   border-radius: 10px;
+  transition: all 0.3s ease;
 
   img {
     max-width: 100%;

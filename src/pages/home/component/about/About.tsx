@@ -1,9 +1,8 @@
-import { MainBox } from "@/styles/Common.style";
-import React from "react";
-import { Box, Typography } from "@mui/material";
 import Icons from "@/assets/svgs";
-import { AboutHeader, AboutVideoBox } from "../../container/Home.style";
 import { CommonButton } from "@/components";
+import { MainBox } from "@/styles/Common.style";
+import { Typography } from "@mui/material";
+import { AboutHeader, AboutVideoBox } from "../../container/Home.style";
 
 const About = () => {
   return (

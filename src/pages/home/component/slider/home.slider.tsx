@@ -1,7 +1,3 @@
-import "swiper/css";
-import "swiper/css/effect-fade";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import { useNavigate } from "react-router-dom";

@@ -79,6 +79,10 @@ export const PromocodeStyle = styled(Box)`
   color: #fff;
   font-size: 16px;
   margin-bottom: 12px;
+
+  @media screen and (max-width: 540px) {
+    font-size: 12px;
+  }
 `;
 
 export const HomeCategoriesStyle = styled(Box)`
@@ -87,6 +91,12 @@ export const HomeCategoriesStyle = styled(Box)`
     font-weight: 800;
     color: #000;
     text-transform: uppercase;
+  }
+
+  @media screen and (max-width: 540px) {
+    .text-center {
+      font-size: 30px;
+    }
   }
 `;
 export const CategoryBox = styled(Box)`
@@ -167,6 +177,15 @@ export const AboutHeader = styled(Box)`
   .what_is_logo {
     transform: scale(1.8);
   }
+
+  @media screen and (max-width: 540px) {
+    .what_is_logo {
+      transform: scale(0.9);
+    }
+    .what_is {
+      font-size: 30px;
+    }
+  }
 `;
 
 export const AboutVideoBox = styled(Box)`
@@ -188,5 +207,12 @@ export const AboutVideoBox = styled(Box)`
     color: #fff !important;
     padding: 0px !important;
     font-weight: 700 !important;
+  }
+
+  @media screen and (max-width: 720px) {
+    width: 440px;
+  }
+  @media screen and (max-width: 540px) {
+    width: 100%;
   }
 `;

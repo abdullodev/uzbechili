@@ -6,15 +6,21 @@ import {
 } from "@/styles/Common.style";
 import { Grid, Typography } from "@mui/material";
 import Hudi from "../../../assets/img-hudi.png";
+import { useNavigate } from "react-router-dom";
 
 const Category = () => {
+  const navigate = useNavigate();
   return (
     <Grid container spacing={[2, 3]}>
       {new Array(10, 11, 12, 14, 121, 1223, 123123).map(
         (_: any, index: number) => (
           <Grid item xl={2} lg={2.4} md={3} sm={4} xs={6} key={index}>
-            <ProductBox>
-              <ProductImg>
+            <ProductBox
+              onClick={() => {
+                navigate(`/product/${index}`);
+              }}
+            >
+              <ProductImg className="product_img">
                 <img src={Hudi} alt="hudi" />
               </ProductImg>
               <ProductInfo>

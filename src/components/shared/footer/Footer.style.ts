@@ -70,4 +70,34 @@ export const FooterStyled = styled(Box)`
       color: rgba(255, 255, 255, 0.5);
     }
   }
+
+  @media screen and (max-width: 910px) {
+    .footer_top {
+      padding: 20px 60px;
+    }
+    .footer_bottom {
+      padding: 20px 60px;
+    }
+  }
+  @media screen and (max-width: 720px) {
+    .footer_top {
+      padding: 15px 40px;
+    }
+    .footer_bottom {
+      padding: 15px 40px;
+    }
+  }
+
+  @media screen and (max-width: 540px) {
+    .footer_top {
+      flex-direction: column;
+      padding: 20px;
+      .footer_info {
+        flex-direction: column;
+      }
+    }
+    .footer_bottom {
+      padding: 20px;
+    }
+  }
 `;

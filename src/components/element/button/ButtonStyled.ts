@@ -12,6 +12,7 @@ export const ButtonStyled = styled(Button)`
   color: #000 !important;
   background-color: #f5f5f5 !important;
   line-height: 16px !important;
+  font-weight: 700 !important;
 
   &:hover {
     color: #000 !important;
@@ -33,6 +34,18 @@ export const ButtonStyled = styled(Button)`
         stroke: #fff !important;
       }
     }
+  }
+
+  &.blue {
+    background-color: #0065ff !important;
+    color: #fff !important;
+    border-radius: 10px !important;
+  }
+
+  &.white {
+    background-color: #fff !important;
+    color: #000 !important;
+    border-radius: 10px !important;
   }
 `;
 

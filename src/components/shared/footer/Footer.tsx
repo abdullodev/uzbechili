@@ -1,9 +1,7 @@
-import { MainBox } from "@/styles/Common.style";
-import React from "react";
-import { FooterStyled } from "./Footer.style";
 import Icons from "@/assets/svgs";
-import { Box, Typography } from "@mui/material";
 import { CommonButton } from "@/components";
+import { Box, Typography } from "@mui/material";
+import { FooterStyled } from "./Footer.style";
 
 const Footer = () => {
   return (

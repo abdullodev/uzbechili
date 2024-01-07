@@ -3,6 +3,8 @@ import { styled } from "styled-components";
 
 export const StyledNavbar = styled.div`
   transition: all 0.3s ease !important;
+  position: relative;
+  z-index: 99;
 
   &.active {
     position: sticky;
@@ -68,11 +70,14 @@ export const LanguageBox = styled(Box)`
     opacity: 0;
     transition: 0.2s ease;
     border-radius: 12px;
+    transform: scale(0);
+    transform-origin: top;
 
     &.show {
       top: 40px;
       z-index: 1;
       opacity: 1;
+      transform: scale(1);
     }
 
     .MuiList-root {
