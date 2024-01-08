@@ -118,6 +118,7 @@ export const SizeTabs = styled(Box)`
     text-transform: capitalize !important;
     font-weight: 700 !important;
     border-radius: 8px !important;
+    background-color: #fff !important;
 
     &.active {
       background: #0065ff !important;

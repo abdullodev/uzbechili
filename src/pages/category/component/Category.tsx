@@ -5,8 +5,8 @@ import {
   ProductInfo,
 } from "@/styles/Common.style";
 import { Grid, Typography } from "@mui/material";
-import Hudi from "../../../assets/img-hudi.png";
 import { useNavigate } from "react-router-dom";
+import Hudi from "../../../assets/img-hudi.png";
 
 const Category = () => {
   const navigate = useNavigate();
