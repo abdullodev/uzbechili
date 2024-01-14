@@ -609,3 +609,10 @@ hr {
 .gap-2 {
   gap: 14px;
 }
+.color-white {
+  color: #fff;
+}
+
+.color-black {
+  color: #000;
+}

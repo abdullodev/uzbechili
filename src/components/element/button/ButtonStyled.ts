@@ -18,11 +18,11 @@ export const ButtonStyled = styled(Button)`
     color: #000 !important;
   }
 
-  .MuiButton-startIcon {
+  /* .MuiButton-startIcon {
     path {
       stroke: #000 !important;
     }
-  }
+  } */
 
   &.designed {
     background: linear-gradient(90deg, #ff5c4d 0%, #eb469f 40%, #8341ef 100%);

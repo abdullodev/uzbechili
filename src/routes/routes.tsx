@@ -5,6 +5,7 @@ const NotFound = lazy(() => import("../pages/notFound"));
 const Home = lazy(() => import("../pages/home/container"));
 const Categories = lazy(() => import("../pages/category/container"));
 const Product = lazy(() => import("../pages/product"));
+const Baskets = lazy(() => import("../pages/basket"));
 
 export const router = createBrowserRouter([
   {
@@ -22,5 +23,9 @@ export const router = createBrowserRouter([
   {
     path: "/product/:id",
     element: <Product />,
+  },
+  {
+    path: "/baskets",
+    element: <Baskets />,
   },
 ]);

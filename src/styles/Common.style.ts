@@ -1,5 +1,5 @@
 import { styled } from "styled-components";
-import { Box, Button } from "@mui/material";
+import { Box, Button, IconButton } from "@mui/material";
 
 export const MainBox = styled(Box)`
   padding: 24px 120px;
@@ -93,6 +93,19 @@ export const ProductButton = styled(Button)`
   .MuiButton-startIcon {
     path {
       stroke: #000 !important;
+    }
+  }
+`;
+
+export const DeleteStyle = styled(IconButton)`
+  width: 42px !important;
+  height: 42px !important;
+  border-radius: 8px !important;
+  background: rgba(239, 56, 56, 0.1) !important;
+
+  svg {
+    path {
+      fill: #ef3838;
     }
   }
 `;

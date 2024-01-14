@@ -10,13 +10,15 @@ import { useState, useRef, useEffect } from "react";
 import useOutsideClick from "@/services/useOutsideClick/useOutsideClick";
 import browserStorage from "@/services/storage/browserStorage";
 import { CommonButton } from "@/components";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   const [open, setOpen] = useState<boolean>(false);
   const [language, setLanguage] = useState<string>(
     browserStorage.get("i18nextLng") ? browserStorage.get("i18nextLng") : "uz"
   );
+
+  const navigate = useNavigate();
 
   const refLang = useRef(null);
 
@@ -68,7 +70,11 @@ const Navbar = () => {
           </Box>
           <Box display={"flex"} gap={"14px"} justifyContent={"flex-end"}>
             <CommonButton iconButton icon={<Icons.SearchIcon />} />
-            <CommonButton iconButton icon={<Icons.CartIcon />} />
+            <CommonButton
+              iconButton
+              icon={<Icons.CartIcon />}
+              onClick={() => navigate("/baskets")}
+            />
             <LanguageBox ref={refLang}>
               <CommonButton
                 title={
