@@ -10,8 +10,11 @@ import {
 import { CommonButton } from "@/components";
 import Icons from "@/assets/svgs";
 import { DeleteStyle } from "@/styles/Common.style";
+import { useNavigate } from "react-router-dom";
 
 const Baskets = () => {
+  const navigate = useNavigate();
+
   return (
     <BasketStyle>
       <Box display={"flex"} justifyContent={"space-between"} mb={2}>
@@ -140,6 +143,7 @@ const Baskets = () => {
                 title="Buyurtmani rasmiylashtirish"
                 className="blue"
                 sx={{ width: "100%", height: "48px !important" }}
+                onClick={() => navigate("/purchase")}
               />
             </Stack>
           </PaymentBox>

@@ -45,6 +45,8 @@ export const BasketBoxes = styled(Box)`
 `;
 
 export const PaymentBox = styled(Box)`
+  position: sticky;
+  top: 80px;
   min-height: 208px;
   background-color: #fff;
   border-radius: 14px;

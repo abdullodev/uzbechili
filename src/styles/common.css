@@ -616,3 +616,7 @@ hr {
 .color-black {
   color: #000;
 }
+
+.border-bottom-dashed {
+  border-bottom: 1px dashed #e9e9e9;
+}
