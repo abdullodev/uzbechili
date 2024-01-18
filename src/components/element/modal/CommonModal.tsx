@@ -1,7 +1,5 @@
-import React from "react";
 import MUI_Modal, { ModalProps } from "@mui/material/Modal";
-import IconButton from "@mui/material/IconButton";
-import Icons from "@/assets/svgs";
+import React from "react";
 import { CommonModalStyle } from "./CommonModal.style";
 
 interface ICommonModal extends ModalProps {
@@ -19,6 +17,7 @@ const CommonModal: React.FC<ICommonModal> = ({
   const handleClose = () => {
     canClose && setOpen?.(false);
   };
+
   return (
     <MUI_Modal {...props} onClose={handleClose}>
       <CommonModalStyle>{children}</CommonModalStyle>

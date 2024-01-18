@@ -6,11 +6,14 @@ import { QueryClientProvider } from "react-query";
 import { queryClient } from "./services/client/query.config.ts";
 
 import "./index.css";
+import { GlobalContextProvider } from "./context/useGlobal.tsx";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
-      <App />
+      <GlobalContextProvider>
+        <App />
+      </GlobalContextProvider>
     </QueryClientProvider>
   </React.StrictMode>
 );

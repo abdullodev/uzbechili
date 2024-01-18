@@ -11,6 +11,7 @@ import useOutsideClick from "@/services/useOutsideClick/useOutsideClick";
 import browserStorage from "@/services/storage/browserStorage";
 import { CommonButton } from "@/components";
 import { Link, useNavigate } from "react-router-dom";
+import useGlobalContext from "@/context/useGlobal";
 
 const Navbar = () => {
   const [open, setOpen] = useState<boolean>(false);
@@ -18,6 +19,9 @@ const Navbar = () => {
     browserStorage.get("i18nextLng") ? browserStorage.get("i18nextLng") : "uz"
   );
 
+  const {
+    actions: { setAuth },
+  } = useGlobalContext();
   const navigate = useNavigate();
 
   const refLang = useRef(null);
@@ -111,7 +115,11 @@ const Navbar = () => {
                 </MenuList>
               </Paper>
             </LanguageBox>
-            <CommonButton title="Kirish" startIcon={<Icons.UserIcon />} />
+            <CommonButton
+              title="Kirish"
+              startIcon={<Icons.UserIcon />}
+              onClick={() => setAuth(true)}
+            />
           </Box>
         </MainNavbarStyled>
       </StyledNavbar>
