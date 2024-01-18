@@ -22,8 +22,13 @@ import { useForm } from "react-hook-form";
 import ArriveCarImg from "../../../assets/arriveCar.png";
 import UzpostCarImg from "../../../assets/uzPost.png";
 import KelishImg from "../../../assets/kelish.png";
+import useGlobalContext from "@/context/useGlobal";
+import { isAuth } from "@/services/auth";
 
 const Purchase = () => {
+  const {
+    actions: { setAuth },
+  } = useGlobalContext();
   const { control, watch } = useForm();
   return (
     <PurchaseStyle>
@@ -250,6 +255,11 @@ const Purchase = () => {
                   width: "100%",
                   height: "48px !important",
                   fontSize: "16px !important",
+                }}
+                onClick={() => {
+                  if (!isAuth()) {
+                    setAuth(true);
+                  }
                 }}
               />
             </div>

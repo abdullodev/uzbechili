@@ -8,6 +8,8 @@ import { queryClient } from "./services/client/query.config.ts";
 import "./index.css";
 import { GlobalContextProvider } from "./context/useGlobal.tsx";
 
+import "./react-i18next.js";
+
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>

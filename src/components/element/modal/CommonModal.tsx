@@ -19,7 +19,15 @@ const CommonModal: React.FC<ICommonModal> = ({
   };
 
   return (
-    <MUI_Modal {...props} onClose={handleClose}>
+    <MUI_Modal
+      {...props}
+      onClose={handleClose}
+      slotProps={{
+        backdrop: {
+          timeout: 500,
+        },
+      }}
+    >
       <CommonModalStyle>{children}</CommonModalStyle>
     </MUI_Modal>
   );

@@ -7,9 +7,14 @@ import {
 import { Grid, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import Hudi from "../../../assets/img-hudi.png";
+import { isAuth } from "@/services/auth";
+import useGlobalContext from "@/context/useGlobal";
 
 const Category = () => {
   const navigate = useNavigate();
+  const {
+    actions: { setAuth },
+  } = useGlobalContext();
   return (
     <Grid container spacing={[2, 3]}>
       {new Array(10, 11, 12, 14, 121, 1223, 123123).map(
@@ -27,7 +32,14 @@ const Category = () => {
                 <Typography variant="h3" className="title">
                   Толстовка короткая
                 </Typography>
-                <ProductButton>
+                <ProductButton
+                  onClick={(e: any) => {
+                    e.stopPropagation();
+                    if (!isAuth()) {
+                      setAuth(true);
+                    }
+                  }}
+                >
                   150 000<span className="currency"> uzs</span>
                 </ProductButton>
               </ProductInfo>

@@ -1,6 +1,8 @@
 import { styled } from "styled-components";
 
 export const CommonModalStyle = styled.div`
-  width: 400px;
-  height: 600px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 `;

@@ -1,4 +1,4 @@
-import { CommonModal, OTPInput, PhoneInput } from "@/components";
+import { CommonButton, CommonModal, OTPInput, PhoneInput } from "@/components";
 import { Button } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
@@ -12,6 +12,8 @@ import {
 } from "../context/addModal.types";
 import { StyledAuthModal } from "./authModal.styles";
 import useGlobalContext from "@/context/useGlobal";
+import Icons from "@/assets/svgs";
+import { IconButton } from "@mui/material";
 
 const AuthModal = () => {
   const [resend, setResend] = useState(false);
@@ -61,8 +63,18 @@ const AuthModal = () => {
   return (
     <CommonModal open={auth} setOpen={setAuth} canClose={false}>
       <StyledAuthModal>
-        <p className="text-gray my-4">
-          {isVerifying ? (
+        <div className="header">
+          <div className="d-flex align-items-center gap-2">
+            <Icons.registerIcon />
+            {/* <Icons.loginIcon /> */}
+            <span>{t(`modal.register`)}</span>
+          </div>
+          <IconButton onClick={() => setAuth(false)}>
+            <Icons.closeIcon />
+          </IconButton>
+        </div>
+        <p className="my-4">
+          {!isVerifying ? (
             <span>
               {watch("phoneNumber") || ""} {t("modals.sent_to_this")}
               <p
@@ -75,11 +87,13 @@ const AuthModal = () => {
               </p>
             </span>
           ) : (
-            <>{t("modals.login_info")}</>
+            <p className="text-center font-700 color-black">
+              {t("modal.enter_phone")}
+            </p>
           )}
         </p>
         <form onSubmit={onSubmit}>
-          {isVerifying ? (
+          {!isVerifying ? (
             <>
               <div className="otp-container">
                 <OTPInput otp={code} setOtp={setCode} />
@@ -94,38 +108,29 @@ const AuthModal = () => {
               </div>
             </>
           ) : (
-            <PhoneInput
-              control={control}
-              // placeholder="+998"
-              name="phoneNumber"
-              // autoFocus
-            />
+            <PhoneInput control={control} name="phoneNumber" autofocus={true} />
           )}
-          <Button
-            // disabled={
-            //   loginStatus === "LOADING" || (isVerifying && code.length !== 6)
-            // }
-            className="continue my-4"
-            type="submit"
-          >
-            {t("modals.continue")}
-          </Button>
+
+          <CommonButton
+            title={t("common.continue")}
+            className="blue mt-4"
+            sx={{
+              width: "100%",
+              height: "48px !important",
+            }}
+          />
         </form>
 
-        {isVerifying ? (
+        {!isVerifying ? (
           <p className="text-center">00:{seconds}</p>
         ) : (
-          <p>
+          <span className="term_bottom">
             <Trans
-              i18nKey="modals.login_warn"
-              components={[
-                <Link to={"website-conditions"} target="_blank"></Link>,
-              ]}
+              i18nKey="modal.term"
+              components={[<a href={"website-conditions"} target="_blank"></a>]}
             />
-          </p>
+          </span>
         )}
-
-        <h2>Modal</h2>
       </StyledAuthModal>
     </CommonModal>
   );

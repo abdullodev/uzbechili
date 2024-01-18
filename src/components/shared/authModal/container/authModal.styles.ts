@@ -1,10 +1,39 @@
 import styled from "@emotion/styled";
 
 export const StyledAuthModal = styled.div`
-  /* width: 90%; */
-  width: 400px;
-  background-color: aqua;
-  height: 600px;
+  width: 320px;
+  background-color: #fff;
+  border-radius: 16px;
+  padding: 15px 18px;
+
+  .header {
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #d9d9d9;
+    gap: 10px;
+
+    p {
+      font-size: 16px;
+      font-weight: 700;
+    }
+
+    button {
+      width: 32px;
+      height: 32px;
+    }
+  }
+
+  .term_bottom {
+    font-size: 14px;
+    margin-top: 15px !important;
+    display: block;
+    a {
+      color: #0065ff;
+    }
+  }
+
   .change-number {
     color: #17c657;
     cursor: pointer;
@@ -16,14 +45,15 @@ export const StyledAuthModal = styled.div`
   button.continue {
     width: 100%;
     padding: 13px 0;
-    background-color: #17c657 !important;
+    background-color: #0065ff !important;
     color: #fff;
     font-size: 15px;
+    text-transform: inherit;
     font-weight: 600;
     border-radius: 12px;
 
     &:hover {
-      background-color: #0eaf49 !important;
+      background-color: #0065ff !important;
     }
   }
   .resend-inactive {

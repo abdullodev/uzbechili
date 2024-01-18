@@ -4,8 +4,13 @@ import { FlexBox, ProductTop } from "./Product.style";
 import ProductSlide from "./component/ProductSlide";
 import { CommonButton } from "@/components";
 import { useNavigate } from "react-router-dom";
+import { isAuth } from "@/services/auth";
+import useGlobalContext from "@/context/useGlobal";
 
 const Product = () => {
+  const {
+    actions: { setAuth },
+  } = useGlobalContext();
   const navigate = useNavigate();
   return (
     <MainBox>
@@ -24,7 +29,15 @@ const Product = () => {
         </Grid>
         <Grid item md={3} xs={12}>
           <FlexBox>
-            <CommonButton title="Savatga qo'shish" className="white" />
+            <CommonButton
+              title="Savatga qo'shish"
+              className="white"
+              onClick={() => {
+                if (!isAuth()) {
+                  setAuth(true);
+                }
+              }}
+            />
             <CommonButton
               title="Hoziroq sotib olish"
               className="blue"
