@@ -1,11 +1,9 @@
-import React from "react";
-import { Grid } from "@mui/material";
-import { CategoryBox, HomeCategoriesStyle } from "../../container/Home.style";
-import Typography from "@mui/material/Typography";
-import { CommonButton } from "@/components";
 import Icons from "@/assets/svgs";
+import { CommonButton } from "@/components";
+import { Grid } from "@mui/material";
+import Typography from "@mui/material/Typography";
 import { useNavigate } from "react-router-dom";
-import { useScrollTop } from "@/utils/scrollTop";
+import { CategoryBox, HomeCategoriesStyle } from "../../container/Home.style";
 
 interface ICategories {
   _id: string;

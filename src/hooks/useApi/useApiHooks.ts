@@ -69,12 +69,12 @@ const useApiMutation = <
       onMutate() {
         // dis(setButtonDisable(true));
       },
-      onSuccess(data) {
+      onSuccess() {
         toast.success(t("general.success"));
         // dis(setOpenDrawer(false));
         // dis(reRenderTable(true));
       },
-      onSettled(data, error, variables, context) {
+      onSettled() {
         // dis(setButtonDisable(false));
       },
       ...options,

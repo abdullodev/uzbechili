@@ -1,6 +1,5 @@
-import React from "react";
-import { Box } from "@mui/material";
 import { CommonButton } from "@/components";
+import { Box } from "@mui/material";
 
 const CategoryHeader = () => {
   return (

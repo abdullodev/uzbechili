@@ -1,6 +1,5 @@
-import React from "react";
-import { NotFoundStyle } from "./NotFound.style";
 import { Typography } from "@mui/material";
+import { NotFoundStyle } from "./NotFound.style";
 
 const NotFound = () => {
   return (

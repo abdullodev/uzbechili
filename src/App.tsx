@@ -11,8 +11,8 @@ import "swiper/css";
 import "swiper/css/effect-fade";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import "./styles/common.css";
 import AuthModal from "./components/shared/authModal/container/authModal";
+import "./styles/common.css";
 
 function App() {
   return (

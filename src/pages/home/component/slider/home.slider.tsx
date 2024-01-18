@@ -1,6 +1,5 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 
-import { useNavigate } from "react-router-dom";
 import {
   A11y,
   Autoplay,

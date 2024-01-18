@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "env-cmd -f .env vite",
     "build": "tsc && vite build",
+    "deploy": "scp -r dist root@37.27.24.36:/var/www/ozbechili",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },

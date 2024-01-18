@@ -1,6 +1,5 @@
-import React from "react";
-import NotFound from "./NotFound";
 import Navbar from "@/components/shared/navbar/navbar";
+import NotFound from "./NotFound";
 
 const index = () => {
   return (

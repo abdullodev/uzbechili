@@ -1,7 +1,6 @@
-import React from "react";
-import Product from "./Product";
-import Navbar from "@/components/shared/navbar/navbar";
 import Footer from "@/components/shared/footer/Footer";
+import Navbar from "@/components/shared/navbar/navbar";
+import Product from "./Product";
 
 const index = () => {
   return (

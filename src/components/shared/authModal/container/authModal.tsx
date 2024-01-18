@@ -10,7 +10,6 @@ import {
   IRegister_body,
   IVerify_body,
 } from "../context/addModal.types";
-import useAuthModalContext from "../context/autoModal.context";
 import { StyledAuthModal } from "./authModal.styles";
 import useGlobalContext from "@/context/useGlobal";
 
@@ -24,30 +23,24 @@ const AuthModal = () => {
     actions: { setAuth },
   } = useGlobalContext();
 
-  // const {
-  //   state: {
-  //     loginState: { loginData, loginStatus },
-  //     verifyState: { verifyStatus },
-  //   },
-  //   actions: { login, verify, resetLoginRequest },
-  // } = useAuthModalContext();
   const [code, setCode] = useState("");
-  // const isVerifying = loginStatus === "SUCCESS";
+  const isVerifying = "SUCCESS";
   const { control, handleSubmit, watch, setError } = useForm<
     IRegister_body & ILogin_body & IVerify_body
   >();
   const expiryTimestamp = new Date();
   expiryTimestamp.setMinutes(expiryTimestamp.getMinutes() + 1);
 
-  // const { seconds, start, restart } = useTimer({
-  //   expiryTimestamp,
-  //   autoStart: false,
-  //   onExpire: () => {
-  //     setResend(true);
-  //   },
-  // });
+  const { seconds, /*start */ restart } = useTimer({
+    expiryTimestamp,
+    autoStart: false,
+    onExpire: () => {
+      setResend(true);
+    },
+  });
 
   const onSubmit = handleSubmit((formData) => {
+    console.log(formData);
     // isVerifying
     //   ? verify({
     //       code: String(code),
@@ -55,19 +48,6 @@ const AuthModal = () => {
     //     })
     //   : login(formData);
   });
-  // useEffect(() => {
-  //   if (loginStatus === "SUCCESS") {
-  //     start();
-  //   }
-  // }, [loginStatus]);
-
-  // const handleReSend = () => {
-  //   login({
-  //     phoneNumber: watch("phoneNumber"),
-  //   });
-  //   restart(expiryTimestamp, false);
-  //   setResend(false);
-  // };
 
   useEffect(() => {
     // @ts-ignore
@@ -81,14 +61,13 @@ const AuthModal = () => {
   return (
     <CommonModal open={auth} setOpen={setAuth} canClose={false}>
       <StyledAuthModal>
-        {/* <p className="text-gray my-4">
+        <p className="text-gray my-4">
           {isVerifying ? (
             <span>
               {watch("phoneNumber") || ""} {t("modals.sent_to_this")}
               <p
                 className="change-number"
                 onClick={() => {
-                  resetLoginRequest();
                   restart(expiryTimestamp, false);
                 }}
               >
@@ -123,9 +102,9 @@ const AuthModal = () => {
             />
           )}
           <Button
-            disabled={
-              loginStatus === "LOADING" || (isVerifying && code.length !== 6)
-            }
+            // disabled={
+            //   loginStatus === "LOADING" || (isVerifying && code.length !== 6)
+            // }
             className="continue my-4"
             type="submit"
           >
@@ -144,7 +123,7 @@ const AuthModal = () => {
               ]}
             />
           </p>
-        )} */}
+        )}
 
         <h2>Modal</h2>
       </StyledAuthModal>
