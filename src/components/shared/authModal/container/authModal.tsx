@@ -1,9 +1,10 @@
+import Icons from "@/assets/svgs";
 import { CommonButton, CommonModal, OTPInput, PhoneInput } from "@/components";
-import { Button } from "@mui/material";
+import useGlobalContext from "@/context/useGlobal";
+import { IconButton } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Trans, useTranslation } from "react-i18next";
-import { Link } from "react-router-dom";
 import { useTimer } from "react-timer-hook";
 import {
   ILogin_body,
@@ -11,9 +12,6 @@ import {
   IVerify_body,
 } from "../context/addModal.types";
 import { StyledAuthModal } from "./authModal.styles";
-import useGlobalContext from "@/context/useGlobal";
-import Icons from "@/assets/svgs";
-import { IconButton } from "@mui/material";
 
 const AuthModal = () => {
   const [resend, setResend] = useState(false);
