@@ -27,6 +27,7 @@ const CommonModal: React.FC<ICommonModal> = ({
           timeout: 500,
         },
       }}
+      // style={{ backdropFilter: "blur(0.5px) " }}
     >
       <CommonModalStyle>{children}</CommonModalStyle>
     </MUI_Modal>
