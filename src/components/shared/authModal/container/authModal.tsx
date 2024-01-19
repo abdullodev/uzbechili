@@ -125,7 +125,9 @@ const AuthModal = () => {
           <span className="term_bottom">
             <Trans
               i18nKey="modal.term"
-              components={[<a href={"website-conditions"} target="_blank"></a>]}
+              components={[
+                <a href={"/website-conditions"} target="_blank"></a>,
+              ]}
             />
           </span>
         )}
