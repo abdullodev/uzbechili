@@ -56,8 +56,6 @@ const AuthModal = () => {
     }
   }, [watch("phoneNumber")]);
 
-  console.log(auth, "salom");
-
   return (
     <CommonModal open={auth} setOpen={setAuth} canClose={false}>
       <StyledAuthModal>
