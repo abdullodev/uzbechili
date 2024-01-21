@@ -4,42 +4,15 @@ import { Grid } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import { useNavigate } from "react-router-dom";
 import { CategoryBox, HomeCategoriesStyle } from "../../container/Home.style";
-
-interface ICategories {
-  _id: string;
-  isReady: boolean;
-  img: string;
-  title: string;
-}
-const categories: ICategories[] = [
-  {
-    _id: "1",
-    isReady: true,
-    img: "https://loloclo.ru/upload/iblock/e76/e7694823d67e335d2c995d588993fcb5.jpg",
-    title: "Futbolkalar",
-  },
-  {
-    _id: "2",
-    isReady: false,
-    img: "https://loloclo.ru/upload/iblock/e76/e7694823d67e335d2c995d588993fcb5.jpg",
-    title: "Hudilar",
-  },
-  {
-    _id: "3",
-    isReady: true,
-    img: "https://loloclo.ru/upload/iblock/e76/e7694823d67e335d2c995d588993fcb5.jpg",
-    title: "Futbolkalar",
-  },
-  {
-    _id: "4",
-    isReady: false,
-    img: "https://loloclo.ru/upload/iblock/e76/e7694823d67e335d2c995d588993fcb5.jpg",
-    title: "Oversayzlar",
-  },
-];
+import { useApi } from "@/hooks/useApi/useApiHooks";
+import { get } from "lodash";
 
 const HomeCategories = () => {
   const navigate = useNavigate();
+
+  const { data: categories } = useApi("categories");
+
+  console.log(categories);
 
   return (
     <HomeCategoriesStyle>
@@ -48,26 +21,30 @@ const HomeCategories = () => {
       </Typography>
 
       <Grid container spacing={2}>
-        {categories.map((category) => (
+        {get(categories, "data", []).map((category: Record<string, any>) => (
           <Grid item md={4} sm={6} xs={12} key={category._id}>
             <CategoryBox
               onClick={() => {
-                if (category.isReady) {
+                if (!category.isSoon) {
                   navigate(`category/${category._id}`);
                 }
               }}
-              className={!category.isReady ? "disabled" : ""}
+              className={category.isSoon ? "disabled" : ""}
             >
-              {!category.isReady && (
+              {category.isSoon && (
                 <CommonButton
                   startIcon={<Icons.tezIcon />}
                   title="TEZ ORADA"
                   className="designed"
                 />
               )}
-              <img src={category.img} alt="img" className="category_img" />
+              {/* <img
+                src={import.meta.env.VITE_BASE_URL + category.imageUrl}
+                alt={get(category, "name", "")}
+                className="category_img"
+              /> */}
               <Typography variant="h5" className="category_name">
-                {category.title}
+                {get(category, "name", "")}
               </Typography>
             </CategoryBox>
           </Grid>

@@ -5,16 +5,22 @@ import {
   ProductInfo,
 } from "@/styles/Common.style";
 import { Grid, Typography } from "@mui/material";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Hudi from "../../../assets/img-hudi.png";
 import { isAuth } from "@/services/auth";
 import useGlobalContext from "@/context/useGlobal";
+import { useApi } from "@/hooks/useApi/useApiHooks";
 
 const Category = () => {
   const navigate = useNavigate();
   const {
     actions: { setAuth },
   } = useGlobalContext();
+  const { id } = useParams<{ id: string }>();
+  const { data: subCategories } = useApi(`/categories/${id}`);
+
+  console.log(subCategories);
+
   return (
     <Grid container spacing={[2, 3]}>
       {new Array(10, 11, 12, 14, 121, 1223, 123123).map(

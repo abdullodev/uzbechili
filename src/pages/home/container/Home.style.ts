@@ -147,7 +147,7 @@ export const CategoryBox = styled(Box)`
       transform: scale(1.03);
     }
     .category_name {
-      color: #fff;
+      color: #999;
     }
   }
   &.disabled {

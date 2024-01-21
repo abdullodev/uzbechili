@@ -10,38 +10,13 @@ import {
   Scrollbar,
 } from "swiper/modules";
 import { HomeSlideStyle } from "../../container/Home.style";
-interface ISlider {
-  _id: string;
-  img: string;
-}
-
-const SLIDERS: ISlider[] = [
-  {
-    _id: "1",
-    img: "https://images.prom.ua/4243941517_w640_h640_4243941517.jpg",
-  },
-  {
-    _id: "2",
-    img: "https://images.prom.ua/4249696172_w640_h640_komplekt-sportivnoj-odezhdy.jpg",
-  },
-  {
-    _id: "3",
-    img: "https://images.prom.ua/4255895565_w640_h640_sportivnyj-kostyum-adidas.jpg",
-  },
-  {
-    _id: "4",
-    img: "https://images.prom.ua/4247717521_w640_h640_komplekt-sportivnoj-odezhdy.jpg",
-  },
-  {
-    _id: "5",
-    img: "https://images.prom.ua/3618757214_w640_h640_3618757214.jpg",
-  },
-];
+import { useApi } from "@/hooks/useApi/useApiHooks";
+import { get } from "lodash";
 
 const HomeSlider = () => {
   // const navigate = useNavigate();
 
-  // const { data: settings } = useApi("settings-general");
+  const { data } = useApi("banner");
 
   return (
     <HomeSlideStyle>
@@ -68,9 +43,12 @@ const HomeSlider = () => {
         // onSwiper={(swiper) => console.log(swiper)}
         // onSlideChange={() => console.log("slide change")}
       >
-        {SLIDERS.map((slide) => (
+        {get(data, "data", []).map((slide: Record<string, any>) => (
           <SwiperSlide key={slide._id}>
-            <img src={slide.img} alt="slide" />
+            <img
+              src={import.meta.env.VITE_BASE_URL + slide.imageUrl}
+              alt={slide.imageUrl}
+            />
           </SwiperSlide>
         ))}
       </Swiper>
