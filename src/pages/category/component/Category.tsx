@@ -1,18 +1,17 @@
+import useGlobalContext from "@/context/useGlobal";
+import { useApi } from "@/hooks/useApi/useApiHooks";
+import { isAuth } from "@/services/auth";
 import {
   ProductBox,
   ProductButton,
   ProductImg,
   ProductInfo,
 } from "@/styles/Common.style";
-import { Box, Grid, Typography } from "@mui/material";
-import { useNavigate, useParams } from "react-router-dom";
-import Hudi from "../../../assets/img-hudi.png";
-import { isAuth } from "@/services/auth";
-import useGlobalContext from "@/context/useGlobal";
-import { useApi } from "@/hooks/useApi/useApiHooks";
-import { get } from "lodash";
-import { CategoryBoxStyle } from "../container/Categories.style";
 import { numberFormat } from "@/utils/numberFormat";
+import { Grid, Typography } from "@mui/material";
+import { get } from "lodash";
+import { useNavigate, useParams } from "react-router-dom";
+import { CategoryBoxStyle } from "../container/Categories.style";
 
 const Category = () => {
   const navigate = useNavigate();
