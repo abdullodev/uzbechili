@@ -17,6 +17,7 @@
     "@mui/icons-material": "^5.15.1",
     "@mui/material": "^5.15.1",
     "@types/lodash": "^4.14.202",
+    "@vitejs/plugin-react-swc": "^3.5.0",
     "axios": "^1.6.5",
     "env-cmd": "^10.1.0",
     "i18next": "^23.7.11",

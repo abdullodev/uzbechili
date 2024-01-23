@@ -68,6 +68,7 @@ const Purchase = () => {
   });
 
   const onSubmit = (data: Record<string, any>) => {
+    console.log("first");
     const requestData = {
       receiverName: data.receiverName,
       receiverPhoneNumber: data.receiverPhoneNumber,
@@ -109,6 +110,8 @@ const Purchase = () => {
       },
     };
 
+    console.log(data);
+
     mutate(requestData);
   };
 
@@ -125,7 +128,7 @@ const Purchase = () => {
         <h1 className="color-white">Buyurtmani rasmiylashtirish</h1>
       </Box>
 
-      <form onSubmit={handleSubmit(onSubmit)} id="create_order">
+      <form onSubmit={handleSubmit(onSubmit)} id="create_order-form">
         <Grid container spacing={2}>
           <Grid item container xs={12} md={7} spacing={2} width={"100%"}>
             <Grid item xs={12} md={12}>
@@ -330,6 +333,7 @@ const Purchase = () => {
                       title="O'zgartirish"
                       sx={{ height: "36px !important" }}
                       disabled
+                      type="button"
                     />
                   </div>
                 </Tooltip>
@@ -388,6 +392,7 @@ const Purchase = () => {
               <div className="py-2">
                 <CommonButton
                   title="Buyurtma berish"
+                  form="create_order-form"
                   className="blue"
                   sx={{
                     width: "100%",
@@ -395,7 +400,6 @@ const Purchase = () => {
                     fontSize: "16px !important",
                   }}
                   type="submit"
-                  form="create_order"
                   disabled={!watch("agree") || status === "loading"}
                 />
               </div>
