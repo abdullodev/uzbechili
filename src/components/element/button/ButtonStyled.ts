@@ -40,6 +40,11 @@ export const ButtonStyled = styled(Button)`
     background-color: #0065ff !important;
     color: #fff !important;
     border-radius: 10px !important;
+
+    &:disabled {
+      background-color: #e9e9e9 !important;
+      color: #999 !important;
+    }
   }
 
   &.white {

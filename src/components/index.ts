@@ -7,6 +7,7 @@ import PhoneInput from "./form/PhoneField/PhoneField";
 import CommonSwitch from "./form/CommonSwitch/CommonSwitch";
 import CommonCheckbox from "./form/Checkbox/Checkbox";
 import OTPInput from "./form/OTPInput/OTPInput";
+import AuthModal from "./shared/authModal";
 
 export {
   CommonButton,
@@ -18,4 +19,5 @@ export {
   CommonSwitch,
   CommonCheckbox,
   OTPInput,
+  AuthModal,
 };

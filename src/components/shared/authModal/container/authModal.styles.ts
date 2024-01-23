@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 
 export const StyledAuthModal = styled.div`
-  width: 320px;
+  width: 380px;
   background-color: #fff;
   border-radius: 16px;
   padding: 15px 18px;
@@ -72,6 +72,7 @@ export const StyledAuthModal = styled.div`
     .otp-container {
       display: flex;
       justify-content: center;
+      gap: 5px;
     }
   }
 `;

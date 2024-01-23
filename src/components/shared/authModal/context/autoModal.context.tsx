@@ -1,50 +1,26 @@
 import { useRequest } from "@/services/useRequest/useRequest";
-import { IAuth } from "@/types/interfaces";
 import React, { FC, createContext, useContext } from "react";
-import { ILogin_body, IRegister_body, IVerify_body } from "./addModal.types";
+import { ILogin_body, IVerify_body } from "./addModal.types";
 
 const useAuthModal = () => {
-  const [registerClient, registerData, registerStatus, registerError] =
-    useRequest<string, IRegister_body>();
-
-  const register = (body: IRegister_body) => {
-    registerClient.post("auth/register", body);
-  };
-
-  const [
-    loginClient,
-    loginData,
-    loginStatus,
-    loginError,
-    { resetRequest: resetLoginRequest },
-  ] = useRequest<string>();
+  const [loginClient, loginData, loginStatus, loginError] = useRequest();
   const login = (body: ILogin_body) => {
-    loginClient.post("auth/login", body);
+    loginClient.post("/sing-in", body);
   };
-
-  const [
-    verifyClient,
-    verifyData,
-    verifyStatus,
-    verifyError,
-    { resetRequest: resetVerifyStatus },
-  ] = useRequest<IAuth, IVerify_body>();
+  const [verifyClient, verifyData, verifyStatus, verifyError] = useRequest();
 
   const verify = (body: IVerify_body) => {
-    verifyClient.post("auth/verify", body);
+    verifyClient.post("/sing-in/verify", body);
   };
 
   return {
     state: {
-      registerState: { registerData, registerStatus, registerError },
       loginState: { loginData, loginStatus, loginError },
-      verifyState: { verifyData, verifyStatus, verifyError, resetVerifyStatus },
+      verifyState: { verifyData, verifyStatus, verifyError },
     },
     actions: {
-      register,
       login,
       verify,
-      resetLoginRequest,
     },
   };
 };

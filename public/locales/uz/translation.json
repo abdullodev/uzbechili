@@ -13,6 +13,7 @@
     "confirmation": "Raqamni tasdiqlash",
     "enter_phone": "Telefon raqamingizni kiriting",
     "term": "\"Davom etish\" tugmasini bosish orqali siz <0>foydalanuvchi shartnomasi shartlarini</0> qabul qilasiz",
-    "send_to_phone": "+998 97 448 15 12 raqamiga 6 xonali kod yuborildi, iltimos uni kiriting"
+    "send_to_phone": "{{phone}} raqamiga 6 xonali kod yuborildi, iltimos uni kiriting",
+    "re_send": "Qayta yuborish"
   }
 }

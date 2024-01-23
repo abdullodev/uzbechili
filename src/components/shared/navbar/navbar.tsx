@@ -12,6 +12,8 @@ import browserStorage from "@/services/storage/browserStorage";
 import { CommonButton } from "@/components";
 import { Link, useNavigate } from "react-router-dom";
 import useGlobalContext from "@/context/useGlobal";
+import NavbarProfile from "./components/navbar.profile";
+import { isAuth } from "@/services/auth";
 
 const Navbar = () => {
   const [open, setOpen] = useState<boolean>(false);
@@ -65,15 +67,20 @@ const Navbar = () => {
               startIcon={<Icons.ShirtIcon />}
               className="designed"
             />
-            <CommonButton iconButton icon={<Icons.HeartIcon />} />
+            {/* <CommonButton iconButton icon={<Icons.HeartIcon />} /> */}
           </Box>
           <Box display={"flex"} justifyContent={"center"}>
             <Link to="/">
               <Icons.LogoMain />
             </Link>
           </Box>
-          <Box display={"flex"} gap={"14px"} justifyContent={"flex-end"}>
-            <CommonButton iconButton icon={<Icons.SearchIcon />} />
+          <Box
+            display={"flex"}
+            gap={"14px"}
+            justifyContent={"flex-end"}
+            alignItems={"center"}
+          >
+            {/* <CommonButton iconButton icon={<Icons.SearchIcon />} /> */}
             <CommonButton
               iconButton
               icon={<Icons.CartIcon />}
@@ -115,11 +122,16 @@ const Navbar = () => {
                 </MenuList>
               </Paper>
             </LanguageBox>
-            <CommonButton
-              title="Kirish"
-              startIcon={<Icons.UserIcon />}
-              onClick={() => setAuth(true)}
-            />
+
+            {isAuth() ? (
+              <NavbarProfile />
+            ) : (
+              <CommonButton
+                title="Kirish"
+                startIcon={<Icons.UserIcon />}
+                onClick={() => setAuth(true)}
+              />
+            )}
           </Box>
         </MainNavbarStyled>
       </StyledNavbar>

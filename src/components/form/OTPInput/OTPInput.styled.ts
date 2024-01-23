@@ -2,7 +2,8 @@ import styled from "@emotion/styled";
 
 export const StyledOTPInput = styled.div`
   .otp-input {
-    padding: 16px 13px;
+    width: 48px !important;
+    height: 56px;
     border-radius: 10px;
     background: #f5f4f2;
     border: none;

@@ -1,4 +1,4 @@
-import { Box } from "@mui/material";
+import { Box, MenuItem } from "@mui/material";
 import { styled } from "styled-components";
 
 export const StyledNavbar = styled.div`
@@ -85,6 +85,38 @@ export const LanguageBox = styled(Box)`
         &.active {
           background-color: #f5f5f5 !important;
         }
+      }
+    }
+  }
+`;
+
+export const StyledProfileMenuItem = styled(MenuItem)<any>`
+  padding: 8px 12px !important;
+  color: #000;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 20px;
+  transition: 0.2s ease;
+  svg {
+    path {
+      fill: #0065ff;
+    }
+  }
+
+  &:hover {
+    svg {
+      path {
+        fill: #0065ff;
+      }
+    }
+  }
+
+  &.active {
+    background-color: #f3f3f3;
+    svg {
+      path {
+        fill: #17c657;
       }
     }
   }

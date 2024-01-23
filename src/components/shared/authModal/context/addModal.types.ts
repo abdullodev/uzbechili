@@ -7,6 +7,6 @@ export interface ILogin_body {
   phoneNumber: string;
 }
 export interface IVerify_body {
-  otpId: string;
-  code: string;
+  _id: string;
+  otp: string;
 }

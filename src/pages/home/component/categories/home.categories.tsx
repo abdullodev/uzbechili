@@ -12,8 +12,6 @@ const HomeCategories = () => {
 
   const { data: categories } = useApi("categories");
 
-  console.log(categories);
-
   return (
     <HomeCategoriesStyle>
       <Typography component={"h2"} variant="h4" className="text-center my-5">
