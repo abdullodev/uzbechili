@@ -1,3 +1,4 @@
+import { useMemo, useState } from "react";
 import { Box, Grid, IconButton, Stack, Tooltip } from "@mui/material";
 import {
   AmountCalcBox,
@@ -7,13 +8,25 @@ import {
   DefaultBasket,
   PaymentBox,
 } from "./Basket.style";
-import { CommonButton } from "@/components";
+import { CommonButton, CommonModal } from "@/components";
 import Icons from "@/assets/svgs";
-import { DeleteStyle } from "@/styles/Common.style";
+import { DeleteStyle, RealyWant } from "@/styles/Common.style";
 import { useNavigate } from "react-router-dom";
+import useGlobalContext from "@/context/useGlobal";
+import { ICart } from "@/types/types.common";
+import { numberFormat } from "@/utils/numberFormat";
 
 const Baskets = () => {
+  const [realyDelete, setRealyDelete] = useState<boolean>(false);
+
   const navigate = useNavigate();
+  const {
+    state: { baskets },
+    actions: { addToCart, removeCart, deleteCart, deleteAll },
+  } = useGlobalContext();
+  const totalSum = useMemo(() => {
+    return baskets.reduce((acc, curr) => acc + curr.price! * curr.count, 0);
+  }, [baskets]);
 
   return (
     <BasketStyle>
@@ -21,136 +34,135 @@ const Baskets = () => {
         <h1 className="color-white">Savat</h1>
       </Box>
 
-      <Grid container spacing={"24px"}>
-        <Grid item md={7} xs={12}>
-          <BasketBoxes>
-            <div className="d-flex justify-content-between basket_header">
-              <h3 className="color-black">Buyurtmangiz</h3>
-              <CommonButton
-                startIcon={<Icons.deleteIcon />}
-                title="Savatni tozalash"
-                className="delete_all"
-              />
-            </div>
-            <Stack direction={"column"} spacing={2} mt={3}>
-              <CardView>
-                <Stack direction={"row"} spacing={2}>
-                  <Stack width={"12%"}>
-                    <div className="image_box">
-                      <img
-                        src="https://sportcourt.ru/content/models/large/84988_959670.jpg"
-                        alt="image"
-                      />
-                    </div>
-                  </Stack>
-                  <Stack direction={"column"} spacing={0.5} width={"70%"}>
-                    <Tooltip
-                      title="Толстовка короткая длина (Color: Grey, Size: L)"
-                      placement="top-start"
-                    >
-                      <p className="title">
-                        Толстовка короткая длина (Color: Grey, Size: L)
-                      </p>
-                    </Tooltip>
-                    <p className="grey size-14">150 000 uzs</p>
+      {!!baskets.length ? (
+        <Grid container spacing={"24px"}>
+          <Grid item md={7} xs={12}>
+            <BasketBoxes>
+              <div className="d-flex justify-content-between basket_header">
+                <h3 className="color-black">Buyurtmangiz</h3>
+                <CommonButton
+                  startIcon={<Icons.deleteIcon />}
+                  title="Savatni tozalash"
+                  className="delete_all"
+                  onClick={() => setRealyDelete(true)}
+                />
+              </div>
+              <Stack direction={"column"} spacing={2} mt={3}>
+                {baskets.map((item: ICart) => (
+                  <CardView>
+                    <Stack direction={"row"} spacing={2}>
+                      <Stack width={"12%"}>
+                        <div className="image_box">
+                          <img
+                            src={import.meta.env.VITE_BASE_URL + item.image}
+                            alt={item.image}
+                          />
+                        </div>
+                      </Stack>
+                      <Stack direction={"column"} spacing={0.5} width={"70%"}>
+                        <Tooltip
+                          title={
+                            <p className="title">
+                              {item.name} (Color: <code>{item.color}</code>,
+                              Size: <code>{item.size}</code>)
+                            </p>
+                          }
+                          placement="top-start"
+                        >
+                          <p className="title">
+                            {item.name} (Color: <code>{item.color}</code>, Size:{" "}
+                            <code>{item.size}</code>)
+                          </p>
+                        </Tooltip>
+                        <p className="grey size-14">
+                          {numberFormat(item.price)} uzs
+                        </p>
 
-                    <Stack direction={"row"} spacing={2} alignItems={"center"}>
-                      <AmountCalcBox>
-                        <IconButton className="buttonAmount">
-                          <Icons.MinusIcon />
-                        </IconButton>
-                        <span className="amount">1</span>
-                        <IconButton className="buttonAmount">
-                          <Icons.PlusIcon />
-                        </IconButton>
-                      </AmountCalcBox>
-                      <p>150 000 uzs</p>
+                        <Stack
+                          direction={"row"}
+                          spacing={2}
+                          alignItems={"center"}
+                        >
+                          <AmountCalcBox>
+                            <IconButton
+                              className="buttonAmount"
+                              onClick={() => {
+                                removeCart({
+                                  productId: item.productId,
+                                  color: item.color,
+                                  size: item.size,
+                                  count: item.count,
+                                });
+                              }}
+                              disabled={item.count === 1}
+                            >
+                              <Icons.MinusIcon />
+                            </IconButton>
+                            <span className="amount">{item.count}</span>
+                            <IconButton
+                              className="buttonAmount"
+                              onClick={() => {
+                                addToCart({
+                                  productId: item.productId,
+                                  color: item.color,
+                                  size: item.size,
+                                  count: item.count,
+                                });
+                              }}
+                            >
+                              <Icons.PlusIcon />
+                            </IconButton>
+                          </AmountCalcBox>
+                          <p>{numberFormat(item.price! * item.count)} uzs</p>
+                        </Stack>
+                      </Stack>
+                      <Stack
+                        alignSelf={"center"}
+                        width={"12%"}
+                        alignItems={"flex-end"}
+                      >
+                        <DeleteStyle
+                          onClick={() => {
+                            deleteCart({
+                              productId: item.productId,
+                              color: item.color,
+                              size: item.size,
+                              count: item.count,
+                            });
+                          }}
+                        >
+                          <Icons.deleteIcon />
+                        </DeleteStyle>
+                      </Stack>
                     </Stack>
-                  </Stack>
-                  <Stack
-                    alignSelf={"center"}
-                    width={"12%"}
-                    alignItems={"flex-end"}
-                  >
-                    <DeleteStyle>
-                      <Icons.deleteIcon />
-                    </DeleteStyle>
-                  </Stack>
-                </Stack>
-              </CardView>
-
-              <CardView>
-                <Stack direction={"row"} spacing={2}>
-                  <Stack width={"12%"}>
-                    <div className="image_box">
-                      <img
-                        src="https://sportcourt.ru/content/models/large/84988_959670.jpg"
-                        alt="image"
-                      />
-                    </div>
-                  </Stack>
-                  <Stack direction={"column"} spacing={0.5} width={"70%"}>
-                    <Tooltip
-                      title="Толстовка короткая длина (Color: Grey, Size: L)"
-                      placement="top-start"
-                    >
-                      <p className="title">
-                        Толстовка короткая длина (Color: Grey, Size: L)
-                      </p>
-                    </Tooltip>
-                    <p className="grey size-14">150 000 uzs</p>
-
-                    <Stack direction={"row"} spacing={2} alignItems={"center"}>
-                      <AmountCalcBox>
-                        <IconButton className="buttonAmount">
-                          <Icons.MinusIcon />
-                        </IconButton>
-                        <span className="amount">1</span>
-                        <IconButton className="buttonAmount">
-                          <Icons.PlusIcon />
-                        </IconButton>
-                      </AmountCalcBox>
-                      <p>150 000 uzs</p>
-                    </Stack>
-                  </Stack>
-                  <Stack
-                    alignSelf={"center"}
-                    width={"12%"}
-                    alignItems={"flex-end"}
-                  >
-                    <DeleteStyle>
-                      <Icons.deleteIcon />
-                    </DeleteStyle>
-                  </Stack>
-                </Stack>
-              </CardView>
-            </Stack>
-          </BasketBoxes>
-        </Grid>
-        <Grid item md={5} xs={12}>
-          <PaymentBox>
-            <div className="d-flex justify-content-between payment_header">
-              <h3 className="color-black">To'lovga</h3>
-            </div>
-
-            <Stack direction={"column"} spacing={3}>
-              <div className="d-flex justify-content-between pt-3">
-                <h3>Umumiy narxi:</h3>
-                <b className="color-black">300 000 uzs</b>
+                  </CardView>
+                ))}
+              </Stack>
+            </BasketBoxes>
+          </Grid>
+          <Grid item md={5} xs={12}>
+            <PaymentBox>
+              <div className="d-flex justify-content-between payment_header">
+                <h3 className="color-black">To'lovga</h3>
               </div>
 
-              <CommonButton
-                title="Buyurtmani rasmiylashtirish"
-                className="blue"
-                sx={{ width: "100%", height: "48px !important" }}
-                onClick={() => navigate("/purchase")}
-              />
-            </Stack>
-          </PaymentBox>
-        </Grid>
-      </Grid>
+              <Stack direction={"column"} spacing={3}>
+                <div className="d-flex justify-content-between pt-3">
+                  <h3>Umumiy narxi:</h3>
+                  <b className="color-black">{numberFormat(totalSum)} uzs</b>
+                </div>
 
-      {"" && (
+                <CommonButton
+                  title="Buyurtmani rasmiylashtirish"
+                  className="blue"
+                  sx={{ width: "100%", height: "48px !important" }}
+                  onClick={() => navigate("/purchase")}
+                />
+              </Stack>
+            </PaymentBox>
+          </Grid>
+        </Grid>
+      ) : (
         <Grid container>
           <Grid item md={12}>
             <DefaultBasket>
@@ -163,6 +175,31 @@ const Baskets = () => {
           </Grid>
         </Grid>
       )}
+
+      <CommonModal open={realyDelete}>
+        <RealyWant>
+          <span className="delete_icon">
+            <Icons.deleteIcon />
+          </span>
+          <h4>Rostdan ham savatni tozalamoqchimisiz?</h4>
+
+          <div className="d-flex gap-2">
+            <CommonButton
+              title="Yo'q"
+              className="no"
+              onClick={() => setRealyDelete(false)}
+            />
+            <CommonButton
+              title="Ha"
+              className="yes"
+              onClick={() => {
+                deleteAll();
+                setRealyDelete(false);
+              }}
+            />
+          </div>
+        </RealyWant>
+      </CommonModal>
     </BasketStyle>
   );
 };

@@ -1,4 +1,4 @@
-import { Box, Paper, MenuList, MenuItem } from "@mui/material";
+import { Box, Paper, MenuList, MenuItem, Badge, Tooltip } from "@mui/material";
 import {
   LanguageBox,
   MainNavbarStyled,
@@ -22,6 +22,7 @@ const Navbar = () => {
   );
 
   const {
+    state: { baskets },
     actions: { setAuth },
   } = useGlobalContext();
   const navigate = useNavigate();
@@ -81,11 +82,34 @@ const Navbar = () => {
             alignItems={"center"}
           >
             {/* <CommonButton iconButton icon={<Icons.SearchIcon />} /> */}
-            <CommonButton
-              iconButton
-              icon={<Icons.CartIcon />}
-              onClick={() => navigate("/baskets")}
-            />
+            <Tooltip
+              title={
+                !!baskets.length
+                  ? "Savatga o'tish"
+                  : "Afsuski hanuzgacha mahsulot tanlamadingiz 😒"
+              }
+              arrow
+            >
+              <Badge
+                badgeContent={baskets.length}
+                sx={{
+                  "& .MuiBadge-badge": {
+                    color: "#ffffff",
+                    backgroundColor: "#0065FF",
+                  },
+                }}
+              >
+                <CommonButton
+                  iconButton
+                  icon={<Icons.CartIcon />}
+                  onClick={() => {
+                    if (!!baskets.length) {
+                      navigate("/baskets");
+                    }
+                  }}
+                />
+              </Badge>
+            </Tooltip>
             <LanguageBox ref={refLang}>
               <CommonButton
                 title={

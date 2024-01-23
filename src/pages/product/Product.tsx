@@ -1,15 +1,15 @@
-import { MainBox } from "@/styles/Common.style";
-import { Box, Grid, Typography } from "@mui/material";
-import { FlexBox, ProductTop } from "./Product.style";
-import ProductSlide from "./component/ProductSlide";
 import { CommonButton } from "@/components";
-import { useNavigate, useParams } from "react-router-dom";
-import { isAuth } from "@/services/auth";
 import useGlobalContext from "@/context/useGlobal";
 import { useApi } from "@/hooks/useApi/useApiHooks";
-import { get } from "lodash";
+import { isAuth } from "@/services/auth";
+import { MainBox } from "@/styles/Common.style";
 import { numberFormat } from "@/utils/numberFormat";
+import { Box, Grid, Typography } from "@mui/material";
+import { get } from "lodash";
 import { useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { FlexBox, ProductTop } from "./Product.style";
+import ProductSlide from "./component/ProductSlide";
 
 const Product = () => {
   const [size, setSize] = useState<string>("");
@@ -19,7 +19,7 @@ const Product = () => {
 
   const { id } = useParams<{ id: string }>();
   const {
-    actions: { setAuth },
+    actions: { setAuth, addToCart },
   } = useGlobalContext();
   const navigate = useNavigate();
 
@@ -27,17 +27,52 @@ const Product = () => {
 
   const handleAddBasket = () => {
     if (!isAuth()) {
-      setAuth(true);
+      return setAuth(true);
     }
-  };
-
-  const handlePurchase = () => {
     if (!color && !size) {
       setCheckSize(true);
       setCheckColor(true);
     } else if (!size) setCheckSize(true);
     else if (!color) setCheckColor(true);
-    else if (color && size) navigate("/purchase");
+    else if (color && size) {
+      const cartData = {
+        color,
+        size,
+        name: get(categoryData, "data.name", ""),
+        productId: get(categoryData, "data._id", ""),
+        price: get(categoryData, "data.price", 0),
+        count: 1,
+        image: get(categoryData, "data.imageUrls", [])?.[0],
+      };
+
+      addToCart(cartData);
+    }
+  };
+
+  const handlePurchase = () => {
+    if (!isAuth()) {
+      return setAuth(true);
+    }
+
+    if (!color && !size) {
+      setCheckSize(true);
+      setCheckColor(true);
+    } else if (!size) setCheckSize(true);
+    else if (!color) setCheckColor(true);
+    else if (color && size) {
+      const cartData = {
+        color,
+        size,
+        productId: get(categoryData, "data._id", ""),
+        price: get(categoryData, "data.price", 0),
+        name: get(categoryData, "data.name", ""),
+        count: 1,
+        image: get(categoryData, "data.imageUrls", [])?.[0],
+      };
+
+      addToCart(cartData);
+      navigate("/purchase");
+    }
   };
 
   return (

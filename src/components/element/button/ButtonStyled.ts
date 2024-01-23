@@ -52,6 +52,23 @@ export const ButtonStyled = styled(Button)`
     color: #000 !important;
     border-radius: 10px !important;
   }
+
+  &.yes {
+    height: 46px !important;
+    font-size: 15px !important;
+    background-color: #0065ff !important;
+    color: #fff !important;
+    border-radius: 12px !important;
+    width: 140px !important;
+  }
+  &.no {
+    height: 46px !important;
+    width: 140px !important;
+    font-size: 15px !important;
+    background-color: #f5f5f5 !important;
+    border-radius: 12px !important;
+    color: #ef3838 !important;
+  }
 `;
 
 export const IconButtonStyled = styled(IconButton)`

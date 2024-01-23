@@ -8,6 +8,9 @@
     "cancel": "Bekor qilish",
     "search": "Qidirish"
   },
+  "general": {
+    "required": "Majburiy"
+  },
   "modal": {
     "register": "Ro'yxatadan o'tish",
     "confirmation": "Raqamni tasdiqlash",

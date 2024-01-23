@@ -66,6 +66,7 @@ const AuthModal = () => {
   useEffect(() => {
     if (verifyStatus === "SUCCESS") {
       localStorage.setItem("token", verifyData.token);
+      localStorage.setItem("auth", JSON.stringify(verifyData));
       setAuth(false);
     }
   }, [verifyStatus]);

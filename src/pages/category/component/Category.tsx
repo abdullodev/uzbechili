@@ -53,7 +53,7 @@ const Category = () => {
                         e.stopPropagation();
                         if (!isAuth()) {
                           setAuth(true);
-                        }
+                        } else navigate(`/product/${product._id}`);
                       }}
                     >
                       {numberFormat(get(product, "price", 0))}

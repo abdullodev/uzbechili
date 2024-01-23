@@ -83,6 +83,11 @@ export const CardView = styled(Box)`
     white-space: nowrap;
     overflow: hidden !important;
     text-overflow: ellipsis;
+
+    code {
+      color: #0065ff;
+      font-weight: 600;
+    }
   }
 `;
 
@@ -103,7 +108,6 @@ export const AmountCalcBox = styled(Box)`
     align-items: center;
     font-size: 14px;
     color: #000;
-    padding-bottom: 3px;
   }
   .buttonAmount {
     width: 32px;

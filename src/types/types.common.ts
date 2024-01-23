@@ -36,3 +36,13 @@ export interface IOption<T = string> extends Record<string, any> {
   name: string;
   trans_key?: string;
 }
+
+export interface ICart {
+  name?: string;
+  color: string;
+  size: string;
+  productId: string;
+  count: number;
+  image?: string;
+  price?: number;
+}

@@ -109,3 +109,71 @@ export const DeleteStyle = styled(IconButton)`
     }
   }
 `;
+
+export const RealyWant = styled(Box)`
+  width: 370px;
+  height: 220px;
+  border-radius: 24px;
+  background-color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+  padding: 16px 30px 20px 30px;
+
+  .delete_icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background-color: #faebeb;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    svg {
+      transform: scale(1.4);
+      path {
+        fill: #ef3838 !important;
+      }
+    }
+  }
+
+  h4 {
+    font-size: 15px;
+    color: #000;
+  }
+`;
+
+export const SuccesOrder = styled(Box)`
+  width: 370px;
+  height: 220px;
+  border-radius: 24px;
+  background-color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+  padding: 16px 30px 20px 30px;
+
+  .done_icon {
+    width: 54px;
+    height: 54px;
+    border-radius: 50%;
+    background-color: rgba(105, 44, 377, 0.15);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    svg {
+      transform: scale(1.6);
+      path {
+        stroke: #0065ff;
+      }
+    }
+  }
+
+  h4 {
+    font-size: 20px;
+    color: #000;
+  }
+`;
