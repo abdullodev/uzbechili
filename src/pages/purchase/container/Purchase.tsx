@@ -77,9 +77,7 @@ const Purchase = () => {
       totalPrice: totalSum,
       paymentMethod: "cash",
       totalCalculatedPrice:
-        watch("havePromocode") && discount
-          ? totalSum - get(siteSettings, "data.deliveryPrice", 0)
-          : totalSum,
+        totalSum + get(siteSettings, "data.deliveryPrice", 0),
       orderItems: baskets.map((item: ICart) => ({
         productId: item.productId,
         count: item.count,
@@ -93,8 +91,10 @@ const Purchase = () => {
           : null,
       totalPriceWithPromoCode:
         watch("havePromocode") && discount
-          ? totalSum - get(siteSettings, "data.deliveryPrice", 0)
-          : totalSum,
+          ? totalSum +
+            get(siteSettings, "data.deliveryPrice", 0) -
+            get(promocode, "data.amount", 0)
+          : totalSum + get(siteSettings, "data.deliveryPrice", 0),
       deliveryPrice: get(siteSettings, "data.deliveryPrice", 0),
       address: {
         furtherUse: data.furtherUse,
@@ -245,7 +245,7 @@ const Purchase = () => {
                       placeholder={"XXXXXX"}
                       rules={{
                         required: false,
-                        maxLength: 6,
+                        maxLength: { value: 6, message: "Noto'gri kiritildi" },
                       }}
                     />
                   </Grid>
