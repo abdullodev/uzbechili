@@ -36,11 +36,11 @@ const HomeCategories = () => {
                   className="designed"
                 />
               )}
-              {/* <img
+              <img
                 src={import.meta.env.VITE_BASE_URL + category.imageUrl}
                 alt={get(category, "name", "")}
                 className="category_img"
-              /> */}
+              />
               <Typography variant="h5" className="category_name">
                 {get(category, "name", "")}
               </Typography>
