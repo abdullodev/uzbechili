@@ -16,7 +16,7 @@ const useGlobal = () => {
   const { data: siteSettings } = useApi("/general-settings");
   const { data: promocode } = useApi("/promo-code/65accb9c527dbdb82619e8cd");
 
-  const addToCart = (cart: ICart) => {
+  const addToCart = (cart: ICart, isToast?: boolean) => {
     const carts = JSON.parse(localStorage.getItem("cart") || "[]");
     const found = carts.find(
       (item: ICart) =>
@@ -39,8 +39,9 @@ const useGlobal = () => {
       });
     } else {
       carts.push(cart);
-      toast.success("Karzinkaga qo'shildi");
     }
+
+    isToast && toast.success("Karzinkaga qo'shildi");
     setBaskets(carts);
     localStorage.setItem("cart", JSON.stringify(carts));
   };

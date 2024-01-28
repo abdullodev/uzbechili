@@ -54,6 +54,99 @@ export const MainNavbarStyled = styled(Box)`
       font-size: 14px !important;
     }
   }
+  .menuIcon {
+    width: 60px;
+    height: 60px;
+    display: none;
+  }
+
+  @media screen and (max-width: 760px) {
+    padding: 0 20px;
+    .design_box {
+      display: none;
+    }
+    .nav_left {
+      display: none;
+    }
+    .menuIcon {
+      display: block;
+      svg {
+        path {
+          stroke: #000;
+        }
+      }
+    }
+  }
+
+  @media screen and (max-width: 540px) {
+    padding: 0 16px;
+    .logoIcon {
+      transform: scale(0.8);
+    }
+  }
+`;
+
+export const SidebarMenu = styled(Box)`
+  position: fixed;
+  top: 0;
+  left: -300px;
+  width: 300px;
+  height: 100vh;
+  overflow: auto;
+  background-color: #000;
+  z-index: 999990;
+  padding: 12px;
+  transition: all 0.3s ease;
+
+  &.active {
+    left: 0;
+  }
+
+  .head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 60px;
+    gap: 10px;
+    svg {
+      cursor: pointer;
+      path {
+        fill: #fff;
+      }
+    }
+    .close_menu {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background-color: rgba(64, 162, 186, 0.15);
+
+      svg {
+        path {
+          stroke: #fff;
+        }
+      }
+    }
+  }
+  ul {
+    display: flex;
+    margin-top: 10px;
+    flex-direction: column;
+    li {
+      list-style: none;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      color: #fff;
+      background-color: rgba(64, 162, 186, 0.15);
+      border-radius: 6px;
+      padding: 0 12px;
+      cursor: pointer;
+
+      &:hover {
+        background-color: rgba(64, 162, 186, 0.25);
+      }
+    }
+  }
 `;
 
 export const LanguageBox = styled(Box)`
@@ -117,6 +210,65 @@ export const StyledProfileMenuItem = styled(MenuItem)<any>`
     svg {
       path {
         fill: #17c657;
+      }
+    }
+  }
+`;
+
+export const MediaStyled = styled(Box)`
+  display: none;
+
+  @media screen and (max-width: 760px) {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 9999;
+    background-color: #fff;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 60px;
+    box-sizing: border-box;
+
+    .MuiIconButton-root {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      font-size: 12px;
+      width: 80px;
+      border-radius: 10px;
+      color: #999;
+      text-transform: inherit !important;
+      font-weight: 700;
+      box-sizing: border-box;
+      transition: all 0.3s ease;
+
+      svg {
+        margin-bottom: 5px;
+        path {
+          fill: #999 !important;
+          transition: all 0.3s ease;
+        }
+      }
+      .menuIcon {
+        path {
+          stroke: #999;
+        }
+      }
+      &.active {
+        color: #000;
+
+        svg {
+          path {
+            fill: #000 !important;
+          }
+        }
+        .menuIcon {
+          path {
+            stroke: #000;
+          }
+        }
       }
     }
   }

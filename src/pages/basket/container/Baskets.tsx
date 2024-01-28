@@ -102,12 +102,15 @@ const Baskets = () => {
                             <IconButton
                               className="buttonAmount"
                               onClick={() => {
-                                addToCart({
-                                  productId: item.productId,
-                                  color: item.color,
-                                  size: item.size,
-                                  count: item.count,
-                                });
+                                addToCart(
+                                  {
+                                    productId: item.productId,
+                                    color: item.color,
+                                    size: item.size,
+                                    count: item.count,
+                                  },
+                                  false
+                                );
                               }}
                             >
                               <Icons.PlusIcon />

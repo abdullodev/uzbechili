@@ -45,7 +45,7 @@ const Product = () => {
         image: get(categoryData, "data.imageUrls", [])?.[0],
       };
 
-      addToCart(cartData);
+      addToCart(cartData, true);
     }
   };
 
@@ -70,7 +70,7 @@ const Product = () => {
         image: get(categoryData, "data.imageUrls", [])?.[0],
       };
 
-      addToCart(cartData);
+      addToCart(cartData, true);
       navigate("/purchase");
     }
   };

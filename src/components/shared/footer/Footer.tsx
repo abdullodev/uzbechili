@@ -1,5 +1,5 @@
 import Icons from "@/assets/svgs";
-import { CommonButton } from "@/components";
+// import { CommonButton } from "@/components";
 import { Box, Typography } from "@mui/material";
 import { FooterStyled } from "./Footer.style";
 
@@ -14,7 +14,7 @@ const Footer = () => {
             <span>ozbechili@gmail.com</span>
             <span className="location">Tasheknt, Uzbekistan</span>
           </div>
-          <CommonButton title="Ariza qoldirish" />
+          {/* <CommonButton title="Ariza qoldirish" /> */}
         </Box>
       </Box>
       <Box className="footer_bottom">
