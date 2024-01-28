@@ -7,10 +7,13 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import Menu from "@mui/material/Menu";
 import Tooltip from "@mui/material/Tooltip";
 import { StyledProfileMenuItem } from "../navbar.style";
+import { useNavigate } from "react-router-dom";
 
 export default function NavbarProfile() {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
+
+  const navigate = useNavigate();
 
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
@@ -52,14 +55,21 @@ export default function NavbarProfile() {
         onClick={handleClose}
         transformOrigin={{ horizontal: "right", vertical: "top" }}
         anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
+        sx={{
+          " .MuiPaper-elevation": {
+            boxShadow: "1",
+            borderRadius: "10px",
+          },
+        }}
       >
         <StyledProfileMenuItem
-          className={location.pathname === "/profile" ? "active" : ""}
+          className={location.pathname === "/orders" ? "active" : ""}
+          onClick={() => navigate("/orders")}
         >
           <ListItemIcon>
-            <Icons.userIcon />
+            <Icons.OrderIcon />
           </ListItemIcon>
-          Profile
+          Buyurtmalar
         </StyledProfileMenuItem>
         <StyledProfileMenuItem onClick={logout}>
           <ListItemIcon>

@@ -7,6 +7,8 @@ const Categories = lazy(() => import("./pages/category/container"));
 const Product = lazy(() => import("./pages/product"));
 const Baskets = lazy(() => import("./pages/basket"));
 const Purchase = lazy(() => import("./pages/purchase"));
+const Design = lazy(() => import("./pages/design"));
+const OrderHistory = lazy(() => import("./pages/orderHistory"));
 
 // compoenent
 import { AuthModal, Loader } from "./components";
@@ -28,6 +30,8 @@ function App() {
         <Route path="product/:id" element={<Product />} />
         <Route path="baskets" element={<Baskets />} />
         <Route path="purchase" element={<Purchase />} />
+        <Route path="design" element={<Design />} />
+        <Route path="orders" element={<OrderHistory />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
       <Toaster />

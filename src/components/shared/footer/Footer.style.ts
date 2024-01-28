@@ -79,7 +79,8 @@ export const FooterStyled = styled(Box)`
       padding: 20px 60px;
     }
   }
-  @media screen and (max-width: 720px) {
+  @media screen and (max-width: 760px) {
+    padding-bottom: 60px;
     .footer_top {
       padding: 15px 40px;
     }

@@ -68,7 +68,6 @@ const Purchase = () => {
   });
 
   const onSubmit = (data: Record<string, any>) => {
-    console.log("first");
     const requestData = {
       receiverName: data.receiverName,
       receiverPhoneNumber: data.receiverPhoneNumber,
@@ -109,8 +108,6 @@ const Purchase = () => {
         about: data.about,
       },
     };
-
-    console.log(data);
 
     mutate(requestData);
   };

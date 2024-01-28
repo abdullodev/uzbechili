@@ -110,6 +110,7 @@ export const SidebarMenu = styled(Box)`
     gap: 10px;
     svg {
       cursor: pointer;
+      width: 150px;
       path {
         fill: #fff;
       }
@@ -133,7 +134,7 @@ export const SidebarMenu = styled(Box)`
     flex-direction: column;
     li {
       list-style: none;
-      height: 36px;
+      height: 46px;
       display: flex;
       align-items: center;
       color: #fff;
@@ -190,6 +191,7 @@ export const StyledProfileMenuItem = styled(MenuItem)<any>`
   font-style: normal;
   font-weight: 500;
   line-height: 20px;
+  border-radius: 10px;
   transition: 0.2s ease;
   svg {
     path {
@@ -205,14 +207,14 @@ export const StyledProfileMenuItem = styled(MenuItem)<any>`
     }
   }
 
-  &.active {
+  /* &.active {
     background-color: #f3f3f3;
     svg {
       path {
         fill: #17c657;
       }
     }
-  }
+  } */
 `;
 
 export const MediaStyled = styled(Box)`

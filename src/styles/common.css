@@ -614,13 +614,21 @@ hr {
 .main-border-radius {
   border-radius: 12px !important;
 }
+.color-main {
+  color: #0065ff;
+}
+.gap-1 {
+  gap: 8px;
+}
 .gap-2 {
   gap: 14px;
 }
 .color-white {
   color: #fff;
 }
-
+.color-grey {
+  color: #999;
+}
 .color-black {
   color: #000;
 }

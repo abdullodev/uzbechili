@@ -167,7 +167,7 @@ const Baskets = () => {
         </Grid>
       ) : (
         <Grid container>
-          <Grid item md={12}>
+          <Grid item md={12} xs={12}>
             <DefaultBasket>
               <Icons.defaultBasket />
               <div>
