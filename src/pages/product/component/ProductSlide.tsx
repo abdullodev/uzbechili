@@ -1,14 +1,8 @@
 import { CommonButton } from "@/components";
-import { Grid, Typography, Alert } from "@mui/material";
+import { Alert, Grid, Typography } from "@mui/material";
 import { get } from "lodash";
-import {
-  A11y,
-  Controller,
-  EffectFade,
-  Navigation,
-  Pagination,
-  Scrollbar,
-} from "swiper/modules";
+import { useState } from "react";
+import { FreeMode, Navigation, Thumbs } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { ProductSlideBox, ProductValue, SizeTabs } from "../Product.style";
 
@@ -35,6 +29,7 @@ const ProductSlide = ({
   checkSize,
   setCheckSize,
 }: IProductSlide) => {
+  const [thumbsSwiper, setThumbsSwiper] = useState<any>();
   const handleChangeSize = (newValue: string) => {
     if (newValue === size) {
       setSize("");
@@ -57,6 +52,39 @@ const ProductSlide = ({
       <Grid item xs={12} md={6}>
         <ProductSlideBox>
           <Swiper
+            loop={true}
+            spaceBetween={10}
+            navigation={true}
+            thumbs={{
+              swiper:
+                thumbsSwiper && !thumbsSwiper.destroyed ? thumbsSwiper : null,
+            }}
+            modules={[FreeMode, Navigation, Thumbs]}
+            className="mySwiper2"
+          >
+            {get(product, "imageUrls").map((slide: string, index: number) => (
+              <SwiperSlide key={slide + index}>
+                <img src={import.meta.env.VITE_BASE_URL + slide} alt="slide" />
+              </SwiperSlide>
+            ))}
+          </Swiper>
+          <Swiper
+            onSwiper={setThumbsSwiper}
+            loop={true}
+            spaceBetween={10}
+            slidesPerView={4}
+            freeMode={true}
+            watchSlidesProgress={true}
+            modules={[FreeMode, Navigation, Thumbs]}
+            className="mySwiper"
+          >
+            {get(product, "imageUrls").map((slide: string, index: number) => (
+              <SwiperSlide key={slide + index}>
+                <img src={import.meta.env.VITE_BASE_URL + slide} alt="slide" />
+              </SwiperSlide>
+            ))}
+          </Swiper>
+          {/* <Swiper
             // allowSlideNext
             // allowSlidePrev
             modules={[
@@ -82,7 +110,7 @@ const ProductSlide = ({
                 <img src={import.meta.env.VITE_BASE_URL + slide} alt="slide" />
               </SwiperSlide>
             ))}
-          </Swiper>
+          </Swiper> */}
         </ProductSlideBox>
       </Grid>
       <Grid item xs={12} md={6}>

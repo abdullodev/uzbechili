@@ -4,7 +4,8 @@ import { useApi } from "@/hooks/useApi/useApiHooks";
 import { get } from "lodash";
 
 const OrderHistory = () => {
-  const { data } = useApi("/order/pagin", { page: 1, limit: 10, state: "new" });
+  const userId = JSON.parse(localStorage.getItem("auth") || "{}")?._id;
+  const { data } = useApi(`order/${userId}`, {}, { enabled: !!userId });
   const state =
     get(data, "data.state", "") === "new"
       ? 1

@@ -7,6 +7,17 @@ export const OrderStyle = styled(Box)`
   min-height: 800px;
   background: url(${OrderBack});
   background-size: cover;
+
+  @media screen and (max-width: 910px) {
+    padding: 20px 60px;
+  }
+  @media screen and (max-width: 720px) {
+    padding: 15px 40px;
+  }
+
+  @media screen and (max-width: 540px) {
+    padding: 15px;
+  }
 `;
 
 export const OrderBox = styled(Box)`

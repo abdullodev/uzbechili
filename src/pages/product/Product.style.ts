@@ -24,7 +24,7 @@ export const ProductTop = styled(Box)`
 `;
 
 export const ProductSlideBox = styled(Box)`
-  .swiper {
+  .mySwiper2 {
     width: 100%;
     height: 100%;
     height: 400px;
@@ -80,6 +80,40 @@ export const ProductSlideBox = styled(Box)`
       width: 100%;
       height: 100%;
       object-fit: cover;
+    }
+    .swiper-pagination-bullet {
+      background-color: #0065ff;
+    }
+  }
+  .mySwiper {
+    width: 100%;
+    height: 72px !important;
+    overflow: hidden;
+    border-radius: 10px;
+    position: relative;
+    margin-top: 12px;
+
+    .swiper-slide {
+      text-align: center;
+      font-size: 18px;
+      background: #fff;
+      border-radius: 10px;
+      background-color: #f5f5f5;
+      width: 56px !important;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      -webkit-box-shadow: 0px 3px 9px -8px rgba(34, 60, 80, 0.6);
+      -moz-box-shadow: 0px 3px 9px -8px rgba(34, 60, 80, 0.6);
+      box-shadow: 0px 3px 9px -8px rgba(34, 60, 80, 0.6);
+    }
+
+    .swiper-slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 10px;
     }
     .swiper-pagination-bullet {
       background-color: #0065ff;
