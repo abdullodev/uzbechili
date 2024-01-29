@@ -1,5 +1,7 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 
+import { useApi } from "@/hooks/useApi/useApiHooks";
+import { get } from "lodash";
 import {
   A11y,
   Autoplay,
@@ -10,9 +12,6 @@ import {
   Scrollbar,
 } from "swiper/modules";
 import { HomeSlideStyle } from "../../container/Home.style";
-import { useApi } from "@/hooks/useApi/useApiHooks";
-import { get } from "lodash";
-import { useRef } from "react";
 
 const HomeSlider = () => {
   const { data } = useApi("banner");
