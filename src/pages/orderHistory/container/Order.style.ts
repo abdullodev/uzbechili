@@ -50,5 +50,22 @@ export const OrderBox = styled(Box)`
         background-color: #17c657;
       }
     }
+
+    .active {
+      .state_title {
+        color: #17c657;
+      }
+      .state_line {
+        background-color: #17c657;
+      }
+    }
+    .cancelled {
+      .state_title {
+        color: red !important;
+      }
+      .state_line {
+        background-color: red !important;
+      }
+    }
   }
 `;
