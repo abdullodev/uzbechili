@@ -47,19 +47,24 @@ const Baskets = () => {
                   onClick={() => setRealyDelete(true)}
                 />
               </div>
-              <Stack direction={"column"} spacing={2} mt={3}>
+              <div className="mt-2">
                 {baskets.map((item: ICart) => (
                   <CardView>
-                    <Stack direction={"row"} spacing={2}>
-                      <Stack width={"12%"}>
+                    <Grid
+                      container
+                      spacing={2}
+                      width={"100%"}
+                      order={{ xs: 1, md: 1 }}
+                    >
+                      <Grid item xl={2} md={3} xs={4}>
                         <div className="image_box">
                           <img
                             src={import.meta.env.VITE_BASE_URL + item.image}
                             alt={item.image}
                           />
                         </div>
-                      </Stack>
-                      <Stack direction={"column"} spacing={0.5} width={"70%"}>
+                      </Grid>
+                      <Grid item xl={8} md={6} xs={12} order={{ xs: 3, md: 2 }}>
                         <Tooltip
                           title={
                             <p className="title">
@@ -118,29 +123,27 @@ const Baskets = () => {
                           </AmountCalcBox>
                           <p>{numberFormat(item.price! * item.count)} uzs</p>
                         </Stack>
-                      </Stack>
-                      <Stack
-                        alignSelf={"center"}
-                        width={"12%"}
-                        alignItems={"flex-end"}
-                      >
-                        <DeleteStyle
-                          onClick={() => {
-                            deleteCart({
-                              productId: item.productId,
-                              color: item.color,
-                              size: item.size,
-                              count: item.count,
-                            });
-                          }}
-                        >
-                          <Icons.deleteIcon />
-                        </DeleteStyle>
-                      </Stack>
-                    </Stack>
+                      </Grid>
+                      <Grid item xl={2} md={3} xs={8} order={{ xs: 2, md: 3 }}>
+                        <div className="d-flex justify-content-end">
+                          <DeleteStyle
+                            onClick={() => {
+                              deleteCart({
+                                productId: item.productId,
+                                color: item.color,
+                                size: item.size,
+                                count: item.count,
+                              });
+                            }}
+                          >
+                            <Icons.deleteIcon />
+                          </DeleteStyle>
+                        </div>
+                      </Grid>
+                    </Grid>
                   </CardView>
                 ))}
-              </Stack>
+              </div>
             </BasketBoxes>
           </Grid>
           <Grid item md={5} xs={12}>

@@ -225,7 +225,7 @@ export const MediaStyled = styled(Box)`
     bottom: 0;
     left: 0;
     width: 100%;
-    z-index: 9999;
+    z-index: 9;
     background-color: #fff;
     display: flex;
     justify-content: space-evenly;

@@ -30,7 +30,7 @@ export const OrderBox = styled(Box)`
 
   .state_box {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
     gap: 6px;
 
     .state_title {
@@ -67,5 +67,37 @@ export const OrderBox = styled(Box)`
         background-color: red !important;
       }
     }
+  }
+`;
+
+export const DetailsStyle = styled(Box)`
+  padding: 24px;
+  height: 80vh;
+
+  .box {
+    width: 100%;
+    margin: 0 auto;
+    h2 {
+      font-size: 24px;
+      color: #000;
+    }
+    .order_state {
+      color: #00d43b;
+      font-size: 16px;
+
+      &.cancelled {
+        color: #ef3838;
+      }
+    }
+  }
+  .border {
+    margin: 16px 0;
+    width: 100%;
+    height: 10px;
+    border-bottom: 1px dashed #d9d9d9;
+  }
+
+  .order_number {
+    color: #0065ff;
   }
 `;

@@ -62,10 +62,13 @@ export default function NavbarProfile() {
           },
         }}
       >
-        <StyledProfileMenuItem
-          className={location.pathname === "/orders" ? "active" : ""}
-          onClick={() => navigate("/orders")}
-        >
+        <StyledProfileMenuItem onClick={() => navigate("/profile")}>
+          <ListItemIcon>
+            <Icons.userIcon />
+          </ListItemIcon>
+          Profile
+        </StyledProfileMenuItem>
+        <StyledProfileMenuItem onClick={() => navigate("/orders")}>
           <ListItemIcon>
             <Icons.OrderIcon />
           </ListItemIcon>

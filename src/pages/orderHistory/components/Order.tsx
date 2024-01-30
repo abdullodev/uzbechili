@@ -1,7 +1,12 @@
 import { get } from "lodash";
 import { OrderBox } from "../container/Order.style";
+import { numberFormat } from "@/utils/numberFormat";
+import dayjs from "dayjs";
+import OrderDetail from "./OrderDetail";
+import { useState } from "react";
 
 const Order = ({ order }: { order: Record<string, any> }) => {
+  const [showOrder, setShowOrder] = useState<boolean>(false);
   const state =
     get(order, "state", "") === "new"
       ? 1
@@ -12,47 +17,66 @@ const Order = ({ order }: { order: Record<string, any> }) => {
       : 0;
 
   return (
-    <OrderBox>
-      <div className="state_box">
-        {order.state === "cancelled" && (
-          <div className={`d-flex direction-column gap-1 cancelled`}>
-            <span className={"state_title"}>Bekor qilindi</span>
+    <>
+      <OrderBox onClick={() => setShowOrder(true)}>
+        <div className="state_box">
+          {order.state === "cancelled" && (
+            <div className={`d-flex direction-column gap-1 cancelled`}>
+              <span className={"state_title"}>Bekor qilindi</span>
+              <span className={"state_line"}></span>
+            </div>
+          )}
+          {order.state !== "cancelled" && (
+            <div
+              className={`d-flex direction-column gap-1 ${state && "active"}`}
+            >
+              <span className={"state_title"}>Yaratildi</span>
+              <span className={"state_line"}></span>
+            </div>
+          )}
+          <div
+            className={`d-flex direction-column gap-1 ${state > 1 && "active"}`}
+          >
+            <span className={"state_title"}>Jarayonda</span>
             <span className={"state_line"}></span>
           </div>
-        )}
-        {order.state !== "cancelled" && (
-          <div className={`d-flex direction-column gap-1 ${state && "active"}`}>
-            <span className={"state_title"}>Yaratildi</span>
+          <div
+            className={`d-flex direction-column gap-1 ${state > 2 && "active"}`}
+          >
+            <span className={"state_title"}>Tugatildi</span>
             <span className={"state_line"}></span>
           </div>
-        )}
-        <div
-          className={`d-flex direction-column gap-1 ${state > 1 && "active"}`}
-        >
-          <span className={"state_title"}>Jarayonda</span>
-          <span className={"state_line"}></span>
         </div>
-      </div>
 
-      <div className="d-flex justify-content-between border-bottom-dashed py-3">
-        <h3>
-          Buyurtma <span className="color-main">№123456</span>
-        </h3>
-        <h3>
-          150 000 <span className="color-grey">uzs</span>
-        </h3>
-      </div>
+        <div className="d-flex justify-content-between border-bottom-dashed py-3">
+          <h3>
+            Buyurtma{" "}
+            <span className="color-main">№{get(order, "uuid", "1")}</span>
+          </h3>
+          <h3>
+            {numberFormat(get(order, "totalPrice", "1"))}{" "}
+            <span className="color-grey">uzs</span>
+          </h3>
+        </div>
 
-      <div className="pt-3">
-        <h4>
-          <span className="color-grey">Manzil:</span> массив Сергели-III, 3
-        </h4>
-        <h4>
-          <span className="color-grey">Buyurtma sanasi:</span>
-          18.12.2023
-        </h4>
-      </div>
-    </OrderBox>
+        <div className="pt-3">
+          <h4>
+            <span className="color-grey">Manzil:</span>{" "}
+            {get(order, "client.address.region", "") +
+              ", " +
+              get(order, "client.address.district", "") +
+              ", " +
+              get(order, "client.address.flatNumber", "")}
+          </h4>
+          <h4>
+            <span className="color-grey">Buyurtma sanasi: </span>
+            {dayjs(get(order, "createdAt", "")).format("DD-MM-YYYY | HH:mm")}
+          </h4>
+        </div>
+      </OrderBox>
+
+      <OrderDetail show={showOrder} setShow={setShowOrder} order={order} />
+    </>
   );
 };
 

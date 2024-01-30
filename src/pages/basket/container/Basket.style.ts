@@ -22,7 +22,7 @@ export const BasketStyle = styled(Box)`
 `;
 
 export const BasketBoxes = styled(Box)`
-  min-height: 480px;
+  min-height: 218px;
   background-color: #fff;
   border-radius: 14px;
   padding: 24px;
@@ -47,7 +47,6 @@ export const BasketBoxes = styled(Box)`
 export const PaymentBox = styled(Box)`
   position: sticky;
   top: 80px;
-  min-height: 208px;
   background-color: #fff;
   border-radius: 14px;
   padding: 24px;
@@ -60,6 +59,9 @@ export const PaymentBox = styled(Box)`
 
 export const CardView = styled(Box)`
   width: 100%;
+  background-color: #f5f5f5;
+  padding: 0 0 10px 16px;
+  border-radius: 12px;
 
   .image_box {
     width: 100%;

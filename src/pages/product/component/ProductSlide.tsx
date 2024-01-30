@@ -49,7 +49,7 @@ const ProductSlide = ({
 
   return (
     <Grid container spacing={2}>
-      <Grid item xs={12} md={6}>
+      <Grid item xs={12} md={4}>
         <ProductSlideBox>
           <Swiper
             loop={true}
@@ -84,33 +84,6 @@ const ProductSlide = ({
               </SwiperSlide>
             ))}
           </Swiper>
-          {/* <Swiper
-            // allowSlideNext
-            // allowSlidePrev
-            modules={[
-              Navigation,
-              Pagination,
-              Scrollbar,
-              A11y,
-              Controller,
-              EffectFade,
-            ]}
-            spaceBetween={50}
-            slidesPerView={"auto"}
-            effect={"fade"}
-            navigation
-            pagination={{ clickable: true }}
-            scrollbar={{ draggable: true }}
-            loop={true}
-            // onSwiper={(swiper) => console.log(swiper)}
-            // onSlideChange={() => console.log("slide change")}
-          >
-            {get(product, "imageUrls").map((slide: string, index: number) => (
-              <SwiperSlide key={slide + index}>
-                <img src={import.meta.env.VITE_BASE_URL + slide} alt="slide" />
-              </SwiperSlide>
-            ))}
-          </Swiper> */}
         </ProductSlideBox>
       </Grid>
       <Grid item xs={12} md={6}>

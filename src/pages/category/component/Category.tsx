@@ -26,7 +26,7 @@ const Category = () => {
       {get(subCategories, "data", []).map((item: Record<string, any>) => (
         <CategoryBoxStyle>
           <h3>{get(item, "name", "")}</h3>
-          <Grid container spacing={[2, 3]}>
+          <Grid container spacing={[1.4, 2]}>
             {get(item, "products", []).map((product: Record<string, any>) => (
               <Grid item xl={2} lg={2.4} md={3} sm={4} xs={6} key={product._id}>
                 <ProductBox

@@ -47,6 +47,7 @@ const Navbar = () => {
     browserStorage.set("i18nextLng", lang);
     setOpen(false);
   };
+  const showNavbar = location.pathname === "/purchase";
 
   useOutsideClick(refLang, () => {
     setOpen(false);
@@ -189,41 +190,44 @@ const Navbar = () => {
         </MainNavbarStyled>
       </StyledNavbar>
 
-      <MediaStyled>
-        <IconButton
-          className={tabValue === "/" ? "active" : ""}
-          onClick={() => handleChangePage("/")}
-        >
-          <Icons.responsiveMenuIcon className="menuIcon" />
-          <span>Katalog</span>
-        </IconButton>
-        <IconButton
-          className={tabValue.includes("design") ? "active" : ""}
-          onClick={() => handleChangePage("/design")}
-        >
-          <Icons.TshirtIcon />
-          <span>Dizaynlarim</span>
-        </IconButton>
-        <IconButton
-          className={tabValue.includes("baskets") ? "active" : ""}
-          onClick={() => handleChangePage("/baskets")}
-        >
-          <Icons.CartIcon />
-          <span>Savat</span>
-        </IconButton>
-        <IconButton
-          className={tabValue.includes("orders") ? "active" : ""}
-          onClick={() => handleChangePage("/orders")}
-        >
-          <Icons.OrderIcon />
-          <span>Buyurtmalar</span>
-        </IconButton>
-      </MediaStyled>
+      {!showNavbar && (
+        <MediaStyled>
+          <IconButton
+            className={tabValue === "/" ? "active" : ""}
+            onClick={() => handleChangePage("/")}
+          >
+            <Icons.responsiveMenuIcon className="menuIcon" />
+            <span>Katalog</span>
+          </IconButton>
+          <IconButton
+            className={tabValue.includes("design") ? "active" : ""}
+            onClick={() => handleChangePage("/design")}
+          >
+            <Icons.TshirtIcon />
+            <span>Dizaynlarim</span>
+          </IconButton>
+          <IconButton
+            className={tabValue.includes("baskets") ? "active" : ""}
+            onClick={() => handleChangePage("/baskets")}
+          >
+            <Icons.CartIcon />
+            <span>Savat</span>
+          </IconButton>
+          <IconButton
+            className={tabValue.includes("orders") ? "active" : ""}
+            onClick={() => handleChangePage("/orders")}
+          >
+            <Icons.OrderIcon />
+            <span>Buyurtmalar</span>
+          </IconButton>
+        </MediaStyled>
+      )}
 
       <div
         className={openMenu ? "menuBack active" : "menuBack"}
         onClick={() => setOpenMenu(false)}
       ></div>
+
       <SidebarMenu className={openMenu ? "active" : ""}>
         <div className="head">
           <Icons.LogoMain className="logo_main" />

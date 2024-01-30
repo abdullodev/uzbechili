@@ -623,6 +623,12 @@ hr {
 .gap-2 {
   gap: 14px;
 }
+.gap-3 {
+  gap: 24px;
+}
+.gap-4 {
+  gap: 34px;
+}
 .color-white {
   color: #fff;
 }
