@@ -6,7 +6,7 @@ import {
   UseQueryOptions,
 } from "react-query";
 import { useTranslation } from "react-i18next";
-import { toast } from "react-hot-toast/headless";
+import { toast } from "react-hot-toast";
 import api from "@/services/client/client";
 import { pickBy } from "lodash";
 
@@ -64,6 +64,7 @@ const useApiMutation = <
     },
     {
       onError(error) {
+        console.log(error);
         toast.error(error?.message || method + "ed, no response");
       },
       onMutate() {

@@ -9,7 +9,8 @@
     "search": "Qidirish"
   },
   "general": {
-    "required": "Majburiy"
+    "required": "Majburiy",
+    "success": "Muvaffaqiyatli"
   },
   "modal": {
     "register": "Ro'yxatadan o'tish",

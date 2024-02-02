@@ -31,6 +31,7 @@ import { useApiMutation } from "@/hooks/useApi/useApiHooks";
 import { ICart } from "@/types/types.common";
 import { useNavigate } from "react-router-dom";
 import { SuccesOrder } from "@/styles/Common.style";
+import PromocodeForm from "../components/PromocodeForm";
 
 const REGIONS = [
   {
@@ -45,6 +46,8 @@ const REGIONS = [
 
 const Purchase = () => {
   const [givenOrder, setGivenOrder] = useState<boolean>(false);
+  const [open, setOpen] = useState<boolean>(false);
+  const [promocodeData, setPromocodeData] = useState<any>();
 
   const navigate = useNavigate();
 
@@ -84,16 +87,14 @@ const Purchase = () => {
         size: item.size,
         color: item.color,
       })),
-      promoCodeId:
-        watch("havePromocode") && discount
-          ? get(promocode, "data._id", "")
-          : null,
-      totalPriceWithPromoCode:
-        watch("havePromocode") && discount
-          ? totalSum +
-            get(siteSettings, "data.deliveryPrice", 0) -
-            get(promocode, "data.amount", 0)
-          : totalSum + get(siteSettings, "data.deliveryPrice", 0),
+      promoCodeId: watch("havePromocode")
+        ? get(promocode, "data._id", "")
+        : null,
+      totalPriceWithPromoCode: watch("havePromocode")
+        ? totalSum +
+          get(siteSettings, "data.deliveryPrice", 0) -
+          get(promocode, "data.amount", 0)
+        : totalSum + get(siteSettings, "data.deliveryPrice", 0),
       deliveryPrice: get(siteSettings, "data.deliveryPrice", 0),
       address: {
         furtherUse: data.furtherUse,
@@ -112,12 +113,15 @@ const Purchase = () => {
     mutate(requestData);
   };
 
-  const discount =
-    watch("promocode") === get(promocode, "data.name", undefined);
-
   useEffect(() => {
     setValue("receiverPhoneNumber", user?.phoneNumber);
   }, []);
+
+  useEffect(() => {
+    if (promocodeData) {
+      setValue("promocode", promocodeData?.name);
+    }
+  }, [promocodeData]);
 
   return (
     <PurchaseStyle>
@@ -342,14 +346,20 @@ const Purchase = () => {
                     <span>Promokod</span>
                   </div>
                   <div>
-                    <CommonSwitch control={control} name="havePromocode" />
+                    <CommonButton
+                      title="Promocode"
+                      sx={{ height: "36px !important" }}
+                      type="button"
+                      onClick={() => setOpen(true)}
+                    />
                   </div>
                 </div>
-                {watch("havePromocode") && (
+                {!!promocodeData && (
                   <TextInput
                     control={control}
                     name="promocode"
                     label={"Promocode"}
+                    disabled
                   />
                 )}
               </div>
@@ -367,7 +377,7 @@ const Purchase = () => {
                   <span>Umumiy narxi:</span>
                 </div>
                 <h4 className="d-flex flex-column">
-                  {watch("havePromocode") && discount && (
+                  {!!promocodeData && (
                     <del className="discount_price">
                       {numberFormat(
                         totalSum + get(siteSettings, "data.deliveryPrice", 0)
@@ -378,8 +388,7 @@ const Purchase = () => {
                   {numberFormat(
                     totalSum +
                       get(siteSettings, "data.deliveryPrice", 0) -
-                      (discount &&
-                        watch("havePromocode") &&
+                      (watch("havePromocode") &&
                         get(promocode, "data.amount", 0))
                   )}{" "}
                   uzs
@@ -434,6 +443,12 @@ const Purchase = () => {
           </div>
         </SuccesOrder>
       </CommonModal>
+
+      <PromocodeForm
+        open={open}
+        setOpen={setOpen}
+        setPromocodeData={setPromocodeData}
+      />
     </PurchaseStyle>
   );
 };

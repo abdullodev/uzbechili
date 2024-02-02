@@ -59,8 +59,8 @@ export const PaymentBox = styled(Box)`
 
 export const CardView = styled(Box)`
   width: 100%;
-  background-color: #f5f5f5;
-  padding: 0 0 10px 16px;
+  background-color: rgba(0, 0, 0, 0.015);
+  padding: 12px 0 10px 16px;
   border-radius: 12px;
 
   .image_box {

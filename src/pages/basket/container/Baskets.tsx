@@ -47,7 +47,7 @@ const Baskets = () => {
                   onClick={() => setRealyDelete(true)}
                 />
               </div>
-              <div className="mt-2">
+              <div className="mt-2 d-flex flex-column gap-2">
                 {baskets.map((item: ICart) => (
                   <CardView>
                     <Grid

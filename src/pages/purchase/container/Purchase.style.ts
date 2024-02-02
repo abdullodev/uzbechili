@@ -131,3 +131,24 @@ export const ArriveBox = styled(Box)`
     }
   }
 `;
+
+export const MainModalBox = styled(Box)`
+  width: 320px;
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 16px;
+`;
+
+export const HeaderBox = styled(Box)`
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 16px;
+
+  .close {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+`;
