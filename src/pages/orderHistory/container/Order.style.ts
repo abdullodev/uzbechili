@@ -72,7 +72,8 @@ export const OrderBox = styled(Box)`
 
 export const DetailsStyle = styled(Box)`
   padding: 24px;
-  height: 80vh;
+  min-height: 80vh;
+  overflow: auto;
   border-radius: 32px 32px 0 0;
   background-color: #fff;
 
@@ -113,6 +114,7 @@ export const DetailsStyle = styled(Box)`
     width: 300px;
     display: flex;
     gap: 8px;
+    margin-top: 16px;
 
     .image {
       width: 80px;
@@ -136,6 +138,10 @@ export const DetailsStyle = styled(Box)`
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+    }
+
+    @media screen and (max-width: 460px) {
+      width: 100%;
     }
   }
 `;

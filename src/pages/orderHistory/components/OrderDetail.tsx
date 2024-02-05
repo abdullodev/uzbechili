@@ -57,9 +57,9 @@ const OrderDetail = ({ show, order, setShow }: IOrderDetails) => {
         </div>
         <div className="border"></div>
 
-        <Grid container>
-          <Grid item md={5} xs={12}>
-            <div className="d-flex flex-wrap gap-2 flex-column w-300">
+        <Grid container spacing={2}>
+          <Grid item md={4} xs={12}>
+            <div className="d-flex flex-wrap gap-2 flex-column">
               <div className="d-flex flex-column gap-1 box-info">
                 <div className="d-flex flex-column gap-1">
                   <p>Buyurtma ma'lumotlari</p>
@@ -119,11 +119,14 @@ const OrderDetail = ({ show, order, setShow }: IOrderDetails) => {
                 </div>
               </div>
               {get(order, "state", "") === "new" && (
-                <CommonButton
-                  className="cancel"
-                  title="Buyurtmani bekor qilish"
-                  onClick={() => setCancel(true)}
-                />
+                <div className="d-flex justify-content-center">
+                  <CommonButton
+                    className="cancel"
+                    title="Buyurtmani bekor qilish"
+                    onClick={() => setCancel(true)}
+                    sx={{ width: "100% !important" }}
+                  />
+                </div>
               )}
             </div>
           </Grid>
