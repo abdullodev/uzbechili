@@ -20,7 +20,8 @@ const Categories = () => {
         <Icons.promIcon />
         Birinchi buyurtmaga "OZBECHILI" promokodi orqali{" "}
         {numberFormat(get(promocode, "data.amount", "0"))}{" "}
-        {get(promocode, "data.currency", "uzs")} chegirmaga ega bo'ling
+        {get(promocode, "data.currency", "") === "percent" ? "%" : "uzs"}{" "}
+        chegirmaga ega bo'ling
       </PromocodeStyle>
       <Category />
     </MainBox>

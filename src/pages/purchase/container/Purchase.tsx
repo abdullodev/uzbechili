@@ -1,5 +1,15 @@
-import { useEffect, useMemo, useState } from "react";
+import Icons from "@/assets/svgs";
+import {
+  CommonButton,
+  CommonCheckbox,
+  CommonModal,
+  FromSelect,
+  PhoneInput,
+  TextInput,
+} from "@/components";
 import { Box, Grid, Tooltip } from "@mui/material";
+import { useEffect, useMemo, useState } from "react";
+import { useForm } from "react-hook-form";
 import {
   ArriveBox,
   ArrivedView,
@@ -7,42 +17,21 @@ import {
   PaymentView,
   PurchaseStyle,
 } from "./Purchase.style";
-import Icons from "@/assets/svgs";
-import {
-  CommonButton,
-  CommonCheckbox,
-  CommonModal,
-  CommonSwitch,
-  FromSelect,
-  PhoneInput,
-  TextInput,
-} from "@/components";
-import { useForm } from "react-hook-form";
 
 //img
 
-import ArriveCarImg from "../../../assets/arriveCar.png";
-import UzpostCarImg from "../../../assets/uzPost.png";
-import KelishImg from "../../../assets/kelish.png";
 import useGlobalContext from "@/context/useGlobal";
-import { get } from "lodash";
-import { numberFormat } from "@/utils/numberFormat";
-import { useApiMutation } from "@/hooks/useApi/useApiHooks";
-import { ICart } from "@/types/types.common";
-import { useNavigate } from "react-router-dom";
+import { useApi, useApiMutation } from "@/hooks/useApi/useApiHooks";
 import { SuccesOrder } from "@/styles/Common.style";
+import { ICart } from "@/types/types.common";
+import { numberFormat } from "@/utils/numberFormat";
+import { get } from "lodash";
+import { useNavigate } from "react-router-dom";
+import ArriveCarImg from "../../../assets/arriveCar.png";
+import KelishImg from "../../../assets/kelish.png";
+import UzpostCarImg from "../../../assets/uzPost.png";
 import PromocodeForm from "../components/PromocodeForm";
-
-const REGIONS = [
-  {
-    _id: "chilanzar",
-    name: "Chilonzor",
-  },
-  {
-    _id: "yunusobod",
-    name: "Yunusobod",
-  },
-];
+import { REGIONS } from "./purchase.const";
 
 const Purchase = () => {
   const [givenOrder, setGivenOrder] = useState<boolean>(false);
@@ -52,11 +41,17 @@ const Purchase = () => {
   const navigate = useNavigate();
 
   const {
-    state: { siteSettings, baskets, promocode },
+    state: { siteSettings, baskets },
     actions: { deleteAll },
   } = useGlobalContext();
   const { control, watch, handleSubmit, setValue, reset } = useForm();
   const user = JSON.parse(localStorage.getItem("auth") || "{}");
+
+  const { data } = useApi(`order/${user?._id}`, {}, { enabled: !!user?._id });
+
+  const isHavePromocode = get(data, "data", []).find(
+    (order: Record<string, any>) => order.state === "completed"
+  );
 
   const totalSum = useMemo(() => {
     return baskets.reduce((acc, curr) => acc + curr.price! * curr.count, 0);
@@ -65,8 +60,9 @@ const Purchase = () => {
   const { mutate, status } = useApiMutation("order", "post", {
     onSuccess() {
       deleteAll();
-      reset();
+      reset({});
       setGivenOrder(true);
+      setPromocodeData(undefined);
     },
   });
 
@@ -87,14 +83,28 @@ const Purchase = () => {
         size: item.size,
         color: item.color,
       })),
-      promoCodeId: watch("havePromocode")
-        ? get(promocode, "data._id", "")
-        : null,
-      totalPriceWithPromoCode: watch("havePromocode")
-        ? totalSum +
-          get(siteSettings, "data.deliveryPrice", 0) -
-          get(promocode, "data.amount", 0)
-        : totalSum + get(siteSettings, "data.deliveryPrice", 0),
+      promoCodeId: !!promocodeData ? promocodeData._id : null,
+      totalPriceWithPromoCode:
+        !!promocodeData && promocodeData?.currency === "uzs"
+          ? totalSum +
+            get(siteSettings, "data.deliveryPrice", 0) -
+            promocodeData?.amount
+          : promocodeData?.currency === "percent"
+          ? Math.ceil(
+              (totalSum +
+                get(siteSettings, "data.deliveryPrice", 0) -
+                (totalSum + get(siteSettings, "data.deliveryPrice", 0)) *
+                  promocodeData.amount) /
+                100
+            )
+          : isHavePromocode
+          ? Math.ceil(
+              totalSum +
+                get(siteSettings, "data.deliveryPrice", 0) -
+                ((totalSum + get(siteSettings, "data.deliveryPrice", 0)) * 10) /
+                  100
+            )
+          : totalSum + get(siteSettings, "data.deliveryPrice", 0),
       deliveryPrice: get(siteSettings, "data.deliveryPrice", 0),
       address: {
         furtherUse: data.furtherUse,
@@ -340,28 +350,36 @@ const Purchase = () => {
                 </Tooltip>
               </div>
 
-              <div className="py-3 border-bottom-dashed">
-                <div className="d-flex justify-content-between gap-2">
-                  <div className="d-flex align-items-center gap-2 ">
-                    <span>Promokod</span>
+              {!!isHavePromocode && (
+                <div className="py-3 border-bottom-dashed">
+                  <div className="d-flex justify-content-between gap-2">
+                    <div className="d-flex align-items-center gap-2 ">
+                      <span>Promokod</span>
+                    </div>
+                    <div>
+                      <CommonButton
+                        title="Promocode"
+                        sx={{ height: "36px !important" }}
+                        type="button"
+                        onClick={() => setOpen(true)}
+                      />
+                    </div>
                   </div>
-                  <div>
-                    <CommonButton
-                      title="Promocode"
-                      sx={{ height: "36px !important" }}
-                      type="button"
-                      onClick={() => setOpen(true)}
+                  {!!promocodeData && (
+                    <TextInput
+                      control={control}
+                      name="promocode"
+                      label={"Promocode"}
+                      disabled
                     />
-                  </div>
+                  )}
                 </div>
-                {!!promocodeData && (
-                  <TextInput
-                    control={control}
-                    name="promocode"
-                    label={"Promocode"}
-                    disabled
-                  />
-                )}
+              )}
+              <div className="d-flex justify-content-between gap-2 py-2">
+                <div className="d-flex align-items-center gap-2 ">
+                  <span>Mahsulot narxi:</span>
+                </div>
+                <h4>{numberFormat(totalSum)} uzs</h4>
               </div>
 
               <div className="d-flex justify-content-between gap-2 py-2">
@@ -376,8 +394,12 @@ const Purchase = () => {
                 <div className="d-flex align-items-center gap-2 ">
                   <span>Umumiy narxi:</span>
                 </div>
-                <h4 className="d-flex flex-column">
-                  {!!promocodeData && (
+                <h4
+                  className={`d-flex flex-column ${
+                    (!isHavePromocode || !!promocodeData) && "text-error"
+                  }`}
+                >
+                  {(!isHavePromocode || !!promocodeData) && (
                     <del className="discount_price">
                       {numberFormat(
                         totalSum + get(siteSettings, "data.deliveryPrice", 0)
@@ -385,12 +407,39 @@ const Purchase = () => {
                       uzs
                     </del>
                   )}
-                  {numberFormat(
-                    totalSum +
-                      get(siteSettings, "data.deliveryPrice", 0) -
-                      (watch("havePromocode") &&
-                        get(promocode, "data.amount", 0))
-                  )}{" "}
+                  {!!promocodeData &&
+                  get(promocodeData, "currency", "") === "uzs"
+                    ? numberFormat(
+                        totalSum +
+                          get(siteSettings, "data.deliveryPrice", 0) -
+                          get(promocodeData, "amount", "")
+                      )
+                    : !!promocodeData &&
+                      get(promocodeData, "currency", "") === "percent"
+                    ? numberFormat(
+                        Math.ceil(
+                          totalSum +
+                            get(siteSettings, "data.deliveryPrice", 0) -
+                            ((totalSum +
+                              get(siteSettings, "data.deliveryPrice", 0)) *
+                              promocodeData.amount) /
+                              100
+                        )
+                      )
+                    : !isHavePromocode
+                    ? numberFormat(
+                        Math.ceil(
+                          totalSum +
+                            get(siteSettings, "data.deliveryPrice", 0) -
+                            ((totalSum +
+                              get(siteSettings, "data.deliveryPrice", 0)) *
+                              10) /
+                              100
+                        )
+                      )
+                    : numberFormat(
+                        totalSum + get(siteSettings, "data.deliveryPrice", 0)
+                      )}{" "}
                   uzs
                 </h4>
               </div>

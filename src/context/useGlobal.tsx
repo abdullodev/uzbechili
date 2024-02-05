@@ -14,7 +14,6 @@ const useGlobal = () => {
   const [baskets, setBaskets] = useState<ICart[]>([]);
 
   const { data: siteSettings } = useApi("/general-settings");
-  const { data: promocode } = useApi("/promo-code/65accb9c527dbdb82619e8cd");
 
   const addToCart = (cart: ICart, isToast?: boolean) => {
     const carts = JSON.parse(localStorage.getItem("cart") || "[]");
@@ -100,7 +99,7 @@ const useGlobal = () => {
   }, []);
 
   return {
-    state: { auth, baskets, siteSettings, promocode },
+    state: { auth, baskets, siteSettings },
     actions: { setAuth, addToCart, removeCart, deleteCart, deleteAll },
   };
 };

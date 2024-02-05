@@ -11,11 +11,18 @@
   flex-direction: column;
 }
 .discount_price {
-  color: red;
+  color: #000;
 }
 
 .text-error {
   color: red;
+}
+.text-grey {
+  color: #999;
+  font-size: 14px;
+}
+.w-300 {
+  width: 300px;
 }
 .d-block {
   display: block;

@@ -73,6 +73,8 @@ export const OrderBox = styled(Box)`
 export const DetailsStyle = styled(Box)`
   padding: 24px;
   height: 80vh;
+  border-radius: 32px 32px 0 0;
+  background-color: #fff;
 
   .box {
     width: 100%;
@@ -99,5 +101,41 @@ export const DetailsStyle = styled(Box)`
 
   .order_number {
     color: #0065ff;
+  }
+
+  .box-info {
+    border-radius: 16px;
+    background-color: #f5f5f5;
+    padding: 16px;
+  }
+
+  .product_box {
+    width: 300px;
+    display: flex;
+    gap: 8px;
+
+    .image {
+      width: 80px;
+      height: 80px;
+      border-radius: 12px;
+      overflow: hidden;
+      background-color: #f5f5f5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      img {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain;
+      }
+    }
+
+    .product_info {
+      width: 240px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
   }
 `;
