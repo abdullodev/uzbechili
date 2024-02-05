@@ -252,7 +252,12 @@ const Navbar = () => {
           <ul>
             <li
               onClick={() => {
-                navigate("/profile");
+                if (isAuth()) {
+                  navigate("/profile");
+                } else {
+                  setAuth(true);
+                }
+
                 setOpenMenu(false);
               }}
             >

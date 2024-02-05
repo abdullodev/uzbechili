@@ -10,6 +10,7 @@ const Purchase = lazy(() => import("./pages/purchase"));
 const Profile = lazy(() => import("./pages/profile"));
 const Design = lazy(() => import("./pages/design"));
 const OrderHistory = lazy(() => import("./pages/orderHistory"));
+const Condition = lazy(() => import("./pages/condition"));
 
 // compoenent
 import { AuthModal, Loader } from "./components";
@@ -35,6 +36,7 @@ function App() {
         <Route path="profile" element={<Profile />} />
         <Route path="design" element={<Design />} />
         <Route path="orders" element={<OrderHistory />} />
+        <Route path="website-conditions" element={<Condition />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
       <Toaster />
