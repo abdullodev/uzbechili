@@ -15,9 +15,12 @@ import { useNavigate } from "react-router-dom";
 import useGlobalContext from "@/context/useGlobal";
 import { ICart } from "@/types/types.common";
 import { numberFormat } from "@/utils/numberFormat";
+import { useTranslation } from "react-i18next";
 
 const Baskets = () => {
   const [realyDelete, setRealyDelete] = useState<boolean>(false);
+
+  const { t } = useTranslation();
 
   const navigate = useNavigate();
   const {
@@ -31,7 +34,7 @@ const Baskets = () => {
   return (
     <BasketStyle>
       <Box display={"flex"} justifyContent={"space-between"} mb={2}>
-        <h1 className="color-white">Savat</h1>
+        <h1 className="color-white">{t("basket.title")}</h1>
       </Box>
 
       {!!baskets.length ? (
@@ -39,10 +42,10 @@ const Baskets = () => {
           <Grid item md={7} xs={12}>
             <BasketBoxes>
               <div className="d-flex justify-content-between basket_header">
-                <h3 className="color-black">Buyurtmangiz</h3>
+                <h3 className="color-black">{t("basket.your_order")}</h3>
                 <CommonButton
                   startIcon={<Icons.deleteIcon />}
-                  title="Savatni tozalash"
+                  title={t("basket.clear_basket")}
                   className="delete_all"
                   onClick={() => setRealyDelete(true)}
                 />
@@ -149,17 +152,17 @@ const Baskets = () => {
           <Grid item md={5} xs={12}>
             <PaymentBox>
               <div className="d-flex justify-content-between payment_header">
-                <h3 className="color-black">To'lovga</h3>
+                <h3 className="color-black">{t("basket.payment")}</h3>
               </div>
 
               <Stack direction={"column"} spacing={3}>
                 <div className="d-flex justify-content-between pt-3">
-                  <h3>Umumiy narxi:</h3>
+                  <h3>{t("basket.total_price")}</h3>
                   <b className="color-black">{numberFormat(totalSum)} uzs</b>
                 </div>
 
                 <CommonButton
-                  title="Buyurtmani rasmiylashtirish"
+                  title={t("basket.order")}
                   className="blue"
                   sx={{ width: "100%", height: "48px !important" }}
                   onClick={() => navigate("/purchase")}
@@ -174,8 +177,11 @@ const Baskets = () => {
             <DefaultBasket>
               <Icons.defaultBasket />
               <div>
-                <p className="color-grey">Savat hozircha bo'sh.</p>
-                <p className="color-grey text-center"> Unaqamasde{")"}</p>
+                <p className="color-grey">{t("basket.empty")}</p>
+                <p className="color-grey text-center">
+                  {t("basket.dont_do_that")}
+                  {")"}
+                </p>
               </div>
             </DefaultBasket>
           </Grid>
@@ -187,16 +193,16 @@ const Baskets = () => {
           <span className="delete_icon">
             <Icons.deleteIcon />
           </span>
-          <h4>Rostdan ham savatni tozalamoqchimisiz?</h4>
+          <h4>{t("basket.realy_clear")}</h4>
 
           <div className="d-flex gap-2">
             <CommonButton
-              title="Yo'q"
+              title={t("common.no")}
               className="no"
               onClick={() => setRealyDelete(false)}
             />
             <CommonButton
-              title="Ha"
+              title={t("common.yes")}
               className="yes"
               onClick={() => {
                 deleteAll();

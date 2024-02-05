@@ -1,0 +1,130 @@
+{
+  "common": {
+    "add": "Add",
+    "create_order": "Place Order",
+    "enter": "Enter",
+    "continue": "Continue",
+    "delete": "Delete",
+    "cancel": "Cancel",
+    "search": "Search",
+    "no": "No",
+    "yes": "Yes",
+    "save": "Save",
+    "good": "Good"
+  },
+  "general": {
+    "required": "Required",
+    "success": "Success"
+  },
+  "modal": {
+    "register": "Register",
+    "confirmation": "Confirmation",
+    "enter_phone": "Enter your phone number",
+    "term": "By pressing the \"Continue\" button, you agree to the <0>terms of service</0>",
+    "send_to_phone": "A 6-digit code has been sent to the number {{phone}}, please enter it",
+    "re_send": "Resend"
+  },
+  "navbar": {
+    "make_design": "Create Design",
+    "no_product": "Unfortunately, you haven't selected any products yet",
+    "go_to_basket": "Go to Basket",
+    "profile": "Profile",
+    "orders": "Orders",
+    "logout": "Logout",
+    "katalog": "Catalog",
+    "my_design": "My Designs",
+    "basket": "Basket",
+    "order": "Orders",
+    "new_way": "NEW PATH TO A NEW ERA",
+    "ozbek": "O'zbek",
+    "ruskiy": "Русский",
+    "english": "English"
+  },
+  "home": {
+    "categories": "Categories",
+    "what_is_this": "What is this?",
+    "all_two_minutes": "Everything in 2 minutes",
+    "footer_text": "© 2023. All materials on the site (including names and descriptions of goods and services, photo and video materials, drawings, databases, etc.) are subject to copyright. Copying, distribution, and any other use of site materials without the written permission of the copyright holder is prohibited"
+  },
+  "category": {
+    "promocode": "Get a 10% discount on your first order with the promo code {{value}}"
+  },
+  "product": {
+    "purchase_now": "Buy Now",
+    "add_to_basket": "Add to Basket",
+    "size": "Size",
+    "select_size": "Select Size",
+    "color": "Colors",
+    "select_color": "Select Color",
+    "desc": "Description"
+  },
+  "basket": {
+    "title": "Basket",
+    "your_order": "Your Order",
+    "clear_basket": "Clear Basket",
+    "realy_clear": "Are you sure you want to clear the basket?",
+    "payment": "Payment",
+    "total_price": "Total Price",
+    "order": "Place Order"
+  },
+  "purchase": {
+    "title": "Place Order",
+    "user_info": "Contact Information",
+    "recieverName": "Recipient Name",
+    "phoneNumber": "Phone Number",
+    "address_info": "Delivery Address",
+    "in_tashkent": "Delivery in Tashkent",
+    "over_region": "Delivery to Regions",
+    "by_uzpost": "Via UZPOST",
+    "delivery_day": "Delivery Date: {{value}} business days",
+    "region": "Region",
+    "distirict": "District",
+    "address": "Address",
+    "pochta": "Postal Code",
+    "error_pochta": "Incorrectly entered postal code",
+    "house_number": "House Number",
+    "enterance": "Entrance",
+    "floor": "Floor",
+    "apartmentNumber": "Apartment Number",
+    "about_your_place": "Additional Information",
+    "example": "For example: building name, educational institution, or place name",
+    "future_use": "Save this information for future use",
+    "payment_info": "Payment Method",
+    "cash": "Cash",
+    "change": "Change",
+    "product_price": "Product Price:",
+    "delivery_price": "Delivery Cost",
+    "total_price": "Total Price",
+    "give_order": "Place Order",
+    "ordered": "Your order has been placed!",
+    "agree": "I have read and agree to all the terms of delivery"
+  },
+  "orders": {
+    "title": "Orders",
+    "created": "Created",
+    "inProccess": "In Progress",
+    "completed": "Completed",
+    "cancelled": "Cancelled",
+    "order": "Order",
+    "address": "Address",
+    "order_date": "Order Date",
+    "about_order": "Order Information",
+    "order_number": "Order Number: ",
+    "payment": "Payment",
+    "name": "Name",
+    "size": "Size",
+    "color": "Color",
+    "cancel_order": "Cancel Order",
+    "realy_cancel": "Are you sure you want to cancel the order?",
+    "order_user": "Customer Information"
+  },
+  "profile": {
+    "name": "Name",
+    "phone": "Phone Number",
+    "save": "Save",
+    "info": "If you have any questions or suggestions regarding improving the site, please write to the “O'ZBECHILI” community through Telegram",
+    "by_tg": "Write via Telegram",
+    "logout": "Logout",
+    "realy_logout": "Are you sure you want to log out?"
+  }
+}

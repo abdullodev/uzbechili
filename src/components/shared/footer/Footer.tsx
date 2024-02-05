@@ -2,8 +2,11 @@ import Icons from "@/assets/svgs";
 // import { CommonButton } from "@/components";
 import { Box, Typography } from "@mui/material";
 import { FooterStyled } from "./Footer.style";
+import { useTranslation } from "react-i18next";
 
 const Footer = () => {
+  const { t } = useTranslation();
+
   return (
     <FooterStyled>
       <Box className="footer_top">
@@ -30,12 +33,7 @@ const Footer = () => {
           </a>
         </Box>
         <Typography component={"p"} variant="h5" className="foot_text">
-          © 2023. Saytda joylashtirilgan barcha materiallar (jumladan, tovarlar
-          va xizmatlarning nomlari va tavsiflari, foto va video materiallar,
-          rasmlar, ma'lumotlar bazalari va boshqalar), shuningdek, sayt dizayni
-          mualliflik huquqiga ega. Mualliflik huquqi egasining yozma roziligisiz
-          sayt materiallaridan nusxa ko'chirish, ularni tarqatish, shuningdek
-          har qanday boshqa usulda foydalanish taqiqlanadi.
+          {t("home.footer_text")}
         </Typography>
       </Box>
     </FooterStyled>

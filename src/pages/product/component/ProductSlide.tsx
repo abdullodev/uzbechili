@@ -5,6 +5,7 @@ import { useState } from "react";
 import { FreeMode, Navigation, Thumbs } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { ProductSlideBox, ProductValue, SizeTabs } from "../Product.style";
+import { useTranslation } from "react-i18next";
 
 interface IProductSlide {
   product: Record<string, any>;
@@ -30,6 +31,9 @@ const ProductSlide = ({
   setCheckSize,
 }: IProductSlide) => {
   const [thumbsSwiper, setThumbsSwiper] = useState<any>();
+
+  const { t } = useTranslation();
+
   const handleChangeSize = (newValue: string) => {
     if (newValue === size) {
       setSize("");
@@ -88,9 +92,9 @@ const ProductSlide = ({
       </Grid>
       <Grid item xs={12} md={6}>
         <ProductValue className="mb-5">
-          <Typography className="title">O'lcham</Typography>
+          <Typography className="title">{t("product.size")}</Typography>
           {!size && checkSize && (
-            <Alert severity="error">O'lchamni tanlang</Alert>
+            <Alert severity="error">{t("product.select_size")}</Alert>
           )}
           <SizeTabs className="mt-2">
             {get(product, "sizes", []).map((child: string) => (
@@ -104,9 +108,9 @@ const ProductSlide = ({
         </ProductValue>
 
         <ProductValue className="mb-5">
-          <Typography className="title">Ranglar</Typography>
+          <Typography className="title">{t("product.color")}</Typography>
           {!color && checkColor && (
-            <Alert severity="error">Rangni tanlang</Alert>
+            <Alert severity="error">{t("product.select_color")}</Alert>
           )}
           <SizeTabs className="mt-2">
             {get(product, "color", []).map((child: string) => (
@@ -122,7 +126,7 @@ const ProductSlide = ({
         <ProductValue className="mt-4">
           {get(product, "description", "") && (
             <>
-              <Typography className="title">Izoh</Typography>
+              <Typography className="title">{t("product.desc")}</Typography>
               <Typography className="desc mt-2">
                 <div
                   dangerouslySetInnerHTML={{

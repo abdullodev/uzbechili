@@ -6,7 +6,11 @@
     "continue": "Davom etish",
     "delete": "O'chirish",
     "cancel": "Bekor qilish",
-    "search": "Qidirish"
+    "search": "Qidirish",
+    "save": "Saqlash",
+    "no": "Yo'q",
+    "yes": "Ha",
+    "good": "Yaxshi"
   },
   "general": {
     "required": "Majburiy",
@@ -19,5 +23,108 @@
     "term": "\"Davom etish\" tugmasini bosish orqali siz <0>foydalanuvchi shartnomasi shartlarini</0> qabul qilasiz",
     "send_to_phone": "{{phone}} raqamiga 6 xonali kod yuborildi, iltimos uni kiriting",
     "re_send": "Qayta yuborish"
+  },
+  "navbar": {
+    "make_design": "Dizayn yaratish",
+    "no_product": "Afsuskiy hanuzgacha mahsulot tanlamadingiz",
+    "go_to_basket": "Savatga o'tish",
+    "profile": "Profil",
+    "orders": "Buyurtmalar",
+    "logout": "Chiqish",
+    "katalog": "Katalog",
+    "my_design": "Dizaynlarim",
+    "basket": "Savat",
+    "order": "Buyurtmalar",
+    "new_way": "YANGI AVLODGA YANGI YO'L",
+    "ozbek": "O'zbek",
+    "ruskiy": "Русский",
+    "english": "English"
+  },
+  "home": {
+    "categories": "Kategoriyalar",
+    "what_is_this": "Bu nima?",
+    "all_two_minutes": "Barchasi 2 daqiqada",
+    "footer_text": "© 2023. Saytda joylashtirilgan barcha materiallar (jumladan, tovarlar va xizmatlarning nomlari va tavsiflari, foto va video materiallar, rasmlar, ma'lumotlar bazalari va boshqalar), shuningdek, sayt dizayni mualliflik huquqiga ega. Mualliflik huquqi egasining yozma roziligisiz sayt materiallaridan nusxa ko'chirish, ularni tarqatish, shuningdek har qanday boshqa usulda foydalanish taqiqlanadi"
+  },
+  "category": {
+    "promocode": "Birinchi buyurtmaga {{value}} promokodi orqali 10 % chegirmaga ega bo'ling"
+  },
+  "product": {
+    "purchase_now": "Hoziroq sotib olish",
+    "add_to_basket": "Savatga qo'shish",
+    "size": "O'lcham",
+    "select_size": "O'lchamni tanlang",
+    "color": "Ranglar",
+    "select_color": "Rang tanlang",
+    "desc": "Izoh"
+  },
+  "basket": {
+    "title": "Savat",
+    "your_order": "Buyurtmangiz",
+    "clear_basket": "Savatni tozalash",
+    "realy_clear": "Rostdan ham savatni tozalamoqchimisiz?",
+    "payment": "To'lovga",
+    "total_price": "Umumiy narx",
+    "order": "Buyurtmani rasmiylashtirish"
+  },
+  "purchase": {
+    "title": "Buyurtmani rasmiylashtirish",
+    "user_info": "Bog'lanish uchun ma'lumotlar",
+    "recieverName": "Qabul qiluvchi shaxs",
+    "phoneNumber": "Telefon raqam",
+    "address_info": "Yetkazib berish manzili",
+    "in_tashkent": "Toshkent shaxrida yetkazish",
+    "over_region": "Viloyatlar aro yetkazish",
+    "by_uzpost": "UZPOST orqali",
+    "delivery_day": "Yetkazib berish vaqti {{value}} ish kuni",
+    "region": "Viloyat",
+    "distirict": "Tuman",
+    "address": "Manzil",
+    "pochta": "Pochta raqami",
+    "error_pochta": "Noto'g'ri kiritildi",
+    "house_number": "Uy raqami",
+    "enterance": "Kirish",
+    "floor": "Qavat",
+    "apartmentNumber": "Kvartira raqami",
+    "about_your_place": "Mo'ljal",
+    "example": "Masalan: bino, ta'lim muassasi yoki joy nomini kiriting",
+    "future_use": "Kelajakda foydalanish uchun ushbu ma'lumotni saqlash",
+    "payment_info": "To'lov turi",
+    "cash": "Naqd",
+    "change": "O'zgartirish",
+    "product_price": "Mahsulot narxi:",
+    "delivery_price": "Yetkazish narxi",
+    "total_price": "Umumiy narxi",
+    "give_order": "Buyurtma berish",
+    "ordered": "Buyurtma qabul qilindi!",
+    "agree": "Yetkazib berish haqidagi barcha shartlar bilan tanishib chiqdim va rozilik beraman"
+  },
+  "orders": {
+    "title": "Buyurtmalar",
+    "created": "Yaratildi",
+    "inProccess": "Jarayonda",
+    "completed": "Tugatildi",
+    "cancelled": "Bekor qilindi",
+    "order": "Buyurtma",
+    "address": "Manzil",
+    "order_date": "Buyurtma sanasi",
+    "about_order": "Buyurtma ma'lumotlari",
+    "order_number": "Buyurtma raqami: ",
+    "payment": "To'lov",
+    "name": "Nomi",
+    "size": "O'lchami",
+    "color": "Rangi",
+    "cancel_order": "Buyurtmani bekor qilish",
+    "realy_cancel": "Rosdan ham buyurtmani bekor qilmoqchimisiz?",
+    "order_user": "Mijoz ma'lumotlari"
+  },
+  "profile": {
+    "name": "Ismi",
+    "phone": "Telefon raqam",
+    "save": "Saqlash",
+    "info": "Saytni yaxshilash bo'yicha savollaringiz yoki takliflaringiz bormi bu haqda “O'ZBECHILI” jamoasiga yozing",
+    "by_tg": "Telegram orqali yozish",
+    "logout": "Chiqish",
+    "realy_logout": "Rosdan ham chiqmoqchimisiz?"
   }
 }

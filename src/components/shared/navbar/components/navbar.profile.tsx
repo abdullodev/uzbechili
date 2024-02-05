@@ -8,6 +8,7 @@ import Menu from "@mui/material/Menu";
 import Tooltip from "@mui/material/Tooltip";
 import { StyledProfileMenuItem } from "../navbar.style";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 export default function NavbarProfile() {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -22,6 +23,8 @@ export default function NavbarProfile() {
     setAnchorEl(null);
   };
 
+  const { t } = useTranslation();
+
   const logout = () => {
     localStorage.clear();
     location.pathname = "";
@@ -30,7 +33,7 @@ export default function NavbarProfile() {
   return (
     <>
       <Box sx={{ display: "flex", alignItems: "center", textAlign: "center" }}>
-        <Tooltip title={"Account"}>
+        <Tooltip title={t("navbar.profile")}>
           <IconButton
             onClick={handleClick}
             size="small"
@@ -66,19 +69,19 @@ export default function NavbarProfile() {
           <ListItemIcon>
             <Icons.userIcon />
           </ListItemIcon>
-          Profile
+          {t("navbar.profile")}
         </StyledProfileMenuItem>
         <StyledProfileMenuItem onClick={() => navigate("/orders")}>
           <ListItemIcon>
             <Icons.OrderIcon />
           </ListItemIcon>
-          Buyurtmalar
+          {t("navbar.order")}
         </StyledProfileMenuItem>
         <StyledProfileMenuItem onClick={logout}>
           <ListItemIcon>
             <Icons.logoutIcon />
           </ListItemIcon>
-          Logout
+          {t("navbar.logout")}
         </StyledProfileMenuItem>
       </Menu>
     </>

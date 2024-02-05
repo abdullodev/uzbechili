@@ -10,6 +10,7 @@ import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { FlexBox, ProductTop } from "./Product.style";
 import ProductSlide from "./component/ProductSlide";
+import { useTranslation } from "react-i18next";
 
 const Product = () => {
   const [size, setSize] = useState<string>("");
@@ -22,6 +23,7 @@ const Product = () => {
     actions: { setAuth, addToCart },
   } = useGlobalContext();
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const { data: categoryData } = useApi(`product/${id}`);
 
@@ -106,12 +108,12 @@ const Product = () => {
         <Grid item md={3} xs={12}>
           <FlexBox>
             <CommonButton
-              title="Savatga qo'shish"
+              title={t("product.add_to_basket")}
               className="white"
               onClick={handleAddBasket}
             />
             <CommonButton
-              title="Hoziroq sotib olish"
+              title={t("product.purchase_now")}
               className="blue"
               onClick={handlePurchase}
             />

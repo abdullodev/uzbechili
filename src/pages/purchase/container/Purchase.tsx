@@ -32,6 +32,7 @@ import KelishImg from "../../../assets/kelish.png";
 import UzpostCarImg from "../../../assets/uzPost.png";
 import PromocodeForm from "../components/PromocodeForm";
 import { REGIONS } from "./purchase.const";
+import { useTranslation } from "react-i18next";
 
 const Purchase = () => {
   const [givenOrder, setGivenOrder] = useState<boolean>(false);
@@ -39,6 +40,7 @@ const Purchase = () => {
   const [promocodeData, setPromocodeData] = useState<any>();
 
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const {
     state: { siteSettings, baskets },
@@ -136,7 +138,7 @@ const Purchase = () => {
   return (
     <PurchaseStyle>
       <Box display={"flex"} justifyContent={"space-between"} mb={2}>
-        <h1 className="color-white">Buyurtmani rasmiylashtirish</h1>
+        <h1 className="color-white">{t("purchase.title")}</h1>
       </Box>
 
       <form onSubmit={handleSubmit(onSubmit)} id="create_order-form">
@@ -149,7 +151,7 @@ const Purchase = () => {
                     <span className="iconBox">
                       <Icons.userIcon />
                     </span>
-                    <span>Bog'lanish uchun ma'lumotlar</span>
+                    <span>{t("purchase.user_info")}</span>
                   </div>
                 </div>
                 <Grid container spacing={2} pt={2}>
@@ -157,14 +159,14 @@ const Purchase = () => {
                     <TextInput
                       control={control}
                       name="receiverName"
-                      label={"Qabul qiluvchi shaxs"}
+                      label={t("purchase.recieverName")}
                     />
                   </Grid>
                   <Grid item md={6} xs={12}>
                     <PhoneInput
                       control={control}
                       name="receiverPhoneNumber"
-                      label={"Telefon raqam"}
+                      label={t("purchase.phoneNumber")}
                     />
                   </Grid>
                 </Grid>
@@ -177,7 +179,7 @@ const Purchase = () => {
                     <span className="iconBox">
                       <Icons.locationIcon />
                     </span>
-                    <span>Yetkazib berish manzili</span>
+                    <span>{t("purchase.address_info")}</span>
                   </div>
                 </div>
 
@@ -185,7 +187,7 @@ const Purchase = () => {
                   <Grid item xs={12} md={6}>
                     <ArriveBox>
                       <div>
-                        <p className="grey">Toshkent shaxrida yetkazish</p>
+                        <p className="grey">{t("purchase.in_tashkent")}</p>
                         <span>
                           {numberFormat(
                             get(siteSettings, "data.deliveryPrice", 0)
@@ -199,8 +201,8 @@ const Purchase = () => {
                   <Grid item xs={12} md={6}>
                     <ArriveBox paddingRight={1}>
                       <div>
-                        <p className="grey">Viloyatlar aro yetkazish</p>
-                        <span>UZPOST orqali</span>
+                        <p className="grey">{t("purchase.over_region")}</p>
+                        <span>{t("purchase.by_uzpost")}</span>
                       </div>
                       <img src={UzpostCarImg} alt="img" height={40} />
                     </ArriveBox>
@@ -210,8 +212,10 @@ const Purchase = () => {
                       <div className="d-flex align-items-center gap-2">
                         <Icons.arriveTime />
                         <p>
-                          Yetkazib berish vaqti{" "}
-                          {get(siteSettings, "data.deliveryDays", 1)} ish kuni
+                          {t("purchase.delivery_day").replace(
+                            "{{value}}",
+                            `${get(siteSettings, "data.deliveryDays")}`
+                          )}
                         </p>
                       </div>
                       <img src={KelishImg} alt="img" height={35} />
@@ -222,7 +226,7 @@ const Purchase = () => {
                     <FromSelect
                       control={control}
                       name="region"
-                      label={"Viloyat"}
+                      label={t("purchase.region")}
                       options={[
                         {
                           _id: "toshkent",
@@ -237,7 +241,7 @@ const Purchase = () => {
                     <FromSelect
                       control={control}
                       name="district"
-                      label={"Tuman"}
+                      label={t("purchase.distirict")}
                       options={REGIONS}
                     />
                   </Grid>
@@ -245,18 +249,21 @@ const Purchase = () => {
                     <TextInput
                       control={control}
                       name="address"
-                      label={"Manzil"}
+                      label={t("purchase.address")}
                     />
                   </Grid>
                   <Grid item xs={12} md={4}>
                     <TextInput
                       control={control}
                       name="postIndex"
-                      label={"Pochta raqami"}
+                      label={t("purchase.pochta")}
                       placeholder={"XXXXXX"}
                       rules={{
                         required: false,
-                        maxLength: { value: 6, message: "Noto'gri kiritildi" },
+                        maxLength: {
+                          value: 6,
+                          message: t("purchase.error_pochta"),
+                        },
                       }}
                     />
                   </Grid>
@@ -264,7 +271,7 @@ const Purchase = () => {
                     <TextInput
                       control={control}
                       name="homeNumber"
-                      label={"Uy raqami"}
+                      label={t("purchase.house_number")}
                       rules={{
                         required: false,
                       }}
@@ -274,7 +281,7 @@ const Purchase = () => {
                     <TextInput
                       control={control}
                       name="entrance"
-                      label={"Kirish"}
+                      label={t("purchase.enterance")}
                       rules={{
                         required: false,
                       }}
@@ -284,7 +291,7 @@ const Purchase = () => {
                     <TextInput
                       control={control}
                       name="floor"
-                      label={"Qavat"}
+                      label={t("purchase.floor")}
                       rules={{
                         required: false,
                       }}
@@ -294,26 +301,22 @@ const Purchase = () => {
                     <TextInput
                       control={control}
                       name="flatNumber"
-                      label={"Kvartira raqami"}
+                      label={t("purchase.apartmentNumber")}
                     />
                   </Grid>
                   <Grid item xs={12} md={12}>
                     <TextInput
                       control={control}
                       name="about"
-                      label={"Mo'ljal"}
-                      placeholder={
-                        "Masalan: bino, ta'lim muassasi yoki joy nomini kiriting"
-                      }
+                      label={t("purchase.about_your_place")}
+                      placeholder={t("purchase.example")}
                     />
                   </Grid>
                   <Grid item xs={12} md={12}>
                     <CommonCheckbox
                       control={control}
                       name="furtherUse"
-                      label={
-                        "Kelajakda foydalanish uchun ushbu ma'lumotni saqlash"
-                      }
+                      label={t("purchase.future_use")}
                     />
                   </Grid>
                 </Grid>
@@ -327,7 +330,7 @@ const Purchase = () => {
                   <span className="iconBox">
                     <Icons.priceIcon />
                   </span>
-                  <span>To'lov turi</span>
+                  <span>{t("purchase.payment_info")}</span>
                 </div>
               </div>
 
@@ -336,12 +339,14 @@ const Purchase = () => {
                   <span className="d-flex align-items-center">
                     <Icons.cashIcon />
                   </span>
-                  <span className="d-flex align-items-center">Naqd</span>
+                  <span className="d-flex align-items-center">
+                    {t("purchase.cash")}
+                  </span>
                 </div>
                 <Tooltip title="Hozircha faqat naqd" arrow placement="top">
                   <div>
                     <CommonButton
-                      title="O'zgartirish"
+                      title={t("purchase.change")}
                       sx={{ height: "36px !important" }}
                       disabled
                       type="button"
@@ -377,14 +382,14 @@ const Purchase = () => {
               )}
               <div className="d-flex justify-content-between gap-2 py-2">
                 <div className="d-flex align-items-center gap-2 ">
-                  <span>Mahsulot narxi:</span>
+                  <span>{t("purchase.product_price")}</span>
                 </div>
                 <h4>{numberFormat(totalSum)} uzs</h4>
               </div>
 
               <div className="d-flex justify-content-between gap-2 py-2">
                 <div className="d-flex align-items-center gap-2 ">
-                  <span>Yetkazish narxi:</span>
+                  <span>{t("purchase.delivery_price")}</span>
                 </div>
                 <h4>
                   {numberFormat(get(siteSettings, "data.deliveryPrice", 0))} uzs
@@ -392,7 +397,7 @@ const Purchase = () => {
               </div>
               <div className="d-flex justify-content-between gap-2 py-2">
                 <div className="d-flex align-items-center gap-2 ">
-                  <span>Umumiy narxi:</span>
+                  <span>{t("purchase.total_price")}</span>
                 </div>
                 <h4
                   className={`d-flex flex-column ${
@@ -446,7 +451,7 @@ const Purchase = () => {
 
               <div className="py-2">
                 <CommonButton
-                  title="Buyurtma berish"
+                  title={t("purchase.give_order")}
                   form="create_order-form"
                   className="blue"
                   sx={{
@@ -463,9 +468,7 @@ const Purchase = () => {
                 <CommonCheckbox
                   control={control}
                   name="agree"
-                  label={
-                    "Yetkazib berish haqidagi barcha shartlar bilan tanishib chiqdim va rozilik beraman"
-                  }
+                  label={t("purchase.agree")}
                 />
               </div>
             </PaymentView>
@@ -478,11 +481,11 @@ const Purchase = () => {
           <span className="done_icon">
             <Icons.doneIcon />
           </span>
-          <h4>Buyurtma qabul qilindi!</h4>
+          <h4>{t("purchase.ordered")}</h4>
 
           <div className="d-flex gap-2">
             <CommonButton
-              title="Yaxshi"
+              title={t("common.good")}
               className="yes"
               onClick={() => {
                 setGivenOrder(false);

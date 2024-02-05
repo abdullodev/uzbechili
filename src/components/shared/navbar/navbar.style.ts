@@ -128,23 +128,31 @@ export const SidebarMenu = styled(Box)`
       }
     }
   }
-  ul {
+  .main_box {
     display: flex;
-    margin-top: 10px;
     flex-direction: column;
-    li {
-      list-style: none;
-      height: 46px;
-      display: flex;
-      align-items: center;
-      color: #fff;
-      background-color: rgba(64, 162, 186, 0.15);
-      border-radius: 6px;
-      padding: 0 12px;
-      cursor: pointer;
+    justify-content: space-between;
+    height: calc(100vh - 72px);
+    overflow: auto;
 
-      &:hover {
-        background-color: rgba(64, 162, 186, 0.25);
+    ul {
+      display: flex;
+      margin-top: 10px;
+      flex-direction: column;
+      li {
+        list-style: none;
+        height: 46px;
+        display: flex;
+        align-items: center;
+        color: #fff;
+        background-color: rgba(64, 162, 186, 0.15);
+        border-radius: 6px;
+        padding: 0 12px;
+        cursor: pointer;
+
+        &:hover {
+          background-color: rgba(64, 162, 186, 0.25);
+        }
       }
     }
   }

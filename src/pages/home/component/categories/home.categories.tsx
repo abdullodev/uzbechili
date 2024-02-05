@@ -6,16 +6,18 @@ import { useNavigate } from "react-router-dom";
 import { CategoryBox, HomeCategoriesStyle } from "../../container/Home.style";
 import { useApi } from "@/hooks/useApi/useApiHooks";
 import { get } from "lodash";
+import { useTranslation } from "react-i18next";
 
 const HomeCategories = () => {
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const { data: categories } = useApi("categories");
 
   return (
     <HomeCategoriesStyle>
       <Typography component={"h2"} variant="h4" className="text-center my-5">
-        KATEGORIYALAR
+        {t("home.categories")}
       </Typography>
 
       <Grid container spacing={2}>

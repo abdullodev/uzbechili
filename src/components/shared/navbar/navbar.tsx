@@ -24,6 +24,7 @@ import {
   StyledNavbar,
   TopNavbarStyled,
 } from "./navbar.style";
+import { useTranslation } from "react-i18next";
 
 const Navbar = () => {
   const [open, setOpen] = useState<boolean>(false);
@@ -40,11 +41,13 @@ const Navbar = () => {
   } = useGlobalContext();
   const navigate = useNavigate();
 
+  const { t, i18n } = useTranslation();
   const refLang = useRef(null);
 
   const handleChangeLang = (lang: string) => {
     setLanguage(lang);
     browserStorage.set("i18nextLng", lang);
+    i18n.changeLanguage(lang);
     setOpen(false);
   };
   const showNavbar = location.pathname === "/purchase";
@@ -84,7 +87,7 @@ const Navbar = () => {
 
   return (
     <>
-      <TopNavbarStyled>NEW WAY TO NEW GENERATION</TopNavbarStyled>
+      <TopNavbarStyled>{t("navbar.new_way")}</TopNavbarStyled>
       <StyledNavbar className="main-head">
         <MainNavbarStyled className="main-navbar">
           <IconButton className="menuIcon" onClick={() => setOpenMenu(true)}>
@@ -93,7 +96,7 @@ const Navbar = () => {
           <Box display={"flex"} gap={"14px"} className="design_box">
             {/* <CommonButton title="Menu" startIcon={<Icons.MenuIcon />} /> */}
             <CommonButton
-              title="Dizayn yaratish"
+              title={t("navbar.make_design")}
               startIcon={<Icons.ShirtIcon />}
               className="designed"
             />
@@ -115,8 +118,8 @@ const Navbar = () => {
             <Tooltip
               title={
                 !!baskets.length
-                  ? "Savatga o'tish"
-                  : "Afsuski hanuzgacha mahsulot tanlamadingiz 😒"
+                  ? t("navbar.go_to_basket")
+                  : t("navbar.no_product")
               }
               arrow
             >
@@ -159,19 +162,19 @@ const Navbar = () => {
                     className={language === "uz" ? "active" : ""}
                     onClick={() => handleChangeLang("uz")}
                   >
-                    O'zbek
+                    {t("navbar.ozbek")}
                   </MenuItem>
                   <MenuItem
                     className={language === "ru" ? "active" : ""}
                     onClick={() => handleChangeLang("ru")}
                   >
-                    Русский
+                    {t("navbar.ruskiy")}
                   </MenuItem>
                   <MenuItem
                     className={language === "en" ? "active" : ""}
                     onClick={() => handleChangeLang("en")}
                   >
-                    English
+                    {t("navbar.english")}
                   </MenuItem>
                 </MenuList>
               </Paper>
@@ -181,7 +184,7 @@ const Navbar = () => {
               <NavbarProfile />
             ) : (
               <CommonButton
-                title="Kirish"
+                title={t("common.enter")}
                 startIcon={<Icons.UserIcon />}
                 onClick={() => setAuth(true)}
               />
@@ -197,28 +200,38 @@ const Navbar = () => {
             onClick={() => handleChangePage("/")}
           >
             <Icons.responsiveMenuIcon className="menuIcon" />
-            <span>Katalog</span>
+            <span>{t("navbar.katalog")}</span>
           </IconButton>
           <IconButton
             className={tabValue.includes("design") ? "active" : ""}
             onClick={() => handleChangePage("/design")}
           >
             <Icons.TshirtIcon />
-            <span>Dizaynlarim</span>
+            <span>{t("navbar.my_design")}</span>
           </IconButton>
           <IconButton
             className={tabValue.includes("baskets") ? "active" : ""}
             onClick={() => handleChangePage("/baskets")}
           >
-            <Icons.CartIcon />
-            <span>Savat</span>
+            <Badge
+              badgeContent={baskets.length}
+              sx={{
+                "& .MuiBadge-badge": {
+                  color: "#ffffff",
+                  backgroundColor: "#0065FF",
+                },
+              }}
+            >
+              <Icons.CartIcon />
+            </Badge>
+            <span>{t("navbar.basket")}</span>
           </IconButton>
           <IconButton
             className={tabValue.includes("orders") ? "active" : ""}
             onClick={() => handleChangePage("/orders")}
           >
             <Icons.OrderIcon />
-            <span>Buyurtmalar</span>
+            <span>{t("navbar.orders")}</span>
           </IconButton>
         </MediaStyled>
       )}
@@ -235,9 +248,48 @@ const Navbar = () => {
             <Icons.closeMenuIcon />
           </IconButton>
         </div>
-        <ul>
-          <li>Profile</li>
-        </ul>
+        <div className="main_box">
+          <ul>
+            <li
+              onClick={() => {
+                navigate("/profile");
+                setOpenMenu(false);
+              }}
+            >
+              {t("navbar.profile")}
+            </li>
+          </ul>
+
+          <div className="d-flex gap-1 pb-2">
+            <CommonButton
+              title="UZ"
+              sx={{ width: "100% !important" }}
+              onClick={() => {
+                handleChangeLang("uz");
+                setOpenMenu(false);
+              }}
+              className={language === "uz" ? "blue" : ""}
+            />
+            <CommonButton
+              title="RU"
+              sx={{ width: "100% !important" }}
+              onClick={() => {
+                handleChangeLang("ru");
+                setOpenMenu(false);
+              }}
+              className={language === "ru" ? "blue" : ""}
+            />
+            <CommonButton
+              title="EN"
+              sx={{ width: "100% !important" }}
+              onClick={() => {
+                handleChangeLang("en");
+                setOpenMenu(false);
+              }}
+              className={language === "en" ? "blue" : ""}
+            />
+          </div>
+        </div>
       </SidebarMenu>
     </>
   );

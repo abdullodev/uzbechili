@@ -6,11 +6,14 @@ import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import { ModalStyle, ProfileStyle } from "./Profile.style";
+import { useTranslation } from "react-i18next";
 
 const Profile = () => {
   const [open, setOpen] = useState<boolean>(false);
   const navigate = useNavigate();
   const { control, setValue } = useForm();
+
+  const { t } = useTranslation();
 
   const auth = JSON.parse(localStorage.getItem("auth") || "{}");
 
@@ -30,41 +33,42 @@ const Profile = () => {
     <ProfileStyle>
       <div className="user-box">
         <form className="d-flex flex-column gap-2 ">
-          <TextInput control={control} name="firstName" label={"Ismi"} />
+          <TextInput
+            control={control}
+            name="firstName"
+            label={t("profile.name")}
+          />
           <div>
             <PhoneInput
               control={control}
               name="phoneNumber"
-              label={"Phone number"}
+              label={t("profile.phone")}
             />
           </div>
           <CommonButton
             className="blue"
-            title="Saqlash"
+            title={t("common.save")}
             sx={{ height: "48px !important" }}
           />
         </form>
       </div>
       <div className="border"></div>
       <div className="info">
-        <span>
-          Saytni yaxshilash bo'yicha savollaringiz yoki takliflaringiz bormi bu
-          haqda “O'ZBECHILI” jamoasiga yozing
-        </span>
+        <span>{t("profile.info")}</span>
       </div>
 
       <div className="d-flex flex-column gap-2 bottom">
         <Link to={"https://t.me/just_islom"} style={{ width: "290px" }}>
           <CommonButton
             startIcon={<Icons.TgIcon />}
-            title="Telegram orqali yozish"
+            title={t("profile.by_tg")}
             className="white"
             sx={{ width: "290px !important", height: "48px !important" }}
           />
         </Link>
 
         <CommonButton
-          title="Akkauntdan chiqish"
+          title={t("profile.logout")}
           className="logout"
           onClick={() => setOpen(true)}
         />
@@ -77,14 +81,18 @@ const Profile = () => {
         aria-describedby="modal-modal-description"
       >
         <ModalStyle>
-          <h3>Rosdan ham chiqmoqchimisiz?</h3>
+          <h3>{t("profile.realy_logout")}</h3>
           <div className="d-flex gap-2">
             <CommonButton
-              title="Yo'q"
+              title={t("common.no")}
               className="no"
               onClick={() => setOpen(false)}
             />
-            <CommonButton title="Ha" className="yes" onClick={logout} />
+            <CommonButton
+              title={t("common.yes")}
+              className="yes"
+              onClick={logout}
+            />
           </div>
         </ModalStyle>
       </Modal>

@@ -6,6 +6,7 @@ import { CommonButton } from "@/components";
 import { ModalStyle } from "@/pages/profile/container/Profile.style";
 import { get } from "lodash";
 import dayjs from "dayjs";
+import { useTranslation } from "react-i18next";
 
 interface IOrderDetails {
   show: boolean;
@@ -14,6 +15,8 @@ interface IOrderDetails {
 }
 const OrderDetail = ({ show, order, setShow }: IOrderDetails) => {
   const [cancel, setCancel] = useState<boolean>(false);
+
+  const { t } = useTranslation();
 
   const cancelOrder = () => {
     setCancel(false);
@@ -32,19 +35,19 @@ const OrderDetail = ({ show, order, setShow }: IOrderDetails) => {
         <div className="box">
           <div className="d-flex justify-content-between">
             <div className="d-flex flex-column">
-              <h2>Product info</h2>
+              <h2>{t("orders.about_order")}</h2>
               <span
                 className={`order_state  ${
                   get(order, "state", "") === "cancelled" && "cancelled"
                 } `}
               >
                 {get(order, "state", "") === "new"
-                  ? "Yaratildi"
+                  ? t("orders.created")
                   : get(order, "state", "") === "inProgress"
-                  ? "Jarayonda"
+                  ? t("orders.inProccess")
                   : get(order, "state", "") === "completed"
-                  ? "Tugatildi"
-                  : "Bekor qilindi"}
+                  ? t("orders.completed")
+                  : t("orders.cancelled")}
               </span>
             </div>
             <IconButton
@@ -62,9 +65,9 @@ const OrderDetail = ({ show, order, setShow }: IOrderDetails) => {
             <div className="d-flex flex-wrap gap-2 flex-column">
               <div className="d-flex flex-column gap-1 box-info">
                 <div className="d-flex flex-column gap-1">
-                  <p>Buyurtma ma'lumotlari</p>
+                  <p>{t("orders.about_order")}</p>
                   <h4>
-                    Order number:{" "}
+                    {t("orders.order_number")}
                     <span className="order_number">
                       #{get(order, "uuid", 0)}
                     </span>{" "}
@@ -77,7 +80,7 @@ const OrderDetail = ({ show, order, setShow }: IOrderDetails) => {
                 </div>
 
                 <div className="d-flex flex-column gap-1">
-                  <p>Mijoz ma'lumotlari</p>
+                  <p>{t("orders.order_user")}</p>
                   <div className="d-flex align-items-center gap-2">
                     <Icons.userIcon />
                     <div>
@@ -90,7 +93,7 @@ const OrderDetail = ({ show, order, setShow }: IOrderDetails) => {
                 </div>
 
                 <div className="d-flex flex-column gap-1">
-                  <p>Manzil</p>
+                  <p>{t("orders.address")}</p>
                   <div className="d-flex align-items-center gap-2">
                     <Icons.locationIcon />
                     <div>
@@ -106,7 +109,7 @@ const OrderDetail = ({ show, order, setShow }: IOrderDetails) => {
                 </div>
 
                 <div className="d-flex flex-column gap-1">
-                  <p>To'lov</p>
+                  <p>{t("orders.payment")}</p>
                   <div className="d-flex align-items-center gap-2">
                     <Icons.PaymentIcon />
                     <div>
@@ -122,7 +125,7 @@ const OrderDetail = ({ show, order, setShow }: IOrderDetails) => {
                 <div className="d-flex justify-content-center">
                   <CommonButton
                     className="cancel"
-                    title="Buyurtmani bekor qilish"
+                    title={t("orders.cancel_order")}
                     onClick={() => setCancel(true)}
                     sx={{ width: "100% !important" }}
                   />
@@ -146,15 +149,15 @@ const OrderDetail = ({ show, order, setShow }: IOrderDetails) => {
                   </div>
                   <div className="product_info">
                     <div className="d-flex justify-content-between">
-                      <p className="text-grey">Nomi:</p>
+                      <p className="text-grey">{t("orders.name")}</p>
                       <p>{get(item, "name", "")}</p>
                     </div>
                     <div className="d-flex justify-content-between">
-                      <p className="text-grey">O'lchami:</p>
+                      <p className="text-grey">{t("orders.size")}</p>
                       <p>{get(item, "size", "")}</p>
                     </div>
                     <div className="d-flex justify-content-between">
-                      <p className="text-grey">Rangi:</p>
+                      <p className="text-grey">{t("orders.color")}</p>
                       <p>{get(item, "color", "")}</p>
                     </div>
                   </div>
@@ -172,14 +175,18 @@ const OrderDetail = ({ show, order, setShow }: IOrderDetails) => {
         aria-describedby="modal-modal-description"
       >
         <ModalStyle>
-          <h3>Rosdan ham buyurtmani bekor qilmoqchimisiz?</h3>
+          <h3>{t("orders.realy_cancel")}</h3>
           <div className="d-flex gap-2">
             <CommonButton
-              title="Yo'q"
+              title={t("common.no")}
               className="no"
               onClick={() => setCancel(false)}
             />
-            <CommonButton title="Ha" className="yes" onClick={cancelOrder} />
+            <CommonButton
+              title={t("common.yes")}
+              className="yes"
+              onClick={cancelOrder}
+            />
           </div>
         </ModalStyle>
       </Modal>

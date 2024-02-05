@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import { HeaderBox, MainModalBox } from "../container/Purchase.style";
 import Icons from "@/assets/svgs";
 import { useApiMutation } from "@/hooks/useApi/useApiHooks";
+import { useTranslation } from "react-i18next";
 
 interface IPromocodeForm {
   open: boolean;
@@ -13,6 +14,8 @@ interface IPromocodeForm {
 }
 const PromocodeForm = ({ open, setOpen, setPromocodeData }: IPromocodeForm) => {
   const { control, handleSubmit } = useForm();
+  const { t } = useTranslation();
+
   const { mutate } = useApiMutation("/promo-code", "post", {
     onSuccess(data) {
       setOpen(false);
@@ -53,7 +56,7 @@ const PromocodeForm = ({ open, setOpen, setPromocodeData }: IPromocodeForm) => {
               <CommonButton
                 type="submit"
                 className="blue"
-                title="Saqlash"
+                title={t("common.save")}
                 sx={{ width: "100%", height: "48px !important" }}
               />
             </Grid>

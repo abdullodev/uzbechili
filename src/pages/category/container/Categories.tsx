@@ -1,27 +1,21 @@
 import { MainBox } from "@/styles/Common.style";
 import Category from "../component/Category";
-import CategoryHeader from "../component/CategoryHeader";
+// import CategoryHeader from "../component/CategoryHeader";
 import { useScrollTop } from "@/utils/scrollTop";
 import { PromocodeStyle } from "@/pages/home/container/Home.style";
 import Icons from "@/assets/svgs";
-import { useApi } from "@/hooks/useApi/useApiHooks";
-import { numberFormat } from "@/utils/numberFormat";
-import { get } from "lodash";
+import { useTranslation } from "react-i18next";
 
 const Categories = () => {
   useScrollTop();
-
-  const { data: promocode } = useApi("promo-code/65accb9c527dbdb82619e8cd");
+  const { t } = useTranslation();
 
   return (
     <MainBox>
-      <CategoryHeader />
+      {/* <CategoryHeader /> */}
       <PromocodeStyle>
         <Icons.promIcon />
-        Birinchi buyurtmaga "OZBECHILI" promokodi orqali{" "}
-        {numberFormat(get(promocode, "data.amount", "0"))}{" "}
-        {get(promocode, "data.currency", "") === "percent" ? "%" : "uzs"}{" "}
-        chegirmaga ega bo'ling
+        {t("category.promocode").replace("{{value}}", "OZBECHILI")}
       </PromocodeStyle>
       <Category />
     </MainBox>
