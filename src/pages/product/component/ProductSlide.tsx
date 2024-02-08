@@ -1,18 +1,17 @@
 import { CommonButton } from "@/components";
+import { numberFormat } from "@/utils/numberFormat";
 import { Alert, Grid, Typography } from "@mui/material";
 import { get } from "lodash";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { FreeMode, Navigation, Thumbs } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import {
   ProductBottom,
   ProductSlideBox,
-  ProductTop,
   ProductValue,
   SizeTabs,
 } from "../Product.style";
-import { useTranslation } from "react-i18next";
-import { numberFormat } from "@/utils/numberFormat";
 
 interface IProductSlide {
   product: Record<string, any>;
