@@ -28,7 +28,15 @@ const Category = () => {
           <h3>{get(item, "name", "")}</h3>
           <Grid container spacing={[1.4, 2]}>
             {get(item, "products", []).map((product: Record<string, any>) => (
-              <Grid item xl={2} lg={2.4} md={3} sm={4} xs={6} key={product._id}>
+              <Grid
+                item
+                xl={1.71}
+                lg={2}
+                md={3}
+                sm={4}
+                xs={6}
+                key={product._id}
+              >
                 <ProductBox
                   onClick={() => {
                     navigate(`/product/${product._id}`);

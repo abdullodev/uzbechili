@@ -19,8 +19,9 @@ export const MainBox = styled(Box)`
 `;
 
 export const ProductBox = styled(Box)`
+  width: 160px;
   height: 320px;
-  padding: 10px;
+  padding: 8px;
   box-sizing: border-box;
   border-radius: 12px;
   background-color: #fff;
@@ -33,22 +34,31 @@ export const ProductBox = styled(Box)`
       filter: brightness(80%);
     }
   }
+
+  @media screen and (max-width: 540px) {
+    width: 100%;
+  }
 `;
 
 export const ProductImg = styled(Box)`
-  height: 210px;
-  width: 100%;
-  background-color: #e3edf8;
+  width: 140px;
+  height: 209px;
+  background-color: #c1c6cc;
   display: flex;
   justify-content: center;
   align-items: center;
   border-radius: 10px;
   transition: all 0.3s ease;
+  overflow: hidden;
 
   img {
     max-width: 100%;
     max-height: 100%;
     object-fit: cover;
+  }
+
+  @media screen and (max-width: 540px) {
+    width: 100%;
   }
 `;
 
@@ -56,7 +66,7 @@ export const ProductInfo = styled(Box)`
   display: flex;
   justify-content: space-between;
   flex-direction: column;
-  height: calc(100% - 210px);
+  height: calc(100% - 209px);
 
   .title {
     font-size: 14px;

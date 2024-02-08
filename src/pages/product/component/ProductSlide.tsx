@@ -4,8 +4,15 @@ import { get } from "lodash";
 import { useState } from "react";
 import { FreeMode, Navigation, Thumbs } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { ProductSlideBox, ProductValue, SizeTabs } from "../Product.style";
+import {
+  ProductBottom,
+  ProductSlideBox,
+  ProductTop,
+  ProductValue,
+  SizeTabs,
+} from "../Product.style";
 import { useTranslation } from "react-i18next";
+import { numberFormat } from "@/utils/numberFormat";
 
 interface IProductSlide {
   product: Record<string, any>;
@@ -90,7 +97,14 @@ const ProductSlide = ({
           </Swiper>
         </ProductSlideBox>
       </Grid>
-      <Grid item xs={12} md={6}>
+      <ProductBottom>
+        <Typography className="title">{get(product, "name", "")}</Typography>{" "}
+        <Typography className="price">
+          {numberFormat(get(product, "price", ""))}
+          <span className="currency"> uzs</span>
+        </Typography>
+      </ProductBottom>
+      <Grid item xs={12} sm={8} md={8}>
         <ProductValue className="mb-5">
           <Typography className="title">{t("product.size")}</Typography>
           {!size && checkSize && (

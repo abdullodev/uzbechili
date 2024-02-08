@@ -5,6 +5,7 @@ export const ProductTop = styled(Box)`
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
+  margin-bottom: 10px;
 
   .title {
     font-size: 36px;
@@ -21,13 +22,39 @@ export const ProductTop = styled(Box)`
       font-size: 22px;
     }
   }
+
+  @media screen and (max-width: 540px) {
+    display: none;
+  }
+`;
+export const ProductBottom = styled(Box)`
+  display: none;
+
+  @media screen and (max-width: 540px) {
+    display: flex;
+    flex-direction: column;
+    padding: 18px;
+
+    .title {
+      font-size: 22px;
+      color: #000;
+      font-weight: 700;
+    }
+    .price {
+      font-size: 20px;
+      color: #0065ff;
+      font-weight: 600;
+      .currency {
+        color: #999;
+      }
+    }
+  }
 `;
 
 export const ProductSlideBox = styled(Box)`
   .mySwiper2 {
     width: 100%;
-    height: 100%;
-    height: 400px;
+    height: 420px;
     overflow: hidden;
     border-radius: 24px;
     position: relative;
@@ -37,9 +64,8 @@ export const ProductSlideBox = styled(Box)`
       font-size: 18px;
       background: #fff;
       border-radius: 24px;
-      background-color: #f5f5f5;
+      background: linear-gradient(to right, #c1c6cc, #c7cbd4);
       height: 100%;
-      /* Center slide text vertically */
       display: flex;
       justify-content: center;
       align-items: center;
@@ -80,6 +106,7 @@ export const ProductSlideBox = styled(Box)`
       width: 100%;
       height: 100%;
       object-fit: cover;
+      border-radius: 24px;
     }
     .swiper-pagination-bullet {
       background-color: #0065ff;
@@ -87,7 +114,7 @@ export const ProductSlideBox = styled(Box)`
   }
   .mySwiper {
     width: 100%;
-    height: 72px !important;
+    height: 80px !important;
     overflow: hidden;
     border-radius: 10px;
     position: relative;
@@ -120,8 +147,11 @@ export const ProductSlideBox = styled(Box)`
     }
   }
 
-  @media screen and (max-width: 600px) {
-    /* max-width: 500px; */
+  @media screen and (max-width: 540px) {
+    .mySwiper2 {
+      width: 100%;
+      height: 510px;
+    }
   }
 `;
 
