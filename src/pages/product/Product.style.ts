@@ -54,7 +54,7 @@ export const ProductBottom = styled(Box)`
 export const ProductSlideBox = styled(Box)`
   .mySwiper2 {
     width: 100%;
-    height: 420px;
+    height: 620px;
     overflow: hidden;
     border-radius: 24px;
     position: relative;
@@ -150,7 +150,7 @@ export const ProductSlideBox = styled(Box)`
   @media screen and (max-width: 540px) {
     .mySwiper2 {
       width: 100%;
-      height: 510px;
+      height: 620px;
     }
   }
 `;

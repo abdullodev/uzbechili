@@ -265,7 +265,7 @@ const Navbar = () => {
             </li>
           </ul>
 
-          <div className="d-flex gap-1 pb-2">
+          <div className="d-flex gap-1 pb-4">
             <CommonButton
               title="UZ"
               sx={{ width: "100% !important" }}

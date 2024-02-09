@@ -59,7 +59,7 @@ const ProductSlide = ({
 
   return (
     <Grid container spacing={2}>
-      <Grid item xs={12} md={4}>
+      <Grid item xs={12} md={5}>
         <ProductSlideBox>
           <Swiper
             loop={true}
@@ -103,7 +103,7 @@ const ProductSlide = ({
           <span className="currency"> uzs</span>
         </Typography>
       </ProductBottom>
-      <Grid item xs={12} sm={8} md={8}>
+      <Grid item xs={12} sm={7} md={7}>
         <ProductValue className="mb-5">
           <Typography className="title">{t("product.size")}</Typography>
           {!size && checkSize && (
