@@ -33,7 +33,8 @@ export const ProductBottom = styled(Box)`
   @media screen and (max-width: 540px) {
     display: flex;
     flex-direction: column;
-    padding: 18px;
+    padding: 18px !important;
+    margin-left: 15px;
 
     .title {
       font-size: 22px;
