@@ -54,7 +54,7 @@ export const ProductBottom = styled(Box)`
 export const ProductSlideBox = styled(Box)`
   .mySwiper2 {
     width: 100%;
-    height: 620px;
+    height: 520px;
     overflow: hidden;
     border-radius: 24px;
     position: relative;
@@ -91,10 +91,19 @@ export const ProductSlideBox = styled(Box)`
       position: absolute;
       bottom: 0;
       right: 0;
-      width: 48px;
-      height: 48px;
-      background-color: #fff;
+      width: 32px;
+      height: 32px;
+      background-color: rgba(0, 0, 0, 0.15);
       border-radius: 50%;
+
+      &::after {
+        font-size: 12px !important;
+        color: #fff !important;
+      }
+      &:before {
+        font-size: 12px !important;
+        color: #fff !important;
+      }
 
       &.swiper-button-disabled {
         pointer-events: visible !important;
@@ -162,13 +171,19 @@ export const ProductValue = styled(Box)`
     color: #000;
   }
   .desc {
-    font-size: 14px;
-    font-weight: 600;
-    color: #999;
+    font-size: 15px;
+    font-weight: 400;
+    color: #454545;
 
     .more {
       color: #0065ff;
       cursor: pointer;
+    }
+  }
+
+  ul {
+    li {
+      list-style-type: none;
     }
   }
 `;

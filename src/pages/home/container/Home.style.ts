@@ -24,7 +24,7 @@ export const HomeSlideStyle = styled(Box)`
     }
     .swiper-button-prev::after,
     .swiper-button-next::after {
-      font-size: 15px;
+      font-size: 16px;
       font-weight: 900;
       color: #000;
       -webkit-box-shadow: 0px 0px 11px -5px rgba(100, 175, 232, 0.6);
@@ -47,11 +47,11 @@ export const HomeSlideStyle = styled(Box)`
       height: 48px;
       background-color: #fff;
       border-radius: 50%;
+      background-color: rgba(255, 255, 255, 0.25);
 
       &.swiper-button-disabled {
         pointer-events: visible !important;
         cursor: pointer !important;
-        color: red;
       }
     }
     .swiper-slide img {

@@ -204,14 +204,22 @@ const Navbar = () => {
           </IconButton>
           <IconButton
             className={tabValue.includes("design") ? "active" : ""}
-            onClick={() => handleChangePage("/design")}
+            onClick={() => {
+              if (isAuth()) {
+                handleChangePage("/design");
+              } else setAuth(true);
+            }}
           >
             <Icons.TshirtIcon />
             <span>{t("navbar.my_design")}</span>
           </IconButton>
           <IconButton
             className={tabValue.includes("baskets") ? "active" : ""}
-            onClick={() => handleChangePage("/baskets")}
+            onClick={() => {
+              if (isAuth()) {
+                handleChangePage("/baskets");
+              } else setAuth(true);
+            }}
           >
             <Badge
               badgeContent={baskets.length}
@@ -228,7 +236,11 @@ const Navbar = () => {
           </IconButton>
           <IconButton
             className={tabValue.includes("orders") ? "active" : ""}
-            onClick={() => handleChangePage("/orders")}
+            onClick={() => {
+              if (isAuth()) {
+                handleChangePage("/orders");
+              } else setAuth(true);
+            }}
           >
             <Icons.OrderIcon />
             <span>{t("navbar.orders")}</span>

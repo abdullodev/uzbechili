@@ -20,6 +20,7 @@ export const FooterStyled = styled(Box)`
 
     .footer_info {
       display: flex;
+      align-items: center;
       flex-wrap: wrap;
       gap: 20px;
 

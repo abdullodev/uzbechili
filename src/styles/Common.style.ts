@@ -37,7 +37,7 @@ export const ProductBox = styled(Box)`
 
   @media screen and (max-width: 540px) {
     width: 100%;
-    height: 420px;
+    height: 380px;
   }
 `;
 

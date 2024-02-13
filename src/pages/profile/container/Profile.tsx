@@ -43,6 +43,7 @@ const Profile = () => {
               control={control}
               name="phoneNumber"
               label={t("profile.phone")}
+              disabled
             />
           </div>
           <CommonButton
