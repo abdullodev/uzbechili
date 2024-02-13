@@ -23,7 +23,6 @@ const OrderDetail = ({ show, order, setShow }: IOrderDetails) => {
     setShow(false);
   };
 
-  console.log(order);
   return (
     <Drawer
       anchor={"bottom"}
@@ -138,10 +137,13 @@ const OrderDetail = ({ show, order, setShow }: IOrderDetails) => {
               {get(order, "orderItems", []).map((item: Record<string, any>) => (
                 <div className="product_box">
                   <div className="image">
-                    {get(item, "imageUrl", "") ? (
+                    {get(item, "productsInfo.imageUrls", [])[0] ? (
                       <img
-                        src={import.meta.env.VITE_BASE_URL + item.imagUrl}
-                        alt={item.imagUrl}
+                        src={
+                          import.meta.env.VITE_BASE_URL +
+                          get(item, "productsInfo.imageUrls", [])[0]
+                        }
+                        alt={get(item, "productsInfo.imageUrls", [])[0]}
                       />
                     ) : (
                       <Icons.TshirtIcon />
@@ -150,7 +152,7 @@ const OrderDetail = ({ show, order, setShow }: IOrderDetails) => {
                   <div className="product_info">
                     <div className="d-flex justify-content-between">
                       <p className="text-grey">{t("orders.name")}</p>
-                      <p>{get(item, "name", "")}</p>
+                      <p>{get(item, "productsInfo.name", "")}</p>
                     </div>
                     <div className="d-flex justify-content-between">
                       <p className="text-grey">{t("orders.size")}</p>

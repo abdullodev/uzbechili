@@ -25,7 +25,7 @@ const Order = ({ order }: { order: Record<string, any> }) => {
         <div className="state_box">
           {order.state === "cancelled" && (
             <div className={`d-flex direction-column gap-1 cancelled`}>
-              <span className={"state_title"}>{t("orders.cancel")}</span>
+              <span className={"state_title"}>{t("orders.cancelled")}</span>
               <span className={"state_line"}></span>
             </div>
           )}
@@ -57,7 +57,7 @@ const Order = ({ order }: { order: Record<string, any> }) => {
             <span className="color-main">№{get(order, "uuid", "1")}</span>
           </h3>
           <h3>
-            {numberFormat(get(order, "totalPrice", "1"))}{" "}
+            {numberFormat(get(order, "totalPriceWithPromoCode", "1"))}{" "}
             <span className="color-grey">uzs</span>
           </h3>
         </div>
