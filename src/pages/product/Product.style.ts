@@ -136,7 +136,6 @@ export const ProductSlideBox = styled(Box)`
       background: #fff;
       border-radius: 10px;
       background-color: #f5f5f5;
-      width: 56px !important;
       height: 100%;
       display: flex;
       justify-content: center;
@@ -151,6 +150,7 @@ export const ProductSlideBox = styled(Box)`
       height: 100%;
       object-fit: cover;
       border-radius: 10px;
+      background-color: green;
     }
     .swiper-pagination-bullet {
       background-color: #0065ff;

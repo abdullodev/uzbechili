@@ -18,31 +18,8 @@ export const MainBox = styled(Box)`
   }
 `;
 
-export const ProductBox = styled(Box)`
-  width: 160px;
-  height: 320px;
-  padding: 8px;
-  box-sizing: border-box;
-  border-radius: 12px;
-  background-color: #fff;
-  cursor: pointer;
-  border: 1px solid #ffffff;
-
-  &:hover {
-    border: 1px solid #eaeaea;
-    .product_img {
-      filter: brightness(80%);
-    }
-  }
-
-  @media screen and (max-width: 540px) {
-    width: 100%;
-    height: 380px;
-  }
-`;
-
 export const ProductImg = styled(Box)`
-  width: 140px;
+  width: 100%;
   height: 210px;
   background-color: #c1c6cc;
   display: flex;
@@ -92,7 +69,7 @@ export const ProductButton = styled(Button)`
   outline: none !important;
   font-size: 14px !important;
   text-transform: inherit !important;
-  padding: 0 18px !important;
+  padding: 0 12px !important;
   color: #000 !important;
   font-weight: 800 !important;
   background-color: #f5f5f5 !important;
