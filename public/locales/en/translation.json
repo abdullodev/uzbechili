@@ -65,7 +65,9 @@
     "realy_clear": "Are you sure you want to clear the basket?",
     "payment": "Payment",
     "total_price": "Total Price",
-    "order": "Place Order"
+    "order": "Place Order",
+    "empty": "Cart is currently empty.",
+    "dont_do_that": "Don't do that)"
   },
   "purchase": {
     "title": "Place Order",

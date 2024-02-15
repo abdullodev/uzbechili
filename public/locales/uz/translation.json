@@ -65,7 +65,9 @@
     "realy_clear": "Rostdan ham savatni tozalamoqchimisiz?",
     "payment": "To'lovga",
     "total_price": "Umumiy narx",
-    "order": "Buyurtmani rasmiylashtirish"
+    "order": "Buyurtmani rasmiylashtirish",
+    "empty": "Savat hozircha bo'sh.",
+    "dont_do_that": "Unaqamasde)"
   },
   "purchase": {
     "title": "Buyurtmani rasmiylashtirish",
