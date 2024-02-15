@@ -7,11 +7,13 @@ import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import { ModalStyle, ProfileStyle } from "./Profile.style";
 import { useTranslation } from "react-i18next";
+import { useApi, useApiMutation } from "@/hooks/useApi/useApiHooks";
+import { toast } from "react-hot-toast";
 
 const Profile = () => {
   const [open, setOpen] = useState<boolean>(false);
   const navigate = useNavigate();
-  const { control, setValue } = useForm();
+  const { control, setValue, handleSubmit, reset } = useForm();
 
   const { t } = useTranslation();
 
@@ -23,21 +25,54 @@ const Profile = () => {
     }
   }, []);
 
+  const { mutate, status: updateStatus } = useApiMutation("client", "put", {
+    onSuccess() {
+      toast.success("Success");
+      refetch();
+    },
+  });
+
+  const { data, status, refetch } = useApi(
+    `/client/${auth._id}`,
+    {},
+    { enabled: !!auth?._id }
+  );
+
+  const onSubmit = (data: any) => {
+    mutate({ ...data, _id: get(auth, "_id", "") });
+  };
+
   const logout = () => {
     localStorage.clear();
     location.pathname = "";
     navigate("/");
   };
 
+  useEffect(() => {
+    if (status === "success") {
+      reset(data.data);
+    }
+  }, [status]);
+
   return (
     <ProfileStyle>
       <div className="user-box">
-        <form className="d-flex flex-column gap-2 ">
+        <form
+          className="d-flex flex-column gap-2 "
+          onSubmit={handleSubmit(onSubmit)}
+          id="client-update"
+        >
           <TextInput
             control={control}
             name="firstName"
             label={t("profile.name")}
           />
+          <TextInput
+            control={control}
+            name="lastName"
+            label={t("profile.lastName")}
+          />
+
           <div>
             <PhoneInput
               control={control}
@@ -49,6 +84,9 @@ const Profile = () => {
           <CommonButton
             className="blue"
             title={t("common.save")}
+            type="submit"
+            form="client-update"
+            disabled={updateStatus === "loading"}
             sx={{ height: "48px !important" }}
           />
         </form>

@@ -21,18 +21,18 @@ import {
 //img
 
 import useGlobalContext from "@/context/useGlobal";
-import { useApi, useApiMutation } from "@/hooks/useApi/useApiHooks";
+import { useApiMutation } from "@/hooks/useApi/useApiHooks";
 import { SuccesOrder } from "@/styles/Common.style";
 import { ICart } from "@/types/types.common";
 import { numberFormat } from "@/utils/numberFormat";
 import { get } from "lodash";
+import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import ArriveCarImg from "../../../assets/arriveCar.png";
 import KelishImg from "../../../assets/kelish.png";
 import UzpostCarImg from "../../../assets/uzPost.png";
 import PromocodeForm from "../components/PromocodeForm";
 import { REGIONS } from "./purchase.const";
-import { useTranslation } from "react-i18next";
 
 const Purchase = () => {
   const [givenOrder, setGivenOrder] = useState<boolean>(false);
@@ -48,12 +48,6 @@ const Purchase = () => {
   } = useGlobalContext();
   const { control, watch, handleSubmit, setValue, reset } = useForm();
   const user = JSON.parse(localStorage.getItem("auth") || "{}");
-
-  const { data } = useApi(`order/${user?._id}`, {}, { enabled: !!user?._id });
-
-  const isHavePromocode = get(data, "data", []).find(
-    (order: Record<string, any>) => order.state === "completed"
-  );
 
   const totalSum = useMemo(() => {
     return baskets.reduce((acc, curr) => acc + curr.price! * curr.count, 0);
@@ -87,23 +81,16 @@ const Purchase = () => {
       })),
       promoCodeId: !!promocodeData ? promocodeData._id : null,
       totalPriceWithPromoCode:
-        !!promocodeData && promocodeData?.currency === "uzs"
+        !!promocodeData && get(promocodeData, "currency", "") === "uzs"
           ? totalSum +
             get(siteSettings, "data.deliveryPrice", 0) -
-            promocodeData?.amount
-          : promocodeData?.currency === "percent"
-          ? Math.ceil(
-              (totalSum +
-                get(siteSettings, "data.deliveryPrice", 0) -
-                (totalSum + get(siteSettings, "data.deliveryPrice", 0)) *
-                  promocodeData.amount) /
-                100
-            )
-          : isHavePromocode
+            get(promocodeData, "amount", "")
+          : !!promocodeData && get(promocodeData, "currency", "") === "percent"
           ? Math.ceil(
               totalSum +
                 get(siteSettings, "data.deliveryPrice", 0) -
-                ((totalSum + get(siteSettings, "data.deliveryPrice", 0)) * 10) /
+                ((totalSum + get(siteSettings, "data.deliveryPrice", 0)) *
+                  promocodeData.amount) /
                   100
             )
           : totalSum + get(siteSettings, "data.deliveryPrice", 0),
@@ -355,31 +342,29 @@ const Purchase = () => {
                 </Tooltip>
               </div>
 
-              {!!isHavePromocode && (
-                <div className="py-3 border-bottom-dashed">
-                  <div className="d-flex justify-content-between gap-2">
-                    <div className="d-flex align-items-center gap-2 ">
-                      <span>Promokod</span>
-                    </div>
-                    <div>
-                      <CommonButton
-                        title="Promocode"
-                        sx={{ height: "36px !important" }}
-                        type="button"
-                        onClick={() => setOpen(true)}
-                      />
-                    </div>
+              <div className="py-3 border-bottom-dashed">
+                <div className="d-flex justify-content-between gap-2">
+                  <div className="d-flex align-items-center gap-2 ">
+                    <span>Promokod</span>
                   </div>
-                  {!!promocodeData && (
-                    <TextInput
-                      control={control}
-                      name="promocode"
-                      label={"Promocode"}
-                      disabled
+                  <div>
+                    <CommonButton
+                      title="Promocode"
+                      sx={{ height: "36px !important" }}
+                      type="button"
+                      onClick={() => setOpen(true)}
                     />
-                  )}
+                  </div>
                 </div>
-              )}
+                {!!promocodeData && (
+                  <TextInput
+                    control={control}
+                    name="promocode"
+                    label={"Promocode"}
+                    disabled
+                  />
+                )}
+              </div>
               <div className="d-flex justify-content-between gap-2 py-2">
                 <div className="d-flex align-items-center gap-2 ">
                   <span>{t("purchase.product_price")}</span>
@@ -401,10 +386,10 @@ const Purchase = () => {
                 </div>
                 <h4
                   className={`d-flex flex-column ${
-                    (!isHavePromocode || !!promocodeData) && "text-error"
+                    !!promocodeData && "text-error"
                   }`}
                 >
-                  {(!isHavePromocode || !!promocodeData) && (
+                  {!!promocodeData && (
                     <del className="discount_price">
                       {numberFormat(
                         totalSum + get(siteSettings, "data.deliveryPrice", 0)
@@ -428,17 +413,6 @@ const Purchase = () => {
                             ((totalSum +
                               get(siteSettings, "data.deliveryPrice", 0)) *
                               promocodeData.amount) /
-                              100
-                        )
-                      )
-                    : !isHavePromocode
-                    ? numberFormat(
-                        Math.ceil(
-                          totalSum +
-                            get(siteSettings, "data.deliveryPrice", 0) -
-                            ((totalSum +
-                              get(siteSettings, "data.deliveryPrice", 0)) *
-                              10) /
                               100
                         )
                       )
