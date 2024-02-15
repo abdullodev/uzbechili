@@ -122,6 +122,7 @@
   },
   "profile": {
     "name": "Name",
+    "lastName": "Last name",
     "phone": "Phone Number",
     "save": "Save",
     "info": "If you have any questions or suggestions regarding improving the site, please write to the “O'ZBECHILI” community through Telegram",
