@@ -13,9 +13,9 @@ const Footer = () => {
       <Box className="footer_top">
         <Icons.LogoMain />
         <Box className="footer_info">
-          <p>+998 97 448 15 12</p>
+          <a href="tel:+998 97 448 15 12">+998 97 448 15 12</a>
           <div className="d-flex direction-column gap-1">
-            <span>ozbechili@gmail.com</span>
+            <a href="mailto: ozbechili@gmail.com">ozbechili@gmail.com</a>
             <span className="location">Tasheknt, Uzbekistan</span>
           </div>
           <CommonButton title="Ariza qoldirish" />
@@ -23,10 +23,10 @@ const Footer = () => {
       </Box>
       <Box className="footer_bottom">
         <Box className="socials">
-          <a href="#" className="social">
+          <a href="https://www.instagram.com/ozbechili_uz" className="social">
             <Icons.InstagramIcon />
           </a>
-          <a href="#" className="social">
+          <a href="https://t.me/ozbechiliuz" className="social">
             <Icons.tgIcon />
           </a>
           <a href="#" className="social">

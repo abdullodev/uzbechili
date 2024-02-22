@@ -77,7 +77,7 @@
     "address_info": "Delivery Address",
     "in_tashkent": "Delivery in Tashkent",
     "over_region": "Delivery to Regions",
-    "by_uzpost": "Via UZPOST",
+    "by_uzpost": "Soon",
     "delivery_day": "Delivery Date: {{value}} business days",
     "region": "Region",
     "distirict": "District",

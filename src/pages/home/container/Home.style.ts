@@ -5,7 +5,7 @@ export const HomeSlideStyle = styled(Box)`
   .swiper {
     width: 100%;
     height: 100%;
-    height: 500px;
+    height: 580px;
     overflow: hidden;
     border-radius: 24px;
     position: relative;
@@ -126,7 +126,7 @@ export const CategoryBox = styled(Box)`
     bottom: 10px;
     left: 16px;
     font-size: 20px;
-    color: #000;
+    color: #fff;
     z-index: 2;
     font-weight: 700;
   }
@@ -147,7 +147,7 @@ export const CategoryBox = styled(Box)`
       transform: scale(1.03);
     }
     .category_name {
-      color: #999;
+      color: #f5f5f5;
     }
   }
   &.disabled {

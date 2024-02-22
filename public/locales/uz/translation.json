@@ -10,7 +10,8 @@
     "save": "Saqlash",
     "no": "Yo'q",
     "yes": "Ha",
-    "good": "Yaxshi"
+    "good": "Yaxshi",
+    "back": "Orqaga"
   },
   "general": {
     "required": "Majburiy",
@@ -77,7 +78,7 @@
     "address_info": "Yetkazib berish manzili",
     "in_tashkent": "Toshkent shaxrida yetkazish",
     "over_region": "Viloyatlar aro yetkazish",
-    "by_uzpost": "UZPOST orqali",
+    "by_uzpost": "Tez orada",
     "delivery_day": "Yetkazib berish vaqti {{value}} ish kuni",
     "region": "Viloyat",
     "distirict": "Tuman",

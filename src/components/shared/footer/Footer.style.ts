@@ -24,8 +24,9 @@ export const FooterStyled = styled(Box)`
       flex-wrap: wrap;
       gap: 20px;
 
-      span,
+      a,
       p {
+        text-decoration: none;
         color: #fff;
         font-size: 16px;
       }

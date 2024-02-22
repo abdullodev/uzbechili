@@ -85,6 +85,8 @@ const Navbar = () => {
     }
   }, [location]);
 
+  const hasPurchase = location.pathname.includes("purchase");
+
   return (
     <>
       <TopNavbarStyled>{t("navbar.new_way")}</TopNavbarStyled>
@@ -94,13 +96,19 @@ const Navbar = () => {
             <Icons.responsiveMenuIcon />
           </IconButton>
           <Box display={"flex"} gap={"14px"} className="design_box">
-            {/* <CommonButton title="Menu" startIcon={<Icons.MenuIcon />} /> */}
-            <CommonButton
-              title={t("navbar.make_design")}
-              startIcon={<Icons.ShirtIcon />}
-              className="designed"
-            />
-            {/* <CommonButton iconButton icon={<Icons.HeartIcon />} /> */}
+            {!hasPurchase ? (
+              <CommonButton
+                title={t("navbar.make_design")}
+                startIcon={<Icons.ShirtIcon />}
+                className="designed"
+              />
+            ) : (
+              <CommonButton
+                title={t("common.back")}
+                startIcon={<Icons.backIcon />}
+                onClick={() => navigate(-1)}
+              />
+            )}
           </Box>
           <Box display={"flex"} justifyContent={"center"}>
             <Link to="/">
@@ -115,34 +123,36 @@ const Navbar = () => {
             className="nav_left"
           >
             {/* <CommonButton iconButton icon={<Icons.SearchIcon />} /> */}
-            <Tooltip
-              title={
-                !!baskets.length
-                  ? t("navbar.go_to_basket")
-                  : t("navbar.no_product")
-              }
-              arrow
-            >
-              <Badge
-                badgeContent={baskets.length}
-                sx={{
-                  "& .MuiBadge-badge": {
-                    color: "#ffffff",
-                    backgroundColor: "#0065FF",
-                  },
-                }}
+            {hasPurchase ? null : (
+              <Tooltip
+                title={
+                  !!baskets.length
+                    ? t("navbar.go_to_basket")
+                    : t("navbar.no_product")
+                }
+                arrow
               >
-                <CommonButton
-                  iconButton
-                  icon={<Icons.CartIcon />}
-                  onClick={() => {
-                    if (!!baskets.length) {
-                      navigate("/baskets");
-                    }
+                <Badge
+                  badgeContent={baskets.length}
+                  sx={{
+                    "& .MuiBadge-badge": {
+                      color: "#ffffff",
+                      backgroundColor: "#0065FF",
+                    },
                   }}
-                />
-              </Badge>
-            </Tooltip>
+                >
+                  <CommonButton
+                    iconButton
+                    icon={<Icons.CartIcon />}
+                    onClick={() => {
+                      if (!!baskets.length) {
+                        navigate("/baskets");
+                      }
+                    }}
+                  />
+                </Badge>
+              </Tooltip>
+            )}
             <LanguageBox ref={refLang}>
               <CommonButton
                 title={
@@ -180,7 +190,7 @@ const Navbar = () => {
               </Paper>
             </LanguageBox>
 
-            {isAuth() ? (
+            {hasPurchase ? null : isAuth() ? (
               <NavbarProfile />
             ) : (
               <CommonButton

@@ -77,7 +77,7 @@
     "address_info": "Адрес доставки",
     "in_tashkent": "Доставка в Ташкенте",
     "over_region": "Доставка в регионы",
-    "by_uzpost": "Через UZPOST",
+    "by_uzpost": "Скоро",
     "delivery_day": "Дата доставки: {{value}} рабочих дней",
     "region": "Регион",
     "distirict": "Район",
