@@ -18,7 +18,6 @@ const TelegramButtonLogin = () => {
 
     window.TelegramLoginWidget = {
       onAuth: (user: any) => {
-        // mutate(user);
         console.log(user);
       },
     };
