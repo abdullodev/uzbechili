@@ -1,4 +1,8 @@
 import { useEffect, useRef } from "react";
+import { useApiMutation } from "@/hooks/useApi/useApiHooks";
+import { Loader } from "@/components";
+import useGlobalContext from "@/context/useGlobal";
+import { useNavigate } from "react-router-dom";
 
 declare global {
   // eslint-disable-next-line @typescript-eslint/naming-convention
@@ -11,14 +15,29 @@ declare global {
 
 const TelegramButtonLogin = () => {
   const ref = useRef<HTMLDivElement>(null);
+  const navigate = useNavigate();
+
+  const {
+    actions: { setAuth },
+  } = useGlobalContext();
+
   const TELEGRAM_BOT_NAME = import.meta.env.VITE_TELEGRAM_BOT_NAME;
+
+  const { mutate, status } = useApiMutation("login/telegram", "post", {
+    onSuccess(data) {
+      localStorage.setItem("token", JSON.stringify(data.data));
+      localStorage.setItem("auth", JSON.stringify(data.data));
+      setAuth(false);
+      navigate("/");
+    },
+  });
 
   useEffect(() => {
     if (ref.current === null) return;
 
     window.TelegramLoginWidget = {
       onAuth: (user: any) => {
-        console.log(user);
+        mutate(user);
       },
     };
 
@@ -37,6 +56,8 @@ const TelegramButtonLogin = () => {
       ref.current?.removeChild(script);
     };
   }, []);
+
+  if (status === "loading") return <Loader />;
 
   return <div ref={ref} />;
 };
