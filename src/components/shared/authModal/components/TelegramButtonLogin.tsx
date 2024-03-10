@@ -1,6 +1,6 @@
 import { Loader } from "@/components";
 import { useApiMutation } from "@/hooks/useApi/useApiHooks";
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 
 declare global {
   // eslint-disable-next-line @typescript-eslint/naming-convention
@@ -12,45 +12,49 @@ declare global {
 }
 
 const TelegramButtonLogin = () => {
-  const telegramRef = useRef<HTMLDivElement>(null);
+  // const telegramRef = useRef<HTMLDivElement>(null);
 
   const TELEGRAM_BOT_NAME = import.meta.env.VITE_TELEGRAM_BOT_NAME;
 
-  const { mutate, status } = useApiMutation("login/telegram", "post", {
+  const { status } = useApiMutation("login/telegram", "post", {
     onSuccess(data) {
       console.log(data);
     },
   });
 
   useEffect(() => {
-    console.log(telegramRef.current);
-    if (telegramRef.current === null) return;
-
-    window.TelegramLoginWidget = {
-      onAuth: (user: any) => {
-        mutate(user);
-      },
-    };
-
+    // Load Telegram Login Widget script dynamically
     const script = document.createElement("script");
-    script.src = "https://telegram.org/js/telegram-widget.js?4";
+    script.src = "https://telegram.org/js/telegram-widget.js?5";
+    script.async = true;
     script.setAttribute("data-telegram-login", TELEGRAM_BOT_NAME);
     script.setAttribute("data-size", "large");
     script.setAttribute("data-radius", "10");
-    script.setAttribute("data-request-access", "write");
-    script.setAttribute("data-userpic", "true");
-    script.setAttribute("data-onauth", "TelegramLoginWidget.onAuth(user)");
-    script.async = true;
-    telegramRef?.current?.appendChild(script);
+    script.setAttribute("data-auth-url", "/auth"); // Endpoint to handle authentication on your server
+    document.body.appendChild(script);
 
+    // Cleanup on unmount
     return () => {
-      telegramRef.current?.removeChild(script);
+      document.body.removeChild(script);
     };
   }, []);
 
   if (status === "loading") return <Loader />;
 
-  return <div ref={telegramRef} />;
+  return (
+    <div>
+      {/* Telegram Login button */}
+      <script type="text/javascript">
+        {`
+        window.onload = function() {
+          Telegram.Widget.on('auth', function(user) {
+            console.log(user);
+          });
+        }
+      `}
+      </script>
+    </div>
+  );
 };
 
 export default TelegramButtonLogin;
