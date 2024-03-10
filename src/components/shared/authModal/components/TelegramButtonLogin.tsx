@@ -23,10 +23,10 @@ const TelegramButtonLogin = () => {
     };
 
     const script = document.createElement("script");
-    script.src = "https://telegram.org/js/telegram-widget.js?4";
+    script.src = "https://telegram.org/js/telegram-widget.js?22";
     script.setAttribute("data-telegram-login", TELEGRAM_BOT_NAME);
-    script.setAttribute("data-size", "large");
-    script.setAttribute("data-radius", "10");
+    script.setAttribute("data-size", "medium");
+    script.setAttribute("data-radius", "12");
     script.setAttribute("data-request-access", "write");
     script.setAttribute("data-userpic", "true");
     script.setAttribute("data-onauth", "TelegramLoginWidget.onAuth(user)");
