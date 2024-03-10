@@ -16,7 +16,7 @@ const TelegramButtonLogin = () => {
 
   const TELEGRAM_BOT_NAME = import.meta.env.VITE_TELEGRAM_BOT_NAME;
 
-  const { status } = useApiMutation("login/telegram", "post", {
+  const { mutate, status } = useApiMutation("login/telegram", "post", {
     onSuccess(data) {
       console.log(data);
     },
@@ -30,7 +30,7 @@ const TelegramButtonLogin = () => {
     script.setAttribute("data-telegram-login", TELEGRAM_BOT_NAME);
     script.setAttribute("data-size", "large");
     script.setAttribute("data-radius", "10");
-    script.setAttribute("data-auth-url", "/auth"); // Endpoint to handle authentication on your server
+    script.setAttribute("data-auth-url", ""); // Endpoint to handle authentication on your server
     document.body.appendChild(script);
 
     // Cleanup on unmount
@@ -49,6 +49,7 @@ const TelegramButtonLogin = () => {
         window.onload = function() {
           Telegram.Widget.on('auth', function(user) {
             console.log(user);
+            ${mutate.toString()}{user}
           });
         }
       `}
