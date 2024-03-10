@@ -21,7 +21,9 @@ const TelegramButtonLogin = () => {
     script.setAttribute("data-telegram-login", TELEGRAM_BOT_NAME);
     script.setAttribute("data-size", "large");
     script.setAttribute("data-radius", "10");
-    script.setAttribute("data-auth-url", "");
+    script.setAttribute("data-request-access", "write");
+    script.setAttribute("data-userpic", "true");
+    script.setAttribute("data-onauth", "TelegramLoginWidget.onAuth(user)");
     document.body.appendChild(script);
 
     return () => {
