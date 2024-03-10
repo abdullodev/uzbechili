@@ -1,3 +1,4 @@
+import { CommonButton } from "@/components";
 import axios from "axios";
 import { useEffect } from "react";
 
@@ -45,7 +46,7 @@ const TelegramButtonLogin = () => {
 
   return (
     <div>
-      {/* Telegram Login button */}
+      <CommonButton className="telegram" title="Telegram orqali kirish" />
       <script type="text/javascript">
         {`
          window.onload = function() {
