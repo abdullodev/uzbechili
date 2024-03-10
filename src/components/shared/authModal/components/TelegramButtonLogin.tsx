@@ -46,7 +46,7 @@ const TelegramButtonLogin = () => {
     return () => {
       telegramRef.current?.removeChild(script);
     };
-  }, [TELEGRAM_BOT_NAME]);
+  }, []);
 
   if (status === "loading") return <Loader />;
 
