@@ -1,5 +1,3 @@
-import { Loader } from "@/components";
-import { useApiMutation } from "@/hooks/useApi/useApiHooks";
 import axios from "axios";
 import { useEffect } from "react";
 
