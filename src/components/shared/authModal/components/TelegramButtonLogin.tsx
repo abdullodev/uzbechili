@@ -2,15 +2,6 @@ import { CommonButton } from "@/components";
 import axios from "axios";
 import { useEffect } from "react";
 
-declare global {
-  // eslint-disable-next-line @typescript-eslint/naming-convention
-  interface Window {
-    TelegramLoginWidget: {
-      onAuth: (user: any) => void;
-    };
-  }
-}
-
 const TelegramButtonLogin = () => {
   const TELEGRAM_BOT_NAME = import.meta.env.VITE_TELEGRAM_BOT_NAME;
 
@@ -22,7 +13,7 @@ const TelegramButtonLogin = () => {
     script.setAttribute("data-telegram-login", TELEGRAM_BOT_NAME);
     script.setAttribute("data-size", "large");
     script.setAttribute("data-radius", "10");
-    script.setAttribute("data-auth-url", ""); // Empty since we'll handle the authentication in the script
+    script.setAttribute("data-auth-url", "/auth"); // Empty since we'll handle the authentication in the script
     document.body.appendChild(script);
 
     return () => {
