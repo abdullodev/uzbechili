@@ -1,11 +1,14 @@
 import Icons from "@/assets/svgs";
-import { CommonButton, CommonModal, OTPInput, PhoneInput } from "@/components";
+import {
+  // CommonButton,
+  /*CommonButton*/ CommonModal /*OTPInput, PhoneInput */,
+} from "@/components";
 import useGlobalContext from "@/context/useGlobal";
-import { IconButton } from "@mui/material";
-import { useEffect, useState } from "react";
+import { /*Icon, */ IconButton } from "@mui/material";
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { Trans, useTranslation } from "react-i18next";
-import { useTimer } from "react-timer-hook";
+import { /*Trans*/ useTranslation } from "react-i18next";
+// import { useTimer } from "react-timer-hook";
 import {
   ILogin_body,
   IRegister_body,
@@ -13,9 +16,10 @@ import {
 } from "../context/addModal.types";
 import { StyledAuthModal } from "./authModal.styles";
 import useAuthModalContext from "../context/autoModal.context";
+import TelegramButtonLogin from "../components/TelegramButtonLogin";
 
 const AuthModal = () => {
-  const [resend, setResend] = useState(false);
+  // const [resend, setResend] = useState(false);
 
   const { t } = useTranslation();
 
@@ -26,50 +30,50 @@ const AuthModal = () => {
 
   const {
     state: {
-      loginState: { loginData, loginStatus },
-      verifyState: { verifyData, verifyStatus },
+      loginState: { /* loginData */ loginStatus },
+      // verifyState: { verifyData, verifyStatus },
     },
-    actions: { login, verify },
+    // actions: { login /*verify*/ },
   } = useAuthModalContext();
 
-  const [code, setCode] = useState("");
+  // const [code, setCode] = useState("");
   const isVerifying = loginStatus === "SUCCESS";
-  const { control, handleSubmit, watch, setError } = useForm<
+  const { /*control handleSubmit*/ watch, setError } = useForm<
     IRegister_body & ILogin_body & IVerify_body
   >();
   const expiryTimestamp = new Date();
   expiryTimestamp.setMinutes(expiryTimestamp.getMinutes() + 1);
 
-  const { seconds, start, restart } = useTimer({
-    expiryTimestamp,
-    autoStart: false,
-    onExpire: () => {
-      setResend(true);
-    },
-  });
+  // const { /*seconds */ start, restart } = useTimer({
+  //   expiryTimestamp,
+  //   autoStart: false,
+  //   onExpire: () => {
+  //     setResend(true);
+  //   },
+  // });
 
-  const onSubmit = handleSubmit((formData) => {
-    isVerifying
-      ? verify({
-          otp: String(code),
-          _id: loginData,
-        })
-      : login(formData);
-  });
+  // const onSubmit = handleSubmit((formData) => {
+  //   isVerifying
+  //     ? verify({
+  //         otp: String(code),
+  //         _id: loginData,
+  //       })
+  //     : login(formData);
+  // });
 
   useEffect(() => {
     if (loginStatus === "SUCCESS") {
-      start();
+      // start();
     }
   }, [loginStatus]);
 
-  useEffect(() => {
-    if (verifyStatus === "SUCCESS") {
-      localStorage.setItem("token", verifyData.token);
-      localStorage.setItem("auth", JSON.stringify(verifyData));
-      setAuth(false);
-    }
-  }, [verifyStatus]);
+  // useEffect(() => {
+  //   if (verifyStatus === "SUCCESS") {
+  //     localStorage.setItem("token", verifyData.token);
+  //     localStorage.setItem("auth", JSON.stringify(verifyData));
+  //     setAuth(false);
+  //   }
+  // }, [verifyStatus]);
 
   useEffect(() => {
     // @ts-ignore
@@ -78,13 +82,13 @@ const AuthModal = () => {
     }
   }, [watch("phoneNumber")]);
 
-  const handleReSend = () => {
-    login({
-      phoneNumber: watch("phoneNumber"),
-    });
-    restart(expiryTimestamp, false);
-    setResend(false);
-  };
+  // const handleReSend = () => {
+  //   login({
+  //     phoneNumber: watch("phoneNumber"),
+  //   });
+  //   restart(expiryTimestamp, false);
+  //   setResend(false);
+  // };
 
   return (
     <CommonModal open={auth} setOpen={setAuth} canClose={false}>
@@ -108,7 +112,7 @@ const AuthModal = () => {
             <Icons.closeIcon />
           </IconButton>
         </div>
-        <p className="my-4">
+        {/* <p className="my-4">
           {isVerifying ? (
             <p className="text-center">
               {t("modal.send_to_phone").replace(
@@ -121,8 +125,8 @@ const AuthModal = () => {
               {t("modal.enter_phone")}
             </p>
           )}
-        </p>
-        <form onSubmit={onSubmit} id="login_form">
+        </p> */}
+        {/* <form onSubmit={onSubmit} id="login_form">
           {isVerifying ? (
             <>
               <div className="otp-container">
@@ -167,7 +171,10 @@ const AuthModal = () => {
               ]}
             />
           </span>
-        )}
+        )} */}
+        <div className="mt-3">
+          <TelegramButtonLogin />
+        </div>
       </StyledAuthModal>
     </CommonModal>
   );

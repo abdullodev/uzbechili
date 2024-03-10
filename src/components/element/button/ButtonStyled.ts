@@ -85,6 +85,14 @@ export const ButtonStyled = styled(Button)`
     border-radius: 12px !important;
     color: #ef3838 !important;
   }
+  &.telegram {
+    width: 100% !important;
+    height: 48px !important;
+    font-size: 15px !important;
+    background-color: #28a7e8 !important;
+    border-radius: 12px !important;
+    color: #fff !important;
+  }
 `;
 
 export const IconButtonStyled = styled(IconButton)`
