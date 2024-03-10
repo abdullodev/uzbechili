@@ -35,9 +35,21 @@ const TelegramButtonLogin = () => {
       });
   };
 
+  const triggerTelegramLogin = () => {
+    // Trigger Telegram login button click programmatically
+    const telegramButton = document.querySelector("[data-telegram-login]");
+    if (telegramButton instanceof HTMLElement) {
+      telegramButton.click();
+    }
+  };
+
   return (
     <div>
-      <CommonButton className="telegram" title="Telegram orqali kirish" />
+      <CommonButton
+        className="telegram"
+        title="Telegram orqali kirish"
+        onClick={triggerTelegramLogin}
+      />
       <script type="text/javascript">
         {`
          window.onload = function() {
