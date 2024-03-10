@@ -1,5 +1,6 @@
 import { Loader } from "@/components";
 import { useApiMutation } from "@/hooks/useApi/useApiHooks";
+import axios from "axios";
 import { useEffect } from "react";
 
 declare global {
@@ -12,15 +13,7 @@ declare global {
 }
 
 const TelegramButtonLogin = () => {
-  // const telegramRef = useRef<HTMLDivElement>(null);
-
   const TELEGRAM_BOT_NAME = import.meta.env.VITE_TELEGRAM_BOT_NAME;
-
-  const { mutate, status } = useApiMutation("login/telegram", "post", {
-    onSuccess(data) {
-      console.log(data);
-    },
-  });
 
   useEffect(() => {
     // Load Telegram Login Widget script dynamically
@@ -30,26 +23,39 @@ const TelegramButtonLogin = () => {
     script.setAttribute("data-telegram-login", TELEGRAM_BOT_NAME);
     script.setAttribute("data-size", "large");
     script.setAttribute("data-radius", "10");
-    script.setAttribute("data-auth-url", ""); // Endpoint to handle authentication on your server
+    script.setAttribute("data-auth-url", "");
     document.body.appendChild(script);
 
-    // Cleanup on unmount
     return () => {
       document.body.removeChild(script);
     };
   }, []);
 
-  if (status === "loading") return <Loader />;
+  const handleTelegramAuth = (user: any) => {
+    // Post user data to your server's authentication endpoint
+    axios
+      .post("/login/telegram", user)
+      .then((response) => {
+        // Handle successful authentication response
+        console.log(response.data);
+      })
+      .catch((error) => {
+        // Handle error
+        console.error("Error:", error);
+      });
+  };
 
   return (
     <div>
       {/* Telegram Login button */}
       <script type="text/javascript">
         {`
-        window.onload = function() {
+         window.onload = function() {
           Telegram.Widget.on('auth', function(user) {
+            // Handle user authentication data here
             console.log(user);
-            ${mutate.toString()}{user}
+            // Post user data to your server
+            ${handleTelegramAuth.toString()}(user);
           });
         }
       `}
