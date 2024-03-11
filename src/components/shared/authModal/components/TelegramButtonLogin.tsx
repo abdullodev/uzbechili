@@ -2,7 +2,7 @@ import { useEffect, useRef } from "react";
 import { useApiMutation } from "@/hooks/useApi/useApiHooks";
 import { Loader } from "@/components";
 import useGlobalContext from "@/context/useGlobal";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
 
 declare global {
@@ -16,7 +16,7 @@ declare global {
 
 const TelegramButtonLogin = () => {
   const ref = useRef<HTMLDivElement>(null);
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const {
     actions: { setAuth },
