@@ -30,7 +30,7 @@ const TelegramButtonLogin = () => {
       localStorage.setItem("token", data.data.token);
       localStorage.setItem("auth", JSON.stringify(data.data));
       setAuth(false);
-      navigate("/");
+      // navigate("/");
       toast.success("Success");
     },
   });
