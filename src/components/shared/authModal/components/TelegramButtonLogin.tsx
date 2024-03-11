@@ -3,6 +3,7 @@ import { useApiMutation } from "@/hooks/useApi/useApiHooks";
 import { Loader } from "@/components";
 import useGlobalContext from "@/context/useGlobal";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-hot-toast";
 
 declare global {
   // eslint-disable-next-line @typescript-eslint/naming-convention
@@ -30,6 +31,7 @@ const TelegramButtonLogin = () => {
       localStorage.setItem("auth", JSON.stringify(data.data));
       setAuth(false);
       navigate("/");
+      toast.success("Success");
     },
   });
 
