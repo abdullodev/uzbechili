@@ -25,7 +25,8 @@ const TelegramButtonLogin = () => {
 
   const { mutate, status } = useApiMutation("login/telegram", "post", {
     onSuccess(data) {
-      localStorage.setItem("token", JSON.stringify(data.data));
+      // @ts-ignore
+      localStorage.setItem("token", data.data.token);
       localStorage.setItem("auth", JSON.stringify(data.data));
       setAuth(false);
       navigate("/");
@@ -44,7 +45,7 @@ const TelegramButtonLogin = () => {
     const script = document.createElement("script");
     script.src = "https://telegram.org/js/telegram-widget.js?22";
     script.setAttribute("data-telegram-login", TELEGRAM_BOT_NAME);
-    script.setAttribute("data-size", "medium");
+    script.setAttribute("data-size", "large");
     script.setAttribute("data-radius", "12");
     script.setAttribute("data-request-access", "write");
     script.setAttribute("data-userpic", "true");

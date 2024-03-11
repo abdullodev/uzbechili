@@ -172,7 +172,7 @@ const AuthModal = () => {
             />
           </span>
         )} */}
-        <div className="mt-3">
+        <div className="mt-3 tgBox">
           <TelegramButtonLogin />
         </div>
       </StyledAuthModal>

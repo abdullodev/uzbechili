@@ -75,4 +75,11 @@ export const StyledAuthModal = styled.div`
       gap: 5px;
     }
   }
+  .tgBox {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+  }
 `;
