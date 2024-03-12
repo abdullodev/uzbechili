@@ -8,7 +8,7 @@ import { useTranslation } from "react-i18next";
 const OrderHistory = () => {
   const { t } = useTranslation();
 
-  const userId = JSON.parse(localStorage.getItem("auth") || "{}")?._id;
+  const userId = JSON.parse(localStorage.getItem("auth") || "{}")?.user?._id;
   const { data } = useApi(`order/${userId}`, {}, { enabled: !!userId });
 
   return (
