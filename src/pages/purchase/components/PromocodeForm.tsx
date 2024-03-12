@@ -27,7 +27,7 @@ const PromocodeForm = ({ open, setOpen, setPromocodeData }: IPromocodeForm) => {
   const onSubmit = (data: any) => {
     const requestData = {
       ...data,
-      clientId: client?._id,
+      clientId: client?.user?._id,
     };
     mutate(requestData);
   };
